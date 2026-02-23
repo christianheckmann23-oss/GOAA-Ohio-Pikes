@@ -1,0 +1,12 @@
+{
+  "members": [
+    { "name": "Robert Jenkins", "class_year": "1989", "role": "Chair" },
+    { "name": "Michael Walsh", "class_year": "1994", "role": "" },
+    { "name": "Daniel Simmons", "class_year": "1998", "role": "" },
+    { "name": "Christopher Torres", "class_year": "2002", "role": "" },
+    { "name": "Brian Lawson", "class_year": "2005", "role": "" },
+    { "name": "Kevin Park", "class_year": "2009", "role": "" },
+    { "name": "Andrew Hayes", "class_year": "2013", "role": "" },
+    { "name": "Jason Merrill", "class_year": "2017", "role": "" }
+  ]
+}

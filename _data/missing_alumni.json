@@ -1,0 +1,10 @@
+{
+  "decades": [
+    { "decade": "1950s", "names": ["Add names here"] },
+    { "decade": "1960s", "names": ["Add names here"] },
+    { "decade": "1970s", "names": ["Add names here"] },
+    { "decade": "1980s", "names": ["Add names here"] },
+    { "decade": "1990s", "names": ["Add names here"] },
+    { "decade": "2000s", "names": ["Add names here"] }
+  ]
+}

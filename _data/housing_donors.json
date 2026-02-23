@@ -1,0 +1,8 @@
+{
+  "societies": [
+    { "level": "Garnet and Gold Society", "donors": ["Add donor names here"] },
+    { "level": "Gamma Omicron Society", "donors": ["Add donor names here"] },
+    { "level": "Nestor Society", "donors": ["Add donor names here"] },
+    { "level": "8 Church Street Society", "donors": ["Add donor names here"] }
+  ]
+}

@@ -1,0 +1,252 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+# Netlify Identity — editors log in with email/password, no GitHub needed
+identity:
+  providers: []
+
+collections:
+
+  # ── SITE SETTINGS ──────────────────────────────────────────────
+  - name: "settings"
+    label: "⚙️ Site Settings"
+    files:
+      - name: "general"
+        label: "General Settings"
+        file: "_data/settings.json"
+        fields:
+          - { label: "Site Title", name: "site_title", widget: "string", default: "Gamma Omicron Alumni Association" }
+          - { label: "Tagline", name: "tagline", widget: "string", default: "Once a Pike, always a Pike." }
+          - { label: "Founded Year", name: "founded", widget: "string", default: "1930" }
+          - { label: "Refounded Year", name: "refounded", widget: "string", default: "1987" }
+          - { label: "Total Alumni Count", name: "alumni_count", widget: "string", default: "1,200+" }
+          - { label: "Smythe Trophy Count", name: "smythe_count", widget: "string", default: "7×" }
+          - { label: "Chapter Address", name: "address", widget: "string", default: "12 N College Street, Athens, OH 45701" }
+          - { label: "Annual Dues Amount", name: "dues_amount", widget: "string", default: "$35" }
+          - { label: "Contact Email", name: "contact_email", widget: "string" }
+          - { label: "PayPal Donate Link", name: "paypal_link", widget: "string", required: false }
+
+  # ── NEWS POSTS ─────────────────────────────────────────────────
+  - name: "news"
+    label: "📰 News Posts"
+    folder: "_data/news"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} — {{date}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime", date_format: "MMMM YYYY", time_format: false }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options: ["Active Chapter", "Alumni Spotlight", "Scholarships", "Events", "In Memoriam", "General"]
+      - { label: "Excerpt (short summary)", name: "excerpt", widget: "text", hint: "2–3 sentences shown on the homepage" }
+      - { label: "Full Story (optional)", name: "body", widget: "markdown", required: false }
+      - { label: "Published", name: "published", widget: "boolean", default: true }
+
+  # ── EVENTS ─────────────────────────────────────────────────────
+  - name: "events"
+    label: "📅 Events"
+    folder: "_data/events"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} — {{date}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { label: "Event Name", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime", date_format: "MMM D, YYYY", time_format: false }
+      - { label: "Display Month (e.g. Sep)", name: "month_short", widget: "string" }
+      - { label: "Display Day (e.g. 27)", name: "day", widget: "string" }
+      - { label: "Display Year", name: "year", widget: "string" }
+      - { label: "Location", name: "location", widget: "string" }
+      - { label: "Time", name: "time", widget: "string", required: false, hint: "e.g. Shotgun Start 9:00 AM" }
+      - { label: "Cost / Notes", name: "notes", widget: "string", required: false, hint: "e.g. $85/player or All Classes Welcome" }
+      - { label: "RSVP Link", name: "rsvp_link", widget: "string", required: false }
+      - { label: "Show on Site", name: "published", widget: "boolean", default: true }
+
+  # ── SCHOLARSHIPS ───────────────────────────────────────────────
+  - name: "scholarships"
+    label: "🎓 Scholarships"
+    files:
+      - name: "sutherin"
+        label: "William Sutherin Scholarship"
+        file: "_data/scholarship_sutherin.json"
+        fields:
+          - { label: "Scholarship Name", name: "name", widget: "string" }
+          - { label: "Honor Line", name: "honor", widget: "string", hint: "e.g. Honoring Brother William Sutherin, Class of 1963" }
+          - { label: "Description", name: "description", widget: "text" }
+          - label: "Eligibility Criteria"
+            name: "criteria"
+            widget: "list"
+            field: { label: "Criterion", name: "item", widget: "string" }
+          - label: "Recent Recipients"
+            name: "recipients"
+            widget: "list"
+            summary: "{{fields.year}} · {{fields.name}}"
+            fields:
+              - { label: "Year", name: "year", widget: "string" }
+              - { label: "Recipient Name", name: "name", widget: "string" }
+
+      - name: "banfield"
+        label: "Martha Banfield Scholarship"
+        file: "_data/scholarship_banfield.json"
+        fields:
+          - { label: "Scholarship Name", name: "name", widget: "string" }
+          - { label: "Honor Line", name: "honor", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - label: "Eligibility Criteria"
+            name: "criteria"
+            widget: "list"
+            field: { label: "Criterion", name: "item", widget: "string" }
+          - label: "Recent Recipients"
+            name: "recipients"
+            widget: "list"
+            summary: "{{fields.year}} · {{fields.name}}"
+            fields:
+              - { label: "Year", name: "year", widget: "string" }
+              - { label: "Recipient Name", name: "name", widget: "string" }
+
+  # ── AWARDS ─────────────────────────────────────────────────────
+  - name: "awards"
+    label: "🏆 Awards"
+    folder: "_data/awards"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{name}}"
+    fields:
+      - { label: "Award Name", name: "name", widget: "string" }
+      - { label: "Icon (symbol)", name: "icon", widget: "string", default: "✦", hint: "A single character symbol e.g. ✦ ◈ ◆ ★" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Most Recent Recipient", name: "recent_recipient", widget: "string" }
+      - label: "All Past Recipients"
+        name: "recipients"
+        widget: "list"
+        required: false
+        summary: "{{fields.year}} · {{fields.name}}"
+        fields:
+          - { label: "Year", name: "year", widget: "string" }
+          - { label: "Name", name: "name", widget: "string" }
+      - { label: "Sort Order", name: "order", widget: "number", default: 1 }
+
+  # ── EXECUTIVE BOARD ────────────────────────────────────────────
+  - name: "exec_board"
+    label: "🏛️ Executive Board"
+    files:
+      - name: "current"
+        label: "Current Executive Board"
+        file: "_data/exec_board.json"
+        fields:
+          - { label: "Academic Year", name: "year", widget: "string", hint: "e.g. 2024–2025" }
+          - label: "Officers"
+            name: "officers"
+            widget: "list"
+            summary: "{{fields.position}}: {{fields.name}}"
+            fields:
+              - { label: "Position", name: "position", widget: "string", hint: "e.g. President (SMC)" }
+              - { label: "Brother's Name", name: "name", widget: "string" }
+
+  # ── ADVISORY BOARD ─────────────────────────────────────────────
+  - name: "advisory_board"
+    label: "👥 Advisory Board"
+    files:
+      - name: "members"
+        label: "Advisory Board Members"
+        file: "_data/advisory_board.json"
+        fields:
+          - label: "Members"
+            name: "members"
+            widget: "list"
+            summary: "{{fields.name}} '{{fields.class_year}}"
+            fields:
+              - { label: "Full Name", name: "name", widget: "string" }
+              - { label: "Class Year", name: "class_year", widget: "string", hint: "e.g. 1989" }
+              - { label: "Role / Title", name: "role", widget: "string", required: false, hint: "e.g. Chair" }
+
+  # ── CHAPTER PRESIDENTS ─────────────────────────────────────────
+  - name: "presidents"
+    label: "📋 Chapter Presidents"
+    files:
+      - name: "all"
+        label: "All Chapter Presidents (1930–Present)"
+        file: "_data/presidents.json"
+        fields:
+          - label: "Presidents"
+            name: "presidents"
+            widget: "list"
+            summary: "{{fields.year}} — {{fields.name}}"
+            fields:
+              - { label: "Year", name: "year", widget: "string" }
+              - { label: "Name", name: "name", widget: "string" }
+
+  # ── MISSING ALUMNI ─────────────────────────────────────────────
+  - name: "missing_alumni"
+    label: "🔍 Missing Alumni"
+    files:
+      - name: "list"
+        label: "Missing Alumni List"
+        file: "_data/missing_alumni.json"
+        fields:
+          - label: "Missing Alumni (by Decade)"
+            name: "decades"
+            widget: "list"
+            summary: "{{fields.decade}}"
+            fields:
+              - { label: "Decade", name: "decade", widget: "string", hint: "e.g. 1960s" }
+              - label: "Names"
+                name: "names"
+                widget: "list"
+                field: { label: "Name", name: "item", widget: "string" }
+
+  # ── HOUSING CORPORATION ────────────────────────────────────────
+  - name: "housing"
+    label: "🏠 Housing Corporation Donors"
+    files:
+      - name: "donors"
+        label: "Donor Recognition"
+        file: "_data/housing_donors.json"
+        fields:
+          - label: "Giving Societies"
+            name: "societies"
+            widget: "list"
+            summary: "{{fields.level}}"
+            fields:
+              - { label: "Level Name", name: "level", widget: "string", hint: "e.g. Garnet and Gold Society" }
+              - label: "Donors"
+                name: "donors"
+                widget: "list"
+                field: { label: "Donor Name", name: "item", widget: "string" }
+
+  # ── PIKE BUSINESSES / CAREERS ──────────────────────────────────
+  - name: "businesses"
+    label: "💼 Pike Businesses & Careers"
+    files:
+      - name: "listings"
+        label: "Business & Job Listings"
+        file: "_data/businesses.json"
+        fields:
+          - label: "Alumni Businesses"
+            name: "businesses"
+            widget: "list"
+            summary: "{{fields.business_name}}"
+            fields:
+              - { label: "Business Name", name: "business_name", widget: "string" }
+              - { label: "Owner (Brother)", name: "owner", widget: "string" }
+              - { label: "Class Year", name: "class_year", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Website / Contact", name: "contact", widget: "string", required: false }
+          - label: "Job Opportunities"
+            name: "jobs"
+            widget: "list"
+            required: false
+            summary: "{{fields.title}} at {{fields.company}}"
+            fields:
+              - { label: "Job Title", name: "title", widget: "string" }
+              - { label: "Company", name: "company", widget: "string" }
+              - { label: "Posted By (Brother)", name: "posted_by", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Contact Email", name: "contact_email", widget: "string" }

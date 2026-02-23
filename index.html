@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pi Kappa Alpha – Gamma Omicron Alumni Association</title>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --garnet: #8B1A2E;
+    --garnet-dark: #5C0F1C;
+    --garnet-light: #B52340;
+    --gold: #C9A84C;
+    --gold-light: #E8C86A;
+    --gold-pale: #F5E9C8;
+    --cream: #FAF6EE;
+    --dark: #1A1009;
+    --mid: #3D2B1F;
+    --text: #2C1A10;
+    --text-light: #7A5C44;
+    --border: #D4B896;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Libre Baskerville', Georgia, serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--garnet-dark); border-bottom: 3px solid var(--gold); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 64px; }
+  .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-crest { width: 40px; height: 40px; background: var(--gold); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 800; color: var(--garnet-dark); flex-shrink: 0; }
+  .nav-title { font-family: 'Josefin Sans', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.15em; color: var(--gold-light); text-transform: uppercase; line-height: 1.3; }
+  .nav-title span { display: block; font-weight: 300; font-size: 10px; letter-spacing: 0.25em; color: var(--gold); opacity: 0.8; }
+  .nav-links { display: flex; gap: 0; list-style: none; align-items: center; }
+  .nav-links a { display: block; padding: 0 13px; height: 64px; line-height: 64px; font-family: 'Josefin Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.75); text-decoration: none; transition: color 0.2s, background 0.2s; border-bottom: 3px solid transparent; margin-bottom: -3px; }
+  .nav-links a:hover, .nav-links a.active { color: var(--gold-light); background: rgba(201,168,76,0.08); border-bottom-color: var(--gold); }
+  .nav-login { background: var(--gold) !important; color: var(--garnet-dark) !important; padding: 8px 18px !important; height: auto !important; line-height: 1 !important; border-radius: 2px; margin-left: 8px; font-weight: 700 !important; margin-bottom: 0 !important; border-bottom: none !important; }
+  .nav-login:hover { background: var(--gold-light) !important; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--gold); }
+
+  /* HERO */
+  #home { min-height: 100vh; background: linear-gradient(180deg, rgba(92,15,28,0.92) 0%, rgba(26,16,9,0.85) 100%), repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(201,168,76,0.03) 40px, rgba(201,168,76,0.03) 41px); background-color: var(--garnet-dark); display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; padding: 100px 2rem 4rem; position: relative; overflow: hidden; }
+  #home::before { content: 'ΠΚΑ'; position: absolute; font-family: 'Playfair Display', serif; font-size: 40vw; font-weight: 800; color: rgba(201,168,76,0.04); top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
+  .hero-badge { font-family: 'Josefin Sans', sans-serif; font-size: 11px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 7rem); font-weight: 800; color: #fff; line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 1rem; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
+  .hero-title em { color: var(--gold); font-style: italic; }
+  .hero-sub { font-family: 'Playfair Display', serif; font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-style: italic; color: rgba(255,255,255,0.65); margin-bottom: 2.5rem; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; }
+  .hero-stats { display: flex; gap: 3rem; margin-bottom: 3rem; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
+  .hero-stat { text-align: center; }
+  .hero-stat-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 800; color: var(--gold); line-height: 1; }
+  .hero-stat-label { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 4px; }
+  .hero-divider { width: 1px; background: rgba(201,168,76,0.3); height: 50px; align-self: center; }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; opacity: 0; animation: fadeUp 0.8s 1s forwards; }
+  .scroll-hint { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; animation: fadeIn 1s 1.5s forwards; }
+  .scroll-hint span { font-family: 'Josefin Sans', sans-serif; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(201,168,76,0.6), transparent); animation: scrollPulse 2s infinite; }
+
+  /* BUTTONS */
+  .btn-primary { background: var(--gold); color: var(--garnet-dark); padding: 14px 32px; font-family: 'Josefin Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s, transform 0.2s; display: inline-block; }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline { background: transparent; color: var(--garnet-dark); padding: 14px 32px; font-family: 'Josefin Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--border); cursor: pointer; transition: border-color 0.2s, color 0.2s, transform 0.2s; display: inline-block; }
+  .btn-outline:hover { border-color: var(--garnet); color: var(--garnet); transform: translateY(-2px); }
+  .btn-outline-light { background: transparent; color: #fff; padding: 14px 32px; font-family: 'Josefin Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; border: 1px solid rgba(255,255,255,0.3); cursor: pointer; transition: border-color 0.2s, color 0.2s, transform 0.2s; display: inline-block; }
+  .btn-outline-light:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  /* SECTIONS */
+  section { padding: 6rem 0; }
+  .section-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+  .section-header { text-align: center; margin-bottom: 4rem; }
+  .section-eyebrow { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; display: block; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: var(--garnet-dark); line-height: 1.1; }
+  .section-title em { color: var(--garnet); font-style: italic; }
+  .section-rule { width: 60px; height: 2px; background: linear-gradient(to right, var(--garnet), var(--gold)); margin: 1.5rem auto 0; }
+
+  /* ABOUT */
+  #about { background: var(--cream); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .about-text p { font-size: 1.05rem; line-height: 1.9; color: var(--mid); margin-bottom: 1.25rem; }
+  .about-pull { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-style: italic; color: var(--garnet); border-left: 4px solid var(--gold); padding-left: 1.5rem; margin: 2rem 0; line-height: 1.4; }
+  .about-card { background: var(--garnet-dark); color: #fff; padding: 3rem; position: relative; overflow: hidden; }
+  .about-card::before { content: ''; position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(circle at top right, rgba(201,168,76,0.15), transparent 70%); }
+  .about-card-title { font-family: 'Josefin Sans', sans-serif; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; }
+  .about-card-items { list-style: none; }
+  .about-card-items li { padding: 1rem 0; border-bottom: 1px solid rgba(201,168,76,0.15); font-size: 0.95rem; display: flex; align-items: flex-start; gap: 12px; line-height: 1.6; }
+  .about-card-items li:last-child { border-bottom: none; }
+  .about-card-items li::before { content: '◆'; color: var(--gold); font-size: 8px; margin-top: 6px; flex-shrink: 0; }
+
+  /* NEWS */
+  #news { background: #F2EBE0; }
+  .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .news-card { background: #fff; padding: 2.5rem; transition: transform 0.2s; cursor: pointer; }
+  .news-card:hover { transform: translateY(-4px); z-index: 1; box-shadow: 0 12px 40px rgba(139,26,46,0.15); }
+  .news-card-date { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+  .news-card-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 600; color: var(--garnet-dark); line-height: 1.3; margin-bottom: 0.75rem; }
+  .news-card-excerpt { font-size: 0.875rem; line-height: 1.7; color: var(--text-light); }
+  .news-card-tag { display: inline-block; margin-top: 1.25rem; font-family: 'Josefin Sans', sans-serif; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; background: var(--gold-pale); color: var(--mid); padding: 4px 10px; }
+
+  /* EVENTS */
+  #events { background: var(--cream); }
+  .events-list { display: flex; flex-direction: column; gap: 1px; }
+  .event-row { background: #fff; display: grid; grid-template-columns: 100px 1fr auto; align-items: center; gap: 2rem; padding: 2rem 2.5rem; border-left: 4px solid transparent; transition: border-color 0.2s, box-shadow 0.2s; }
+  .event-row:hover { border-left-color: var(--garnet); box-shadow: 4px 0 20px rgba(139,26,46,0.08); }
+  .event-date-block { text-align: center; }
+  .event-month { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--garnet); font-weight: 700; }
+  .event-day { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 800; color: var(--garnet-dark); line-height: 1; }
+  .event-year-label { font-family: 'Josefin Sans', sans-serif; font-size: 10px; color: var(--text-light); }
+  .event-info-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 600; color: var(--dark); margin-bottom: 0.35rem; }
+  .event-info-meta { font-family: 'Josefin Sans', sans-serif; font-size: 11px; letter-spacing: 0.1em; color: var(--text-light); }
+  .event-info-meta span::before { content: ' · '; }
+  .event-info-meta span:first-child::before { content: ''; }
+  .event-rsvp { background: var(--garnet); color: #fff; padding: 10px 22px; font-family: 'Josefin Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border: none; cursor: pointer; white-space: nowrap; text-decoration: none; display: inline-block; transition: background 0.2s; }
+  .event-rsvp:hover { background: var(--garnet-light); }
+
+  /* HISTORY */
+  #history { background: var(--garnet-dark); color: #fff; }
+  .timeline { position: relative; padding-left: 3rem; }
+  .timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,0.1)); }
+  .timeline-item { position: relative; margin-bottom: 3rem; }
+  .timeline-dot { position: absolute; left: -2.65rem; top: 6px; width: 12px; height: 12px; background: var(--gold); border: 3px solid var(--garnet-dark); border-radius: 50%; }
+  .timeline-year { font-family: 'Josefin Sans', sans-serif; font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+  .timeline-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; color: #fff; margin-bottom: 0.5rem; }
+  .timeline-body { font-size: 0.9rem; line-height: 1.8; color: rgba(255,255,255,0.6); }
+  .history-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+  .history-table { background: rgba(255,255,255,0.05); border: 1px solid rgba(201,168,76,0.2); padding: 2rem; }
+  .history-table-title { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  .house-row { display: flex; justify-content: space-between; align-items: baseline; padding: 0.75rem 0; border-bottom: 1px solid rgba(201,168,76,0.1); font-size: 0.9rem; color: rgba(255,255,255,0.75); }
+  .house-row:last-child { border-bottom: none; }
+  .house-addr { font-style: italic; }
+  .house-years { font-family: 'Josefin Sans', sans-serif; font-size: 10px; color: var(--gold); letter-spacing: 0.1em; }
+
+  /* SCHOLARSHIPS */
+  #scholarships { background: #F2EBE0; }
+  .scholarship-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .scholarship-card { background: #fff; padding: 3rem; border-top: 4px solid var(--garnet); position: relative; }
+  .scholarship-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--gold), transparent); }
+  .scholarship-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 800; color: var(--garnet-dark); line-height: 1.2; margin-bottom: 0.5rem; }
+  .scholarship-honor { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  .scholarship-body { font-size: 0.9rem; line-height: 1.8; color: var(--text-light); margin-bottom: 1.5rem; }
+  .scholarship-criteria { list-style: none; margin-bottom: 2rem; }
+  .scholarship-criteria li { font-size: 0.875rem; line-height: 1.6; color: var(--mid); padding: 0.5rem 0; border-bottom: 1px solid var(--border); display: flex; gap: 10px; }
+  .scholarship-criteria li:last-child { border-bottom: none; }
+  .scholarship-criteria li::before { content: '—'; color: var(--gold); flex-shrink: 0; }
+  .scholarship-recipients { background: var(--gold-pale); padding: 1.25rem 1.5rem; margin-top: 1.5rem; }
+  .scholarship-recipients-title { font-family: 'Josefin Sans', sans-serif; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid); margin-bottom: 0.75rem; }
+  .scholarship-recipients-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .recipient-chip { background: #fff; color: var(--mid); padding: 3px 10px; font-family: 'Josefin Sans', sans-serif; font-size: 11px; }
+
+  /* AWARDS */
+  #awards { background: var(--cream); }
+  .awards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .award-card { background: var(--garnet-dark); padding: 2.5rem 2rem; transition: background 0.2s; cursor: pointer; }
+  .award-card:hover { background: var(--garnet); }
+  .award-icon { font-size: 1.5rem; margin-bottom: 1rem; color: var(--gold); font-family: 'Playfair Display', serif; font-weight: 800; }
+  .award-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; color: #fff; margin-bottom: 0.5rem; line-height: 1.3; }
+  .award-desc { font-size: 0.825rem; line-height: 1.7; color: rgba(255,255,255,0.55); margin-bottom: 1.25rem; }
+  .award-recent { font-family: 'Josefin Sans', sans-serif; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); opacity: 0.7; }
+
+  /* CHAPTER */
+  #chapter { background: var(--cream); }
+  .chapter-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 4rem; align-items: start; }
+  .chapter-mission { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-style: italic; color: var(--garnet); border-left: 3px solid var(--gold); padding: 1rem 0 1rem 1.5rem; margin-bottom: 2rem; line-height: 1.5; }
+  .chapter-text p { font-size: 0.95rem; line-height: 1.9; color: var(--mid); margin-bottom: 1rem; }
+  .exec-board { background: var(--garnet-dark); padding: 2.5rem; color: #fff; }
+  .exec-board-title { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; }
+  .exec-row { display: flex; justify-content: space-between; padding: 0.9rem 0; border-bottom: 1px solid rgba(201,168,76,0.1); font-size: 0.875rem; }
+  .exec-row:last-child { border-bottom: none; }
+  .exec-position { color: rgba(255,255,255,0.5); font-style: italic; }
+  .exec-name { color: #fff; font-weight: 700; }
+  .smythe-banner { background: linear-gradient(135deg, var(--gold), var(--gold-light)); padding: 2rem; text-align: center; margin-top: 2rem; }
+  .smythe-count { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 800; color: var(--garnet-dark); line-height: 1; }
+  .smythe-label { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); margin-top: 4px; }
+
+  /* DONATE */
+  #donate { background: var(--garnet); color: #fff; }
+  .donate-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .donate-options { display: flex; flex-direction: column; gap: 1rem; }
+  .donate-option { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 1.75rem; cursor: pointer; transition: background 0.2s, border-color 0.2s; display: flex; justify-content: space-between; align-items: center; }
+  .donate-option:hover { background: rgba(255,255,255,0.12); border-color: var(--gold); }
+  .donate-option-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; color: #fff; }
+  .donate-option-desc { font-size: 0.8rem; color: rgba(255,255,255,0.55); margin-top: 4px; }
+  .donate-option-badge { font-family: 'Josefin Sans', sans-serif; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; background: var(--gold); color: var(--garnet-dark); padding: 4px 10px; font-weight: 700; flex-shrink: 0; }
+  .dues-form { background: rgba(255,255,255,0.1); padding: 2.5rem; }
+  .dues-form-title { font-family: 'Josefin Sans', sans-serif; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; }
+  .form-group { margin-bottom: 1.5rem; }
+  .form-label { display: block; font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 0.5rem; }
+  .form-input { width: 100%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 12px 16px; font-family: 'Libre Baskerville', serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+  .form-input:focus { border-color: var(--gold); }
+  .form-input::placeholder { color: rgba(255,255,255,0.3); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  /* ADVISORY */
+  #advisory { background: #F2EBE0; }
+  .board-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+  .board-member { background: #fff; padding: 2rem 1.5rem; text-align: center; transition: background 0.2s; }
+  .board-member:hover { background: var(--gold-pale); }
+  .board-initials { width: 56px; height: 56px; background: var(--garnet-dark); color: var(--gold); font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
+  .board-name { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 600; color: var(--dark); margin-bottom: 0.25rem; }
+  .board-class { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); }
+
+  /* FOOTER */
+  footer { background: var(--dark); color: rgba(255,255,255,0.5); padding: 4rem 0 2rem; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+  .footer-brand-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 800; color: var(--gold); margin-bottom: 0.5rem; margin-top: 1rem; }
+  .footer-brand-sub { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 1rem; }
+  .footer-brand-p { font-size: 0.825rem; line-height: 1.7; }
+  .footer-col-title { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 0.6rem; }
+  .footer-links a { text-decoration: none; color: rgba(255,255,255,0.45); font-size: 0.85rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-bottom { max-width: 1200px; margin: 0 auto; padding: 2rem 2rem 0; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.25); }
+
+  /* LOADING */
+  .loading { text-align: center; padding: 3rem; font-family: 'Josefin Sans', sans-serif; font-size: 11px; letter-spacing: 0.2em; color: var(--text-light); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { to { opacity: 1; } }
+  @keyframes scrollPulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--garnet-dark); border-top: 1px solid rgba(201,168,76,0.3); }
+    .nav-links.open a { height: auto; line-height: 1; padding: 14px 20px; border-bottom: 1px solid rgba(201,168,76,0.1); margin-bottom: 0; }
+    .hamburger { display: flex; }
+    .about-grid, .scholarship-grid, .donate-grid, .chapter-grid, .history-grid { grid-template-columns: 1fr; }
+    .news-grid, .awards-grid, .board-grid { grid-template-columns: 1fr 1fr; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+    .event-row { grid-template-columns: 80px 1fr; }
+    .event-rsvp { display: none; }
+  }
+  @media (max-width: 600px) {
+    .news-grid, .awards-grid { grid-template-columns: 1fr; }
+    .board-grid { grid-template-columns: 1fr 1fr; }
+    .hero-stats { flex-wrap: wrap; justify-content: center; gap: 1.5rem; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a href="#home" class="nav-brand">
+    <div class="nav-crest">ΠΚΑ</div>
+    <div class="nav-title">Gamma Omicron <span>Pi Kappa Alpha · Ohio University</span></div>
+  </a>
+  <div class="hamburger" onclick="document.getElementById('nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#about">Association</a></li>
+    <li><a href="#news">News</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#history">History</a></li>
+    <li><a href="#scholarships">Scholarships</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#chapter">Chapter</a></li>
+    <li><a href="#donate">Donate</a></li>
+    <li><a href="#advisory">Advisory</a></li>
+    <li><a href="/admin/" class="nav-login">Admin</a></li>
+  </ul>
+</nav>
+
+<!-- HERO (static, settings loaded via JS) -->
+<section id="home">
+  <div class="hero-badge" id="hero-badge">Est. 1930 · Refounded 1987 · Ohio University</div>
+  <h1 class="hero-title">Gamma <em>Omicron</em><br>Alumni</h1>
+  <p class="hero-sub" id="hero-sub">Once a Pike, always a Pike.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num" id="stat-alumni">1,200+</div>
+      <div class="hero-stat-label">Alumni</div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">94</div>
+      <div class="hero-stat-label">Years of Brotherhood</div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat">
+      <div class="hero-stat-num" id="stat-smythe">7×</div>
+      <div class="hero-stat-label">Smythe Trophy</div>
+    </div>
+  </div>
+  <div class="hero-cta">
+    <a href="#donate" class="btn-primary">Pay Dues / Donate</a>
+    <a href="#about" class="btn-outline-light">Learn More</a>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-eyebrow">Alumni Association</span>
+      <h2 class="section-title">Gamma Omicron<br><em>Alumni Association</em></h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>The Gamma Omicron Alumni Association (GOAA) serves as the enduring bond between more than 1,200 brothers who wore the Pi Kappa Alpha badge at Ohio University. Through events, newsletters, scholarships, and support of the active chapter, GOAA keeps the brotherhood alive long after graduation.</p>
+        <div class="about-pull">"The true measure of a fraternity is not in the men it initiates, but in the men it produces."</div>
+        <p>GOAA organizes annual reunions, a popular golf outing, and "Feed‑a‑Pike" nights that bring alumni and actives together. Annual dues of $35 fund these activities, the chapter newsletter, web hosting, and travel to leadership conferences.</p>
+        <p>Tax-deductible donations to the William Sutherin and Martha Banfield Memorial Scholarship funds are managed through our 501(c)(3) educational fund, ensuring your generosity directly benefits deserving brothers.</p>
+        <div style="margin-top:2rem;"><a href="#donate" class="btn-primary">Donate to GOAA</a></div>
+      </div>
+      <div>
+        <div class="about-card">
+          <div class="about-card-title">What Your Dues Support</div>
+          <ul class="about-card-items">
+            <li>Annual alumni newsletter and communications</li>
+            <li>Website hosting and member directory</li>
+            <li>Alumni events, reunions, and golf outing</li>
+            <li>"Feed‑a‑Pike" nights with the active chapter</li>
+            <li>Leadership conference travel for actives</li>
+            <li>Scholarship fund contributions</li>
+            <li>Housing corporation maintenance support</li>
+          </ul>
+          <div style="margin-top:2rem;"><a href="#donate" class="btn-primary" style="font-size:11px;">Pay $35 Annual Dues</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section id="news">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-eyebrow">Latest Updates</span>
+      <h2 class="section-title">Chapter <em>News</em></h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="news-grid" id="news-grid"><div class="loading">Loading news…</div></div>
+    <div style="text-align:center;margin-top:3rem;">
+      <a href="#" class="btn-outline">View All News</a>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-eyebrow">Mark Your Calendar</span>
+      <h2 class="section-title">Upcoming <em>Events</em></h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="events-list" id="events-list"><div class="loading">Loading events…</div></div>
+  </div>
+</section>
+
+<!-- HISTORY (static) -->
+<section id="history">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-eyebrow">Since 1921</span>
+      <h2 class="section-title" style="color:#fff;">Our <em style="color:var(--gold);">History</em></h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="history-grid">
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-year">1921</div><h3 class="timeline-title">Tau Sigma Delta Founded</h3><p class="timeline-body">A group of Ohio University men founded Tau Sigma Delta, a local fraternity, laying the groundwork for what would become Pi Kappa Alpha's Gamma Omicron chapter.</p></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-year">1930</div><h3 class="timeline-title">Gamma Omicron Chartered</h3><p class="timeline-body">Tau Sigma Delta was formally installed as Gamma Omicron chapter of Pi Kappa Alpha International Fraternity, joining one of America's most prestigious Greek organizations.</p></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-year">1974</div><h3 class="timeline-title">Chapter Closes</h3><p class="timeline-body">Social and political turmoil of the era, coupled with declining rush numbers, forced the chapter to close. The 8 Church Street house was vacated after 44 years of history.</p></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-year">1987</div><h3 class="timeline-title">Gamma Omicron Refounded</h3><p class="timeline-body">Dedicated alumni rallied to re-establish the chapter. After earning colony recognition, Gamma Omicron was rechartered and moved to 12 N College St.</p></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-year">1990s–Present</div><h3 class="timeline-title">Growth & Excellence</h3><p class="timeline-body">The refounded chapter earned multiple Smythe Trophies and established itself as a leading organization at Ohio University.</p></div>
+      </div>
+      <div>
+        <div class="history-table">
+          <div class="history-table-title">Chapter Houses</div>
+          <div class="house-row"><span class="house-addr">41 Mill Street</span><span class="house-years">1922 – 1926</span></div>
+          <div class="house-row"><span class="house-addr">8 Church Street</span><span class="house-years">1926 – 1974</span></div>
+          <div class="house-row"><span class="house-addr">Chapter Closed</span><span class="house-years">1974 – 1987</span></div>
+          <div class="house-row"><span class="house-addr">12 N College Street</span><span class="house-years">1987 – Present</span></div>
+        </div>
+        <div style="margin-top:2rem;" class="history-table">
+          <div class="history-table-title">Chapter Presidents (Selected)</div>
+          <div id="presidents-list"><div class="loading" style="color:rgba(255,255,255,0.4);">Loading…</div></div>
+          <div style="text-align:center;margin-top:1.25rem;"><a href="#" class="btn-outline-light" style="font-size:10px;padding:10px 20px;">Full Presidents List (1930–2025)</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHOLARSHIPS -->
+<section id="scholarships">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-eyebrow">Academic Excellence</span>
+      <h2 class="section-title">Our <em>Scholarships</em></h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="scholarship-grid" id="scholarships-grid"><div class="loading">Loading scholarships…</div></div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-eyebrow">Recognizing Excellence</span>
+      <h2 class="section-title">Alumni <em>Awards</em></h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="awards-grid" id="awards-grid"><div class="loading">Loading awards…</div></div>
+  </div>
+</section>
+
+<!-- ACTIVE CHAPTER -->
+<section id="chapter">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-eyebrow" id="chapter-address">12 N College Street, Athens OH</span>
+      <h2 class="section-title">The Active <em>Chapter</em></h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="chapter-grid">
+      <div>
+        <div class="chapter-mission">"We seek scholars, leaders, athletes, and gentlemen — men of character who will carry our values beyond the university."</div>
+        <div class="chapter-text">
+          <p>Gamma Omicron has been a cornerstone of Ohio University's Greek community since its 1930 chartering. With over 90 years of brotherhood — including a celebrated period following the chapter's 1987 refounding — the active chapter continues to set the standard for academic excellence, community service, and leadership development.</p>
+          <p>Located at 12 N College Street, the chapter house serves as home to an active brotherhood committed to the Pi Kappa Alpha values of scholarship, leadership, athletics, and fellowship.</p>
+          <p>Alumni are encouraged to engage with the active chapter through the Advisory Board, Feed‑a‑Pike nights, and rush events. Your mentorship and support are invaluable to the next generation of Gamma Omicron brothers.</p>
+        </div>
+        <div class="smythe-banner" style="margin-top:2rem;">
+          <div class="smythe-count" id="smythe-display">7×</div>
+          <div class="smythe-label">Smythe Trophy Recipients — Chapter Excellence Award</div>
+        </div>
+      </div>
+      <div>
+        <div class="exec-board">
+          <div class="exec-board-title" id="exec-year-title">2024–2025 Executive Board</div>
+          <div id="exec-officers"><div class="loading" style="color:rgba(255,255,255,0.4);">Loading…</div></div>
+          <div style="margin-top:1.5rem;text-align:center;"><a href="#" class="btn-primary" style="font-size:11px;padding:10px 20px;">Rush PIKE</a></div>
+        </div>
+        <div style="background:var(--gold-pale);padding:2rem;margin-top:1rem;border-left:3px solid var(--gold);">
+          <div style="font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--mid);margin-bottom:0.75rem;">Chapter Address</div>
+          <div style="font-size:0.95rem;line-height:1.8;color:var(--mid);" id="address-display">Pi Kappa Alpha – Gamma Omicron<br>12 N College Street<br>Athens, OH 45701</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DONATE -->
+<section id="donate">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-eyebrow">Support the Brotherhood</span>
+      <h2 class="section-title" style="color:#fff;">Dues &amp; <em style="color:var(--gold-light);">Donations</em></h2>
+      <div class="section-rule" style="background:linear-gradient(to right,var(--gold),transparent);"></div>
+    </div>
+    <div class="donate-grid">
+      <div>
+        <p style="font-size:1rem;line-height:1.9;color:rgba(255,255,255,0.7);margin-bottom:2rem;">Your support keeps Gamma Omicron strong. Whether you pay annual dues, contribute to scholarships, or support the housing corporation, every dollar makes a direct difference to the brotherhood you love.</p>
+        <div class="donate-options">
+          <div class="donate-option"><div><div class="donate-option-name">Annual Alumni Dues</div><div class="donate-option-desc">Funds newsletters, events, and chapter support</div></div><div class="donate-option-badge" id="dues-badge">$35 / year</div></div>
+          <div class="donate-option"><div><div class="donate-option-name">William Sutherin Scholarship</div><div class="donate-option-desc">Tax-deductible · 501(c)(3) educational fund</div></div><div class="donate-option-badge">Any Amount</div></div>
+          <div class="donate-option"><div><div class="donate-option-name">Martha Banfield Scholarship</div><div class="donate-option-desc">Tax-deductible · 501(c)(3) educational fund</div></div><div class="donate-option-badge">Any Amount</div></div>
+          <div class="donate-option"><div><div class="donate-option-name">Housing Corporation</div><div class="donate-option-desc">Maintenance and capital improvements</div></div><div class="donate-option-badge">Any Amount</div></div>
+          <div class="donate-option"><div><div class="donate-option-name">National PIKE Fund</div><div class="donate-option-desc">Support Pi Kappa Alpha International programs</div></div><div class="donate-option-badge">Any Amount</div></div>
+        </div>
+      </div>
+      <div>
+        <form class="dues-form" onsubmit="return false;">
+          <div class="dues-form-title">Pay Dues / Make a Donation</div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">First Name</label><input type="text" class="form-input" placeholder="John"></div>
+            <div class="form-group"><label class="form-label">Last Name</label><input type="text" class="form-input" placeholder="Pike"></div>
+          </div>
+          <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-input" placeholder="brother@example.com"></div>
+          <div class="form-group"><label class="form-label">Pledge Class Year</label><input type="text" class="form-input" placeholder="e.g. 1995"></div>
+          <div class="form-group">
+            <label class="form-label">Donation Designation</label>
+            <select class="form-input" style="color:#fff;background:rgba(255,255,255,0.1);">
+              <option style="color:#000;">Annual Dues ($35)</option>
+              <option style="color:#000;">Sutherin Scholarship</option>
+              <option style="color:#000;">Banfield Scholarship</option>
+              <option style="color:#000;">Housing Corporation</option>
+              <option style="color:#000;">General GOAA Fund</option>
+            </select>
+          </div>
+          <div class="form-group"><label class="form-label">Amount</label><input type="text" class="form-input" placeholder="$35"></div>
+          <button type="submit" class="btn-primary" style="width:100%;text-align:center;" id="paypal-btn">Proceed to Payment</button>
+          <p style="font-size:0.75rem;color:rgba(255,255,255,0.4);margin-top:1rem;line-height:1.6;">Payment via PayPal or credit card. Scholarship donations are tax-deductible. Dues payments are not tax-deductible.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADVISORY BOARD -->
+<section id="advisory">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-eyebrow">Mentorship &amp; Guidance</span>
+      <h2 class="section-title">Alumni <em>Advisory Board</em></h2>
+      <div class="section-rule"></div>
+    </div>
+    <p style="text-align:center;max-width:640px;margin:-2rem auto 3rem;font-size:0.95rem;line-height:1.8;color:var(--text-light);">The Alumni Advisory Board bridges the active chapter and alumni network, providing mentorship, guidance, and accountability to help Gamma Omicron brothers succeed.</p>
+    <div class="board-grid" id="board-grid"><div class="loading">Loading board members…</div></div>
+
+    <div style="background:var(--garnet-dark);padding:3rem;margin-top:4rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;">
+      <div>
+        <div style="font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;">We're Looking For You</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800;color:#fff;margin-bottom:0.5rem;">Missing Alumni</div>
+        <div style="font-size:0.875rem;color:rgba(255,255,255,0.55);line-height:1.7;">We've lost contact with many brothers over the decades. If you know the whereabouts of a fellow Pike, please let us know.</div>
+      </div>
+      <div><a href="#" class="btn-primary">View Missing Alumni List</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div style="font-size:2.5rem;color:rgba(255,255,255,0.15);">ΠΚΑ</div>
+      <div class="footer-brand-name">Gamma Omicron</div>
+      <div class="footer-brand-sub">Pi Kappa Alpha · Ohio University</div>
+      <p class="footer-brand-p">Chartered 1930. Refounded 1987. Over 1,200 brothers strong. The Gamma Omicron Alumni Association keeps the brotherhood alive and the chapter thriving.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigate</div>
+      <ul class="footer-links">
+        <li><a href="#about">Alumni Association</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#history">History</a></li>
+        <li><a href="#scholarships">Scholarships</a></li>
+        <li><a href="#awards">Awards</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Chapter</div>
+      <ul class="footer-links">
+        <li><a href="#chapter">Active Chapter</a></li>
+        <li><a href="#chapter">Rush PIKE</a></li>
+        <li><a href="#chapter">Executive Board</a></li>
+        <li><a href="#advisory">Advisory Board</a></li>
+        <li><a href="#advisory">Missing Alumni</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Give</div>
+      <ul class="footer-links">
+        <li><a href="#donate">Pay Annual Dues</a></li>
+        <li><a href="#donate">Sutherin Scholarship</a></li>
+        <li><a href="#donate">Banfield Scholarship</a></li>
+        <li><a href="#donate">Housing Corporation</a></li>
+        <li><a href="#donate">National PIKE Fund</a></li>
+      </ul>
+      <div style="margin-top:1.5rem;"><a href="/admin/" class="btn-primary" style="font-size:11px;padding:10px 18px;display:inline-block;">Admin Login</a></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Pi Kappa Alpha – Gamma Omicron Alumni Association. All rights reserved.</span>
+    <span id="footer-address">12 N College St., Athens OH 45701</span>
+  </div>
+</footer>
+
+<script>
+// ── DATA LOADER ─────────────────────────────────────────────────
+// Fetches JSON/_data files and renders each section dynamically.
+// All editable content lives in _data/ and is managed via Decap CMS.
+
+async function fetchJSON(path) {
+  try {
+    const r = await fetch(path);
+    if (!r.ok) return null;
+    return await r.json();
+  } catch { return null; }
+}
+
+async function fetchMarkdownList(folder) {
+  // On a real Netlify deploy these are built into a JSON index.
+  // For local/static preview we fall back to embedded demo data.
+  return null;
+}
+
+// ── SETTINGS ────────────────────────────────────────────────────
+async function loadSettings() {
+  const s = await fetchJSON('/_data/settings.json');
+  if (!s) return;
+  if (s.alumni_count) document.getElementById('stat-alumni').textContent = s.alumni_count;
+  if (s.smythe_count) {
+    document.getElementById('stat-smythe').textContent = s.smythe_count;
+    document.getElementById('smythe-display').textContent = s.smythe_count;
+  }
+  if (s.tagline) document.getElementById('hero-sub').textContent = s.tagline;
+  if (s.dues_amount) document.getElementById('dues-badge').textContent = s.dues_amount + ' / year';
+  if (s.address) {
+    const parts = s.address.split(',');
+    document.getElementById('address-display').innerHTML =
+      'Pi Kappa Alpha – Gamma Omicron<br>' + s.address.replace(/,\s*/g,'<br>');
+    document.getElementById('footer-address').textContent = s.address;
+    document.getElementById('chapter-address').textContent = s.address;
+  }
+  if (s.paypal_link) {
+    document.getElementById('paypal-btn').onclick = () => window.open(s.paypal_link,'_blank');
+  }
+  if (s.founded && s.refounded)
+    document.getElementById('hero-badge').textContent =
+      'Est. ' + s.founded + ' · Refounded ' + s.refounded + ' · Ohio University';
+}
+
+// ── NEWS ─────────────────────────────────────────────────────────
+const DEMO_NEWS = [
+  { date:'March 2025', title:'Active Chapter Wins OU Entrepreneurship Challenge', excerpt:'Brothers from the active chapter took first place in the annual OU entrepreneurship competition, showcasing a sustainability-focused startup concept.', category:'Active Chapter' },
+  { date:'January 2025', title:'2025 Scholarship Recipients Announced', excerpt:'The GOAA is proud to announce this year\'s recipients of the William Sutherin and Martha Banfield Memorial Scholarships.', category:'Scholarships' },
+  { date:'November 2024', title:'Brother Michael Hess \'92 Named to OU Board of Trustees', excerpt:'Alumni are proud to share that Brother Michael Hess has been appointed to the Ohio University Board of Trustees.', category:'Alumni Spotlight' },
+  { date:'October 2024', title:'Annual Golf Outing Raises Record $8,400 for Scholarship Fund', excerpt:'The 2024 GOAA Golf Outing at Athens Country Club brought together 72 alumni and raised a record amount for the scholarship endowment.', category:'Events' },
+  { date:'August 2024', title:'Active Chapter Earns GPA Award from National Headquarters', excerpt:'Gamma Omicron was recognized by Pi Kappa Alpha International for its chapter GPA, ranking in the top 10% of all chapters nationally.', category:'Active Chapter' },
+  { date:'May 2024', title:'In Memoriam: Brother Dave Ritchey \'68', excerpt:'It is with heavy hearts that we share the passing of Brother Dave Ritchey, Class of 1968, for whom our alumni service award is named.', category:'In Memoriam' },
+];
+
+function renderNews(items) {
+  const g = document.getElementById('news-grid');
+  g.innerHTML = items.slice(0,6).map(n => `
+    <div class="news-card reveal">
+      <div class="news-card-date">${n.date}</div>
+      <h3 class="news-card-title">${n.title}</h3>
+      <p class="news-card-excerpt">${n.excerpt}</p>
+      <span class="news-card-tag">${n.category}</span>
+    </div>`).join('');
+  attachReveal();
+}
+
+async function loadNews() {
+  // In production, Decap CMS generates a JSON list at this path via a build script.
+  // Falls back to demo data for local preview.
+  const data = await fetchJSON('/_data/news-index.json');
+  renderNews(data ? data.posts : DEMO_NEWS);
+}
+
+// ── EVENTS ───────────────────────────────────────────────────────
+const DEMO_EVENTS = [
+  { month_short:'May', day:'17', year:'2025', title:'Annual GOAA Golf Outing', location:'Athens Country Club, Athens OH', time:'Shotgun Start 9:00 AM', notes:'$85/player', rsvp_link:'#' },
+  { month_short:'Sep', day:'27', year:'2025', title:'Homecoming Reunion Weekend', location:'12 N College St., Athens OH', time:'Friday–Saturday', notes:'All Classes Welcome', rsvp_link:'#' },
+  { month_short:'Oct', day:'11', year:'2025', title:'Annual GOAA Meeting & Awards Dinner', location:'Athens OH', time:'7:00 PM', notes:'Business Casual', rsvp_link:'#' },
+  { month_short:'Feb', day:'21', year:'2026', title:'Feed-a-Pike Night', location:'12 N College St., Athens OH', time:'6:00 PM', notes:'Alumni & Actives', rsvp_link:'#' },
+];
+
+function renderEvents(items) {
+  const list = document.getElementById('events-list');
+  list.innerHTML = items.map(e => `
+    <div class="event-row reveal">
+      <div class="event-date-block">
+        <div class="event-month">${e.month_short}</div>
+        <div class="event-day">${e.day}</div>
+        <div class="event-year-label">${e.year}</div>
+      </div>
+      <div class="event-info">
+        <div class="event-info-title">${e.title}</div>
+        <div class="event-info-meta">
+          <span>${e.location}</span>
+          ${e.time ? `<span>${e.time}</span>` : ''}
+          ${e.notes ? `<span>${e.notes}</span>` : ''}
+        </div>
+      </div>
+      ${e.rsvp_link ? `<a href="${e.rsvp_link}" class="event-rsvp">RSVP Now</a>` : ''}
+    </div>`).join('');
+  attachReveal();
+}
+
+async function loadEvents() {
+  const data = await fetchJSON('/_data/events-index.json');
+  renderEvents(data ? data.events : DEMO_EVENTS);
+}
+
+// ── PRESIDENTS ───────────────────────────────────────────────────
+async function loadPresidents() {
+  const data = await fetchJSON('/_data/presidents.json');
+  const el = document.getElementById('presidents-list');
+  const list = data ? data.presidents : [
+    {year:'1930',name:'James Thornton'},{year:'1951',name:'Robert Heidler'},
+    {year:'1963',name:'William Sutherin'},{year:'1967',name:'David Ritchey'},
+    {year:'1972',name:'Ronald Schuff'},{year:'1974',name:'Chapter Closed'},
+    {year:'1987',name:'Colony Refounded'},{year:'2025',name:'Current President'}
+  ];
+  el.innerHTML = list.slice(0,8).map(p => `
+    <div class="house-row">
+      <span${p.name.includes('Closed')||p.name.includes('Refounded') ? ' style="opacity:0.4;font-style:italic;"':''}>${p.name}</span>
+      <span class="house-years">${p.year}</span>
+    </div>`).join('');
+}
+
+// ── SCHOLARSHIPS ─────────────────────────────────────────────────
+function renderScholarship(s) {
+  return `
+    <div class="scholarship-card reveal">
+      <div class="scholarship-name">${s.name}</div>
+      <div class="scholarship-honor">${s.honor}</div>
+      <p class="scholarship-body">${s.description}</p>
+      <ul class="scholarship-criteria">
+        ${s.criteria.map(c=>`<li>${c}</li>`).join('')}
+      </ul>
+      <div class="scholarship-recipients">
+        <div class="scholarship-recipients-title">Recent Recipients</div>
+        <div class="scholarship-recipients-list">
+          ${s.recipients.map(r=>`<span class="recipient-chip">${r.year} · ${r.name}</span>`).join('')}
+        </div>
+      </div>
+      <div style="margin-top:1.5rem;"><a href="#donate" class="btn-primary">Donate to This Fund</a></div>
+    </div>`;
+}
+
+async function loadScholarships() {
+  const grid = document.getElementById('scholarships-grid');
+  const [s1, s2] = await Promise.all([
+    fetchJSON('/_data/scholarship_sutherin.json'),
+    fetchJSON('/_data/scholarship_banfield.json')
+  ]);
+  const fallback1 = { name:'William Sutherin Scholarship', honor:'Honoring Brother William Sutherin, Class of 1963', description:'Awarded annually to a junior or senior active member who exemplifies academic achievement and meaningful campus involvement.', criteria:['Junior or senior class standing','Minimum 2.8 GPA required','Demonstrated campus involvement','Letter of recommendation from chapter advisor'], recipients:[{year:'2024',name:'T. Anderson'},{year:'2023',name:'M. Kowalski'},{year:'2022',name:'J. Patterson'}] };
+  const fallback2 = { name:'Martha Banfield Memorial Scholarship', honor:'In Memory of Martha Banfield, Chapter Mother', description:'This scholarship honors the memory of Martha Banfield and is awarded to an active member who holds a chapter leadership position.', criteria:['Active chapter leadership role required','Minimum 3.0 GPA required','Demonstrated service to the chapter','Personal essay on leadership philosophy'], recipients:[{year:'2024',name:'D. Harrington'},{year:'2023',name:'A. Steele'},{year:'2022',name:'B. Morrison'}] };
+  grid.innerHTML = renderScholarship(s1||fallback1) + renderScholarship(s2||fallback2);
+  attachReveal();
+}
+
+// ── AWARDS ───────────────────────────────────────────────────────
+const DEMO_AWARDS = [
+  { icon:'✦', name:"President's Award", description:"The highest honor bestowed by GOAA, recognizing extraordinary and sustained service to the alumni association and the Gamma Omicron chapter.", recent_recipient:"Brother J. Michaels '84" },
+  { icon:'◈', name:'Outstanding Alumnus Award', description:"Recognizes an alumnus who has achieved distinction in their professional career and brought honor to the Pi Kappa Alpha name.", recent_recipient:"Brother T. Sullivan '97" },
+  { icon:'◆', name:'Dave Ritchey Award', description:"Named for Brother Dave Ritchey '68, this award honors alumni who best embody the true spirit of brotherhood in their daily lives.", recent_recipient:"Brother C. Graham '03" },
+  { icon:'★', name:'Mert Simons Award', description:'Presented to an alumnus for exceptional and dedicated service to the Gamma Omicron Alumni Association over many years.', recent_recipient:"Brother R. Thompson '79" },
+  { icon:'♦', name:'Mom Heidler Award', description:'A unique honor recognizing women who have gone above and beyond in their dedication to the chapter and its members.', recent_recipient:'Patricia Anderson' },
+  { icon:'◇', name:'Ron Schuff Pledge Award', description:'Given to the outstanding new member pledge class member, recognizing academic achievement, brotherhood, and leadership potential.', recent_recipient:"M. Chen, Class of 2025" },
+];
+
+async function loadAwards() {
+  const grid = document.getElementById('awards-grid');
+  const data = await fetchJSON('/_data/awards-index.json');
+  const awards = data ? data.awards : DEMO_AWARDS;
+  grid.innerHTML = awards.map(a => `
+    <div class="award-card reveal">
+      <div class="award-icon">${a.icon}</div>
+      <div class="award-name">${a.name}</div>
+      <p class="award-desc">${a.description}</p>
+      <div class="award-recent">Most Recent: ${a.recent_recipient}</div>
+    </div>`).join('');
+  attachReveal();
+}
+
+// ── EXEC BOARD ───────────────────────────────────────────────────
+async function loadExecBoard() {
+  const data = await fetchJSON('/_data/exec_board.json');
+  const d = data || { year:'2024–2025', officers:[
+    {position:'President (SMC)',name:'TBD'},{position:'VP Membership',name:'TBD'},
+    {position:'VP Operations',name:'TBD'},{position:'Secretary',name:'TBD'},
+    {position:'Treasurer',name:'TBD'},{position:'Risk Manager',name:'TBD'},
+    {position:'Scholarship Chair',name:'TBD'}
+  ]};
+  document.getElementById('exec-year-title').textContent = d.year + ' Executive Board';
+  document.getElementById('exec-officers').innerHTML = d.officers.map(o => `
+    <div class="exec-row">
+      <span class="exec-position">${o.position}</span>
+      <span class="exec-name">${o.name}</span>
+    </div>`).join('');
+}
+
+// ── ADVISORY BOARD ───────────────────────────────────────────────
+function getInitials(name) {
+  return name.split(' ').map(w=>w[0]).slice(0,2).join('');
+}
+
+async function loadAdvisoryBoard() {
+  const data = await fetchJSON('/_data/advisory_board.json');
+  const grid = document.getElementById('board-grid');
+  const members = data ? data.members : [
+    {name:'Robert Jenkins',class_year:'1989',role:'Chair'},{name:'Michael Walsh',class_year:'1994',role:''},
+    {name:'Daniel Simmons',class_year:'1998',role:''},{name:'Christopher Torres',class_year:'2002',role:''},
+    {name:'Brian Lawson',class_year:'2005',role:''},{name:'Kevin Park',class_year:'2009',role:''},
+    {name:'Andrew Hayes',class_year:'2013',role:''},{name:'Jason Merrill',class_year:'2017',role:''}
+  ];
+  grid.innerHTML = members.map(m => `
+    <div class="board-member reveal">
+      <div class="board-initials">${getInitials(m.name)}</div>
+      <div class="board-name">${m.name}</div>
+      <div class="board-class">Class of ${m.class_year}${m.role ? ' · ' + m.role : ''}</div>
+    </div>`).join('');
+  attachReveal();
+}
+
+// ── SCROLL REVEAL ────────────────────────────────────────────────
+function attachReveal() {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'none';
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(18px)';
+    el.style.transition = 'opacity 0.5s, transform 0.5s';
+    observer.observe(el);
+  });
+}
+
+// ── ACTIVE NAV ───────────────────────────────────────────────────
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}, { passive: true });
+
+// ── NETLIFY IDENTITY REDIRECT ────────────────────────────────────
+if (window.netlifyIdentity) {
+  window.netlifyIdentity.on('init', user => {
+    if (!user) {
+      window.netlifyIdentity.on('login', () => { document.location.href = '/admin/'; });
+    }
+  });
+}
+
+// ── INIT ─────────────────────────────────────────────────────────
+(async () => {
+  await loadSettings();
+  await Promise.all([
+    loadNews(), loadEvents(), loadPresidents(),
+    loadScholarships(), loadAwards(),
+    loadExecBoard(), loadAdvisoryBoard()
+  ]);
+})();
+</script>
+</body>
+</html>

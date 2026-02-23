@@ -1,0 +1,18 @@
+{
+  "name": "Martha Banfield Memorial Scholarship",
+  "honor": "In Memory of Martha Banfield, Chapter Mother",
+  "description": "This scholarship honors the memory of Martha Banfield and is awarded to an active member who holds a chapter leadership position and maintains strong academic standing.",
+  "criteria": [
+    "Active chapter leadership role required",
+    "Minimum 3.0 GPA required",
+    "Demonstrated service to the chapter",
+    "Personal essay on leadership philosophy"
+  ],
+  "recipients": [
+    { "year": "2024", "name": "D. Harrington" },
+    { "year": "2023", "name": "A. Steele" },
+    { "year": "2022", "name": "B. Morrison" },
+    { "year": "2021", "name": "E. Lawson" },
+    { "year": "2020", "name": "P. Okafor" }
+  ]
+}
