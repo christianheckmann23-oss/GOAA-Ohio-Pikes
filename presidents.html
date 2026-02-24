@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter Presidents – Pi Kappa Alpha Gamma Omicron</title>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --garnet: #8B1A2E;
+    --garnet-dark: #5C0F1C;
+    --garnet-light: #B52340;
+    --gold: #C9A84C;
+    --gold-light: #E8C86A;
+    --gold-pale: #F5E9C8;
+    --cream: #FAF6EE;
+    --dark: #1A1009;
+    --mid: #3D2B1F;
+    --text: #2C1A10;
+    --text-light: #7A5C44;
+    --border: #D4B896;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Libre Baskerville', Georgia, serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--garnet-dark); border-bottom: 3px solid var(--gold); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 64px; }
+  .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-crest { width: 40px; height: 40px; background: var(--gold); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 800; color: var(--garnet-dark); flex-shrink: 0; }
+  .nav-title { font-family: 'Josefin Sans', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.15em; color: var(--gold-light); text-transform: uppercase; line-height: 1.3; }
+  .nav-title span { display: block; font-weight: 300; font-size: 10px; letter-spacing: 0.25em; color: var(--gold); opacity: 0.8; }
+  .nav-back { font-family: 'Josefin Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.75); text-decoration: none; padding: 8px 18px; border: 1px solid rgba(255,255,255,0.25); transition: border-color 0.2s, color 0.2s; }
+  .nav-back:hover { border-color: var(--gold); color: var(--gold); }
+  .nav-back::before { content: '← '; }
+
+  /* PAGE HERO */
+  .page-hero { padding: 130px 2rem 70px; background: linear-gradient(180deg, var(--garnet-dark) 0%, rgba(92,15,28,0.95) 100%); text-align: center; position: relative; overflow: hidden; }
+  .page-hero::before { content: 'ΠΚΑ'; position: absolute; font-family: 'Playfair Display', serif; font-size: 30vw; font-weight: 800; color: rgba(201,168,76,0.04); top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
+  .page-eyebrow { font-family: 'Josefin Sans', sans-serif; font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: block; }
+  .page-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; color: #fff; line-height: 1; margin-bottom: 0.5rem; }
+  .page-title em { color: var(--gold); font-style: italic; }
+  .page-subtitle { font-family: 'Josefin Sans', sans-serif; font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 0.75rem; margin-bottom: 2rem; }
+  .page-rule { width: 80px; height: 2px; background: linear-gradient(to right, var(--gold), transparent); margin: 0 auto; }
+
+  /* INTRO */
+  .intro-section { background: var(--garnet); padding: 3.5rem 2rem; text-align: center; }
+  .intro-inner { max-width: 760px; margin: 0 auto; }
+  .intro-section p { font-size: 1rem; line-height: 1.9; color: rgba(255,255,255,0.8); }
+
+  /* PRESIDENTS TABLE */
+  .presidents-section { padding: 5rem 2rem; }
+  .presidents-inner { max-width: 900px; margin: 0 auto; }
+
+  .era-block { margin-bottom: 4rem; }
+  .era-label { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--border); display: flex; align-items: center; gap: 1rem; }
+  .era-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .era-gap { background: var(--garnet-dark); color: rgba(255,255,255,0.4); font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; text-align: center; padding: 1rem 2rem; margin: 2.5rem 0; }
+  .era-gap strong { color: rgba(255,255,255,0.6); }
+
+  .presidents-table { width: 100%; border-collapse: collapse; }
+  .presidents-table tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+  .presidents-table tbody tr:last-child { border-bottom: none; }
+  .presidents-table tbody tr:hover { background: rgba(139,26,46,0.04); }
+  .presidents-table td { padding: 0.85rem 1rem; vertical-align: middle; }
+  .president-num { font-family: 'Josefin Sans', sans-serif; font-size: 10px; color: var(--text-light); width: 2.5rem; text-align: right; padding-right: 1.5rem; }
+  .president-name { font-size: 0.975rem; font-weight: 700; color: var(--garnet-dark); }
+  .president-date { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.12em; color: var(--text-light); text-align: right; white-space: nowrap; }
+  .president-date.no-date { font-style: italic; color: var(--border); letter-spacing: 0; font-family: 'Libre Baskerville', serif; font-size: 0.8rem; }
+
+  /* BACK BUTTON */
+  .back-footer { text-align: center; padding: 3rem 2rem 5rem; }
+  .btn-primary { background: var(--gold); color: var(--garnet-dark); padding: 14px 32px; font-family: 'Josefin Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s, transform 0.2s; display: inline-block; }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer { background: var(--dark); border-top: 3px solid var(--garnet); padding: 2.5rem 2rem; text-align: center; }
+  footer p { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+
+  @media (max-width: 640px) {
+    .president-num { display: none; }
+    .presidents-table td { padding: 0.75rem 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-brand">
+    <div class="nav-crest">ΠΚΑ</div>
+    <div class="nav-title">Gamma Omicron<span>Pi Kappa Alpha · Ohio University</span></div>
+  </a>
+  <a href="/#history" class="nav-back">Back to History</a>
+</nav>
+
+<div class="page-hero">
+  <span class="page-eyebrow">Chapter Leadership</span>
+  <h1 class="page-title">Presidents <em>(SMC)</em></h1>
+  <div class="page-subtitle">Gamma Omicron Chapter · Pi Kappa Alpha</div>
+  <div class="page-rule"></div>
+</div>
+
+<div class="intro-section">
+  <div class="intro-inner">
+    <p>The President of a Pi Kappa Alpha chapter is an esteemed position within our Fraternity. He presides at all chapter meetings, appoints officers and committees, calls special meetings, and is held responsible by the Fraternity for the proper performance of the chapter.</p>
+    <p style="margin-top:1.25rem;">These are the men who were chosen to lead Gamma Omicron since our chartering in 1930.</p>
+  </div>
+</div>
+
+<div class="presidents-section">
+  <div class="presidents-inner" id="presidents-content">
+    <div style="text-align:center;padding:3rem;color:var(--text-light);">Loading…</div>
+  </div>
+</div>
+
+<div class="back-footer">
+  <a href="/#history" class="btn-primary">← Back to History</a>
+</div>
+
+<footer>
+  <p>Pi Kappa Alpha · Gamma Omicron Chapter · Ohio University · Est. 1930</p>
+</footer>
+
+<script>
+async function fetchJSON(url) {
+  try {
+    const res = await fetch(url);
+    if (!res.ok) return null;
+    return await res.json();
+  } catch { return null; }
+}
+
+async function loadPresidents() {
+  const data = await fetchJSON('/_data/presidents.json');
+  const container = document.getElementById('presidents-content');
+  if (!data || !data.presidents || !data.presidents.length) {
+    container.innerHTML = '<p style="text-align:center;color:var(--text-light);">No presidents data found.</p>';
+    return;
+  }
+
+  const all = data.presidents;
+
+  // Split into eras based on the data
+  const refounded = [];     // 1987–present (by index, up to the gap)
+  const gapNames  = [];     // no-date entries (between eras)
+  const original  = [];     // pre-1974 entries
+
+  all.forEach(p => {
+    if (!p.year) {
+      gapNames.push(p);
+    } else {
+      const yr = parseInt(p.year.replace(/\d+\//, ''), 10);
+      if (yr >= 1987) {
+        refounded.push(p);
+      } else {
+        original.push(p);
+      }
+    }
+  });
+
+  let html = '';
+
+  // Era: Refounded (1987–Present)
+  html += renderEra('Refounded Era — 1987 to Present', refounded, 1);
+
+  // Gap note between eras
+  if (gapNames.length) {
+    html += `<div class="era-gap">
+      <strong>The following served during the Refounded Era — exact dates not on record</strong><br>
+      <span style="margin-top:0.5rem;display:block;">${gapNames.map(p => p.name).join(' &nbsp;·&nbsp; ')}</span>
+    </div>`;
+  }
+
+  // Gap between chapter periods
+  html += `<div class="era-gap" style="margin:2rem 0;">
+    <strong>Chapter Closed &nbsp;·&nbsp; 1974 – 1987</strong>
+  </div>`;
+
+  // Era: Original (1930–1974)
+  html += renderEra('Original Era — 1930 to 1974', original, refounded.length + gapNames.length + 1);
+
+  container.innerHTML = html;
+}
+
+function renderEra(label, list, startNum) {
+  if (!list.length) return '';
+  let rows = list.map((p, i) => `
+    <tr>
+      <td class="president-num">${startNum + i}</td>
+      <td class="president-name">${p.name}</td>
+      <td class="president-date ${p.year ? '' : 'no-date'}">${p.year || 'Date unknown'}</td>
+    </tr>`).join('');
+
+  return `
+    <div class="era-block">
+      <div class="era-label">${label}</div>
+      <table class="presidents-table">
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
+}
+
+loadPresidents();
+</script>
+</body>
+</html>

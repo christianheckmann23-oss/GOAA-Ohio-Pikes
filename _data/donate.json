@@ -1,5 +1,16 @@
 {
   "intro_text": "Your support keeps Gamma Omicron strong. Whether you pay annual dues, contribute to scholarships, or support the housing corporation, every dollar makes a direct difference to the brotherhood you love.",
+  "hist_title": "Preserving Our History",
+  "hist_intro": "The Pi Kappa Alpha Historical Society has identified three initiatives that will not only help preserve our history, but also make it ready and available for brothers to enjoy. The mission is to compile and create, as best as possible, a holistic history of each and every chapter, make it accessible to every member no matter where they are, and inspire passion for our history along the way!",
+  "hist_note": "Gamma Omicron (Ohio) Chapter's individual project total:",
+  "hist_projects": [
+    { "name": "Alpha Chapter Minute Book Replication", "amount": "$150", "funded": true },
+    { "name": "Digitizing Your Chapter's Historical Notebook", "amount": "$5,500", "funded": false },
+    { "name": "Digitizing Your Chapter's Membership Record Cards", "amount": "$5,625", "funded": false }
+  ],
+  "hist_total": "$11,275",
+  "hist_link": "https://fdog23.funraise.org/team/gamma-omicron-ohio",
+  "card_desc": "Keep the alumni association running strong through annual dues and direct contributions that fund newsletters, events, chapter support, and capital improvements to our chapter house.",
   "options": [
     { "name": "Annual Alumni Dues", "desc": "Funds newsletters, events, and chapter support", "badge": "$35 / year" },
     { "name": "William Sutherin Scholarship", "desc": "Tax-deductible · 501(c)(3) educational fund", "badge": "Any Amount" },

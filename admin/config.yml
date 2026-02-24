@@ -270,6 +270,28 @@ collections:
         file: "_data/donate.json"
         fields:
           - { label: "Intro Paragraph", name: "intro_text", widget: "text" }
+
+          - label: "Historical Society Card"
+            name: "hist_title"
+            widget: "string"
+            default: "Preserving Our History"
+          - { label: "Historical Society Body Text", name: "hist_intro", widget: "text" }
+          - { label: "Historical Society Chapter Note (bold line)", name: "hist_note", widget: "string", default: "Gamma Omicron (Ohio) Chapter's individual project total:" }
+          - label: "Historical Society Projects"
+            name: "hist_projects"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Project Name", name: "name", widget: "string" }
+              - { label: "Amount (e.g. $5,500)", name: "amount", widget: "string" }
+              - { label: "Already Funded?", name: "funded", widget: "boolean", default: false }
+          - { label: "Historical Society Total Needed", name: "hist_total", widget: "string", default: "$11,275" }
+          - { label: "Historical Society Donate Link", name: "hist_link", widget: "string", required: false }
+
+          - label: "Alumni Association Card"
+            name: "card_desc"
+            widget: "text"
+            hint: "Description text shown above the donation options list"
           - label: "Donation Options"
             name: "options"
             widget: "list"
