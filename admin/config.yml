@@ -97,7 +97,6 @@ collections:
             fields:
               - { label: "Year", name: "year", widget: "string" }
               - { label: "Recipient Name", name: "name", widget: "string" }
-
       - name: "banfield"
         label: "Martha Banfield Scholarship"
         file: "_data/scholarship_banfield.json"
@@ -142,6 +141,7 @@ collections:
                 fields:
                   - { label: "Year", name: "year", widget: "string" }
                   - { label: "Name", name: "name", widget: "string" }
+              - { label: "\"Apply Now\" Button Link", name: "apply_link", widget: "string", required: false, hint: "URL for the Apply Now button (e.g. a Google Form, nomination form, or email link like mailto:ohiopikes@gmail.com)" }
               - { label: "Sort Order", name: "order", widget: "number", default: 1 }
 
   # ── EXECUTIVE BOARD ────────────────────────────────────────────

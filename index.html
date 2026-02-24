@@ -399,7 +399,6 @@
 <section id="chapter">
   <div class="section-inner">
     <div class="section-header">
-      <span class="section-eyebrow" id="chapter-address">12 N College Street, Athens OH</span>
       <h2 class="section-title">The Active <em>Chapter</em></h2>
       <div class="section-rule"></div>
     </div>
@@ -418,9 +417,6 @@
           <div id="exec-officers"><div class="loading" style="color:rgba(255,255,255,0.4);">Loading…</div></div>
           <div style="margin-top:1.5rem;text-align:center;"><a id="rush-btn" href="#" class="btn-primary" style="font-size:11px;padding:10px 20px;">Rush PIKE</a></div>
         </div>
-        <div style="background:var(--gold-pale);padding:2rem;margin-top:1rem;border-left:3px solid var(--gold);">
-          <div style="font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--mid);margin-bottom:0.75rem;">Chapter Address</div>
-          <div style="font-size:0.95rem;line-height:1.8;color:var(--mid);" id="address-display">Pi Kappa Alpha – Gamma Omicron<br>12 N College Street<br>Athens, OH 45701</div>
         </div>
       </div>
     </div>
@@ -679,10 +675,8 @@ async function loadPresidents() {
 }
 
 // ── SCHOLARSHIPS ─────────────────────────────────────────────────
-function renderScholarship(s) {
+function renderScholarship(s, pageUrl) {
   if (!s) return '';
-  const donateUrl = (siteSettings.paypal_link && siteSettings.paypal_link !== 'TBD')
-    ? siteSettings.paypal_link : 'https://pikes.org/foundation/guide-to-giving/';
   return `
     <div class="scholarship-card reveal">
       <div class="scholarship-name">${s.name}</div>
@@ -695,10 +689,10 @@ function renderScholarship(s) {
       <div class="scholarship-recipients">
         <div class="scholarship-recipients-title">Recent Recipients</div>
         <div class="scholarship-recipients-list">
-          ${s.recipients.map(r=>`<span class="recipient-chip">${r.year} · ${r.name}</span>`).join('')}
+          ${s.recipients.slice(0,3).map(r=>`<span class="recipient-chip">${r.year} · ${r.name}</span>`).join('')}
         </div>
       </div>` : ''}
-      <div style="margin-top:1.5rem;"><a href="${donateUrl}" target="_blank" rel="noopener noreferrer" class="btn-primary">Donate Now</a></div>
+      <div style="margin-top:1.5rem;"><a href="${pageUrl}" class="btn-primary">View Recipients</a></div>
     </div>`;
 }
 
@@ -708,7 +702,7 @@ async function loadScholarships() {
     fetchJSON('/_data/scholarship_sutherin.json'),
     fetchJSON('/_data/scholarship_banfield.json')
   ]);
-  grid.innerHTML = renderScholarship(s1) + renderScholarship(s2);
+  grid.innerHTML = renderScholarship(s1, '/scholarship-sutherin.html') + renderScholarship(s2, '/scholarship-banfield.html');
   attachReveal();
 }
 
@@ -727,6 +721,7 @@ async function loadAwards() {
       <div class="award-name">${a.name}</div>
       <p class="award-desc">${a.description}</p>
       ${a.recent_recipient ? `<div class="award-recent">Most Recent: ${a.recent_recipient}</div>` : ''}
+      ${a.apply_link ? `<div style="margin-top:1.5rem;"><a href="${a.apply_link}" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size:11px;padding:10px 22px;">Apply Now</a></div>` : ''}
     </div>`).join('');
   attachReveal();
 }
