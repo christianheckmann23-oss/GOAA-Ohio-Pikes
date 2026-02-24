@@ -32,41 +32,47 @@ collections:
   # ── NEWS POSTS ─────────────────────────────────────────────────
   - name: "news"
     label: "📰 News Posts"
-    folder: "_data/news"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    summary: "{{title}} — {{date}}"
-    sortable_fields: ["date", "title"]
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime", date_format: "MMMM YYYY", time_format: false }
-      - label: "Category"
-        name: "category"
-        widget: "select"
-        options: ["Active Chapter", "Alumni Spotlight", "Scholarships", "Events", "In Memoriam", "General"]
-      - { label: "Excerpt (short summary)", name: "excerpt", widget: "text", hint: "2–3 sentences shown on the homepage" }
-      - { label: "Full Story (optional)", name: "body", widget: "markdown", required: false }
-      - { label: "Published", name: "published", widget: "boolean", default: true }
+    files:
+      - name: "all_posts"
+        label: "All News Posts"
+        file: "_data/news.json"
+        fields:
+          - label: "Posts"
+            name: "posts"
+            widget: "list"
+            summary: "{{fields.title}} — {{fields.date}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Date", name: "date", widget: "string", hint: "e.g. March 2025" }
+              - label: "Category"
+                name: "category"
+                widget: "select"
+                options: ["Active Chapter", "Alumni Spotlight", "Scholarships", "Events", "In Memoriam", "General"]
+              - { label: "Excerpt (short summary)", name: "excerpt", widget: "text", hint: "2–3 sentences shown on the homepage" }
+              - { label: "Published", name: "published", widget: "boolean", default: true }
 
   # ── EVENTS ─────────────────────────────────────────────────────
   - name: "events"
     label: "📅 Events"
-    folder: "_data/events"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    summary: "{{title}} — {{date}}"
-    sortable_fields: ["date", "title"]
-    fields:
-      - { label: "Event Name", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime", date_format: "MMM D, YYYY", time_format: false }
-      - { label: "Display Month (e.g. Sep)", name: "month_short", widget: "string" }
-      - { label: "Display Day (e.g. 27)", name: "day", widget: "string" }
-      - { label: "Display Year", name: "year", widget: "string" }
-      - { label: "Location", name: "location", widget: "string" }
-      - { label: "Time", name: "time", widget: "string", required: false, hint: "e.g. Shotgun Start 9:00 AM" }
-      - { label: "Cost / Notes", name: "notes", widget: "string", required: false, hint: "e.g. $85/player or All Classes Welcome" }
-      - { label: "RSVP Link", name: "rsvp_link", widget: "string", required: false }
-      - { label: "Show on Site", name: "published", widget: "boolean", default: true }
+    files:
+      - name: "all_events"
+        label: "All Events"
+        file: "_data/events.json"
+        fields:
+          - label: "Events"
+            name: "events"
+            widget: "list"
+            summary: "{{fields.title}} — {{fields.month_short}} {{fields.day}}, {{fields.year}}"
+            fields:
+              - { label: "Event Name", name: "title", widget: "string" }
+              - { label: "Display Month (e.g. Sep)", name: "month_short", widget: "string" }
+              - { label: "Display Day (e.g. 27)", name: "day", widget: "string" }
+              - { label: "Display Year", name: "year", widget: "string" }
+              - { label: "Location", name: "location", widget: "string" }
+              - { label: "Time", name: "time", widget: "string", required: false, hint: "e.g. Shotgun Start 9:00 AM" }
+              - { label: "Cost / Notes", name: "notes", widget: "string", required: false, hint: "e.g. $85/player or All Classes Welcome" }
+              - { label: "RSVP Link", name: "rsvp_link", widget: "string", required: false }
+              - { label: "Show on Site", name: "published", widget: "boolean", default: true }
 
   # ── SCHOLARSHIPS ───────────────────────────────────────────────
   - name: "scholarships"

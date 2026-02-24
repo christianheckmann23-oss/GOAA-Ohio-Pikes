@@ -648,10 +648,11 @@ function renderNews(items) {
 }
 
 async function loadNews() {
-  // In production, Decap CMS generates a JSON list at this path via a build script.
-  // Falls back to demo data for local preview.
-  const data = await fetchJSON('/_data/news-index.json');
-  renderNews(data ? data.posts : DEMO_NEWS);
+  const data = await fetchJSON('/_data/news.json');
+  const posts = data && data.posts && data.posts.length
+    ? data.posts.filter(p => p.published !== false)
+    : DEMO_NEWS;
+  renderNews(posts);
 }
 
 // ── EVENTS ───────────────────────────────────────────────────────
@@ -685,8 +686,11 @@ function renderEvents(items) {
 }
 
 async function loadEvents() {
-  const data = await fetchJSON('/_data/events-index.json');
-  renderEvents(data ? data.events : DEMO_EVENTS);
+  const data = await fetchJSON('/_data/events.json');
+  const events = data && data.events && data.events.length
+    ? data.events.filter(e => e.published !== false)
+    : DEMO_EVENTS;
+  renderEvents(events);
 }
 
 // ── PRESIDENTS ───────────────────────────────────────────────────

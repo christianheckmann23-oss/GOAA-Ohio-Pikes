@@ -1,0 +1,28 @@
+{
+  "events": [
+    {
+      "title": "Homecoming Reunion Weekend",
+      "date": "Oct 10, 2026",
+      "month_short": "Oct",
+      "day": "10",
+      "year": "2026",
+      "location": "60 N Court St, Athens, OH 45701",
+      "time": "12:00 PM",
+      "notes": "All Classes Welcome!",
+      "rsvp_link": "",
+      "published": true
+    },
+    {
+      "title": "Founder's Day",
+      "date": "Mar 1, 2026",
+      "month_short": "Mar",
+      "day": "1",
+      "year": "2026",
+      "location": "105 N Congress St, Athens, OH",
+      "time": "2:00 PM",
+      "notes": "Hot Dog Eating Competition between Brothers and any Alumni in Attendance.",
+      "rsvp_link": "",
+      "published": true
+    }
+  ]
+}
