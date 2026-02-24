@@ -1,5 +1,6 @@
 backend:
   name: git-gateway
+  site_domain: https://ohiopikes.netlify.app/
   branch: main
 
 media_folder: "images/uploads"
