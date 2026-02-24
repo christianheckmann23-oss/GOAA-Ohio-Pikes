@@ -23,7 +23,6 @@ collections:
           - { label: "Refounded Year", name: "refounded", widget: "string", default: "1987" }
           - { label: "Total Alumni Count", name: "alumni_count", widget: "string", default: "1,200+" }
           - { label: "Smythe Trophy Count", name: "smythe_count", widget: "string", default: "7×" }
-          - { label: "Chapter Address", name: "address", widget: "string", default: "12 N College Street, Athens, OH 45701" }
           - { label: "Annual Dues Amount", name: "dues_amount", widget: "string", default: "$35" }
           - { label: "Contact Email", name: "contact_email", widget: "string" }
           - { label: "PayPal Donate Link", name: "paypal_link", widget: "string", required: false }

@@ -570,12 +570,6 @@ async function loadSettings() {
     const duesBtn = document.getElementById('about-dues-btn');
     if (duesBtn) duesBtn.textContent = 'Pay ' + s.dues_amount + ' Annual Dues';
   }
-  if (s.address) {
-    document.getElementById('address-display').innerHTML =
-      'Pi Kappa Alpha – Gamma Omicron<br>' + s.address.replace(/,\s*/g,'<br>');
-    document.getElementById('footer-address').textContent = s.address;
-    document.getElementById('chapter-address').textContent = s.address;
-  }
   if (s.founded && s.refounded)
     document.getElementById('hero-badge').textContent =
       'Est. ' + s.founded + ' · Refounded ' + s.refounded + ' · Ohio University';
