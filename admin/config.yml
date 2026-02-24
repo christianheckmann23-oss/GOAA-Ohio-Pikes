@@ -1,6 +1,6 @@
 backend:
-  name: git-gateway
-  site_domain: https://ohiopikes.netlify.app/
+  name: github
+  site_domain: christianheckmann23-oss/GOAA-Ohio-Pikes
   branch: main
 
 media_folder: "images/uploads"
