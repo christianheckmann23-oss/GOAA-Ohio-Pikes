@@ -1,6 +1,6 @@
 backend:
   name: github
-  site_domain: christianheckmann23-oss/GOAA-Ohio-Pikes
+  repo: christianheckmann23-oss/GOAA-Ohio-Pikes
   branch: main
 
 media_folder: "images/uploads"
