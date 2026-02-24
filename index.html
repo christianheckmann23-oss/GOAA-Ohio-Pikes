@@ -173,21 +173,26 @@
 
   /* DONATE */
   #donate { background: var(--garnet); color: #fff; }
-  .donate-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-  .donate-options { display: flex; flex-direction: column; gap: 1rem; }
-  .donate-option { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 1.75rem; cursor: pointer; transition: background 0.2s, border-color 0.2s; display: flex; justify-content: space-between; align-items: center; }
-  .donate-option:hover { background: rgba(255,255,255,0.12); border-color: var(--gold); }
-  .donate-option-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; color: #fff; }
-  .donate-option-desc { font-size: 0.8rem; color: rgba(255,255,255,0.55); margin-top: 4px; }
+  .donate-sections { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
+  .donate-section-card { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 2.5rem; display: flex; flex-direction: column; }
+  .donate-section-card:hover { border-color: rgba(201,168,76,0.4); }
+  .donate-section-eyebrow { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .donate-section-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 1rem; line-height: 1.35; }
+  .donate-section-text { font-size: 0.875rem; line-height: 1.8; color: rgba(255,255,255,0.65); margin-bottom: 1.5rem; }
+  .donate-section-text strong { color: #fff; font-weight: 600; }
+  .donate-project-list { list-style: none; padding: 0; margin: 0 0 1.5rem 0; }
+  .donate-project-list li { display: flex; justify-content: space-between; align-items: baseline; padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; color: rgba(255,255,255,0.7); }
+  .donate-project-list li:last-child { border-bottom: none; }
+  .donate-project-cost { font-family: 'Josefin Sans', sans-serif; font-weight: 700; color: var(--gold); flex-shrink: 0; margin-left: 1rem; }
+  .donate-project-funded { font-family: 'Josefin Sans', sans-serif; font-weight: 700; color: #6fcf97; flex-shrink: 0; margin-left: 1rem; }
+  .donate-project-total { display: flex; justify-content: space-between; align-items: baseline; padding: 0.85rem 0; margin-bottom: 1.5rem; border-top: 2px solid var(--gold); font-size: 0.9rem; font-weight: 700; color: #fff; }
+  .donate-project-total span { font-family: 'Josefin Sans', sans-serif; color: var(--gold); font-size: 1rem; }
+  .donate-section-card .btn-primary { margin-top: auto; text-align: center; display: block; }
+  .donate-options { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; }
+  .donate-option { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 1.25rem; display: flex; justify-content: space-between; align-items: center; }
+  .donate-option-name { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 600; color: #fff; }
+  .donate-option-desc { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 3px; }
   .donate-option-badge { font-family: 'Josefin Sans', sans-serif; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; background: var(--gold); color: var(--garnet-dark); padding: 4px 10px; font-weight: 700; flex-shrink: 0; }
-  .dues-form { background: rgba(255,255,255,0.1); padding: 2.5rem; }
-  .dues-form-title { font-family: 'Josefin Sans', sans-serif; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; }
-  .form-group { margin-bottom: 1.5rem; }
-  .form-label { display: block; font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 0.5rem; }
-  .form-input { width: 100%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 12px 16px; font-family: 'Libre Baskerville', serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
-  .form-input:focus { border-color: var(--gold); }
-  .form-input::placeholder { color: rgba(255,255,255,0.3); }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 
   /* ADVISORY */
   #advisory { background: #F2EBE0; }
@@ -209,7 +214,9 @@
   .footer-links li { margin-bottom: 0.6rem; }
   .footer-links a { text-decoration: none; color: rgba(255,255,255,0.45); font-size: 0.85rem; transition: color 0.2s; }
   .footer-links a:hover { color: var(--gold); }
-  .footer-bottom { max-width: 1200px; margin: 0 auto; padding: 2rem 2rem 0; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.25); }
+  .footer-bottom { max-width: 1200px; margin: 0 auto; padding: 2rem 2rem 0; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.25); flex-wrap: wrap; gap: 0.5rem; }
+  .admin-btn { background: transparent; color: rgba(255,255,255,0.25); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: color 0.2s, border-color 0.2s; text-decoration: none; display: inline-block; }
+  .admin-btn:hover { color: var(--gold); border-color: var(--gold); }
 
   /* LOADING */
   .loading { text-align: center; padding: 3rem; font-family: 'Josefin Sans', sans-serif; font-size: 11px; letter-spacing: 0.2em; color: var(--text-light); }
@@ -225,7 +232,7 @@
     .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--garnet-dark); border-top: 1px solid rgba(201,168,76,0.3); }
     .nav-links.open a { height: auto; line-height: 1; padding: 14px 20px; border-bottom: 1px solid rgba(201,168,76,0.1); margin-bottom: 0; }
     .hamburger { display: flex; }
-    .about-grid, .scholarship-grid, .donate-grid, .chapter-grid, .history-grid { grid-template-columns: 1fr; }
+    .about-grid, .scholarship-grid, .donate-sections, .chapter-grid, .history-grid { grid-template-columns: 1fr; }
     .news-grid, .awards-grid, .board-grid { grid-template-columns: 1fr 1fr; }
     .footer-inner { grid-template-columns: 1fr 1fr; }
     .event-row { grid-template-columns: 80px 1fr; }
@@ -260,7 +267,7 @@
     <li><a href="#chapter">Chapter</a></li>
     <li><a href="#donate">Donate</a></li>
     <li><a href="#advisory">Advisory</a></li>
-    <li><a href="/admin/" class="nav-login">Admin</a></li>
+    <li><a href="https://mypike.pikes.org/" class="nav-login" target="_blank" rel="noopener noreferrer">myPIKE</a></li>
   </ul>
 </nav>
 
@@ -306,7 +313,7 @@
         <div class="about-pull">"The true measure of a fraternity is not in the men it initiates, but in the men it produces."</div>
         <p>GOAA organizes annual reunions, a popular golf outing, and "Feed‑a‑Pike" nights that bring alumni and actives together. Annual dues of $35 fund these activities, the chapter newsletter, web hosting, and travel to leadership conferences.</p>
         <p>Tax-deductible donations to the William Sutherin and Martha Banfield Memorial Scholarship funds are managed through our 501(c)(3) educational fund, ensuring your generosity directly benefits deserving brothers.</p>
-        <div style="margin-top:2rem;"><a href="#donate" class="btn-primary">Donate to GOAA</a></div>
+        <div style="margin-top:2rem;"><a href="https://pikes.org/foundation/guide-to-giving/" target="_blank" rel="noopener noreferrer" class="btn-primary">Donate to GOAA</a></div>
       </div>
       <div>
         <div class="about-card">
@@ -320,7 +327,7 @@
             <li>Scholarship fund contributions</li>
             <li>Housing corporation maintenance support</li>
           </ul>
-          <div style="margin-top:2rem;"><a href="#donate" class="btn-primary" style="font-size:11px;">Pay $35 Annual Dues</a></div>
+          <div style="margin-top:2rem;"><a href="https://pikes.org/foundation/guide-to-giving/" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size:11px;">Pay $35 Annual Dues</a></div>
         </div>
       </div>
     </div>
@@ -458,41 +465,39 @@
       <h2 class="section-title" style="color:#fff;">Dues &amp; <em style="color:var(--gold-light);">Donations</em></h2>
       <div class="section-rule" style="background:linear-gradient(to right,var(--gold),transparent);"></div>
     </div>
-    <div class="donate-grid">
-      <div>
-        <p id="donate-intro" style="font-size:1rem;line-height:1.9;color:rgba(255,255,255,0.7);margin-bottom:2rem;">Your support keeps Gamma Omicron strong. Whether you pay annual dues, contribute to scholarships, or support the housing corporation, every dollar makes a direct difference to the brotherhood you love.</p>
+    <p id="donate-intro" style="font-size:1rem;line-height:1.9;color:rgba(255,255,255,0.7);max-width:800px;margin:0 auto 2.5rem;text-align:center;">Your support keeps Gamma Omicron strong. Whether you pay annual dues, contribute to scholarships, or support the housing corporation, every dollar makes a direct difference to the brotherhood you love.</p>
+
+    <div class="donate-sections">
+
+      <!-- Section 1: Historical Society -->
+      <div class="donate-section-card">
+        <div class="donate-section-eyebrow">Pi Kappa Alpha Historical Society</div>
+        <div class="donate-section-title">Preserving Our History</div>
+        <div class="donate-section-text">The Pi Kappa Alpha Historical Society has identified three initiatives that will not only help preserve our history, but also make it ready and available for brothers to enjoy. The mission is to compile and create, as best as possible, a holistic history of each and every chapter, make it accessible to every member no matter where they are, and inspire passion for our history along the way!</div>
+        <div class="donate-section-text"><strong>Gamma Omicron (Ohio) Chapter's individual project total:</strong></div>
+        <ul class="donate-project-list">
+          <li><span>Alpha Chapter Minute Book Replication</span><span class="donate-project-funded">$150 FUNDED</span></li>
+          <li><span>Digitizing Your Chapter's Historical Notebook</span><span class="donate-project-cost">$5,500</span></li>
+          <li><span>Digitizing Your Chapter's Membership Record Cards</span><span class="donate-project-cost">$5,625</span></li>
+        </ul>
+        <div class="donate-project-total"><span>Total Needed</span><span>$11,275</span></div>
+        <a href="https://fdog23.funraise.org/team/gamma-omicron-ohio" target="_blank" rel="noopener noreferrer" class="btn-primary">Donate to Historical Society</a>
+      </div>
+
+      <!-- Section 2: Alumni Association Support -->
+      <div class="donate-section-card">
+        <div class="donate-section-eyebrow">Alumni Association</div>
+        <div class="donate-section-title">Support Gamma Omicron</div>
+        <div class="donate-section-text">Keep the alumni association running strong through annual dues and direct contributions that fund newsletters, events, chapter support, and capital improvements to our chapter house.</div>
         <div class="donate-options" id="donate-options">
           <div class="donate-option"><div><div class="donate-option-name">Annual Alumni Dues</div><div class="donate-option-desc">Funds newsletters, events, and chapter support</div></div><div class="donate-option-badge" id="dues-badge">$35 / year</div></div>
-          <div class="donate-option"><div><div class="donate-option-name">William Sutherin Scholarship</div><div class="donate-option-desc">Tax-deductible · 501(c)(3) educational fund</div></div><div class="donate-option-badge">Any Amount</div></div>
-          <div class="donate-option"><div><div class="donate-option-name">Martha Banfield Scholarship</div><div class="donate-option-desc">Tax-deductible · 501(c)(3) educational fund</div></div><div class="donate-option-badge">Any Amount</div></div>
           <div class="donate-option"><div><div class="donate-option-name">Housing Corporation</div><div class="donate-option-desc">Maintenance and capital improvements</div></div><div class="donate-option-badge">Any Amount</div></div>
-          <div class="donate-option"><div><div class="donate-option-name">National PIKE Fund</div><div class="donate-option-desc">Support Pi Kappa Alpha International programs</div></div><div class="donate-option-badge">Any Amount</div></div>
+          <div class="donate-option"><div><div class="donate-option-name">Chapter Endowment Fund</div><div class="donate-option-desc">Provides Active Brothers the opportunity to attend PIKE University leadership events</div></div><div class="donate-option-badge">Any Amount</div></div>
         </div>
+        <a href="https://pikes.org/foundation/guide-to-giving/" target="_blank" rel="noopener noreferrer" class="btn-primary">Donate Now</a>
       </div>
-      <div>
-        <form class="dues-form" onsubmit="return false;">
-          <div class="dues-form-title">Pay Dues / Make a Donation</div>
-          <div class="form-row">
-            <div class="form-group"><label class="form-label">First Name</label><input type="text" class="form-input" placeholder="John"></div>
-            <div class="form-group"><label class="form-label">Last Name</label><input type="text" class="form-input" placeholder="Pike"></div>
-          </div>
-          <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-input" placeholder="brother@example.com"></div>
-          <div class="form-group"><label class="form-label">Pledge Class Year</label><input type="text" class="form-input" placeholder="e.g. 1995"></div>
-          <div class="form-group">
-            <label class="form-label">Donation Designation</label>
-            <select class="form-input" style="color:#fff;background:rgba(255,255,255,0.1);">
-              <option style="color:#000;">Annual Dues ($35)</option>
-              <option style="color:#000;">Sutherin Scholarship</option>
-              <option style="color:#000;">Banfield Scholarship</option>
-              <option style="color:#000;">Housing Corporation</option>
-              <option style="color:#000;">General GOAA Fund</option>
-            </select>
-          </div>
-          <div class="form-group"><label class="form-label">Amount</label><input type="text" class="form-input" placeholder="$35"></div>
-          <button type="submit" class="btn-primary" style="width:100%;text-align:center;" id="paypal-btn">Proceed to Payment</button>
-          <p style="font-size:0.75rem;color:rgba(255,255,255,0.4);margin-top:1rem;line-height:1.6;">Payment via PayPal or credit card. Scholarship donations are tax-deductible. Dues payments are not tax-deductible.</p>
-        </form>
-      </div>
+
+
     </div>
   </div>
 </section>
@@ -552,18 +557,19 @@
     <div>
       <div class="footer-col-title">Give</div>
       <ul class="footer-links">
-        <li><a href="#donate">Pay Annual Dues</a></li>
-        <li><a href="#donate">Sutherin Scholarship</a></li>
-        <li><a href="#donate">Banfield Scholarship</a></li>
-        <li><a href="#donate">Housing Corporation</a></li>
-        <li><a href="#donate">National PIKE Fund</a></li>
+        <li><a href="https://fdog23.funraise.org/team/gamma-omicron-ohio" target="_blank" rel="noopener noreferrer">Historical Society</a></li>
+        <li><a href="https://pikes.org/foundation/guide-to-giving/" target="_blank" rel="noopener noreferrer">Pay Annual Dues</a></li>
+        <li><a href="https://pikes.org/foundation/guide-to-giving/" target="_blank" rel="noopener noreferrer">Sutherin Scholarship</a></li>
+        <li><a href="https://pikes.org/foundation/guide-to-giving/" target="_blank" rel="noopener noreferrer">Banfield Scholarship</a></li>
+        <li><a href="https://pikes.org/foundation/guide-to-giving/" target="_blank" rel="noopener noreferrer">National PIKE Fund</a></li>
       </ul>
-      <div style="margin-top:1.5rem;"><a href="/admin/" class="btn-primary" style="font-size:11px;padding:10px 18px;display:inline-block;">Admin Login</a></div>
+      <div style="margin-top:1.5rem;"><a href="https://mypike.pikes.org/" class="btn-primary" style="font-size:11px;padding:10px 18px;display:inline-block;" target="_blank" rel="noopener noreferrer">myPIKE</a></div>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 Pi Kappa Alpha – Gamma Omicron Alumni Association. All rights reserved.</span>
+    <span>&copy; 2025 Pi Kappa Alpha &ndash; Gamma Omicron Alumni Association. All rights reserved.</span>
     <span id="footer-address">12 N College St., Athens OH 45701</span>
+    <button class="admin-btn" id="admin-login-btn" onclick="handleAdminLogin()">Admin</button>
   </div>
 </footer>
 
@@ -603,9 +609,6 @@ async function loadSettings() {
       'Pi Kappa Alpha – Gamma Omicron<br>' + s.address.replace(/,\s*/g,'<br>');
     document.getElementById('footer-address').textContent = s.address;
     document.getElementById('chapter-address').textContent = s.address;
-  }
-  if (s.paypal_link) {
-    document.getElementById('paypal-btn').onclick = () => window.open(s.paypal_link,'_blank');
   }
   if (s.founded && s.refounded)
     document.getElementById('hero-badge').textContent =
@@ -709,7 +712,7 @@ function renderScholarship(s) {
           ${s.recipients.map(r=>`<span class="recipient-chip">${r.year} · ${r.name}</span>`).join('')}
         </div>
       </div>
-      <div style="margin-top:1.5rem;"><a href="#donate" class="btn-primary">Donate to This Fund</a></div>
+      <div style="margin-top:1.5rem;"><a href="https://pikes.org/foundation/guide-to-giving/" target="_blank" rel="noopener noreferrer" class="btn-primary">Donate Now</a></div>
     </div>`;
 }
 
@@ -834,7 +837,7 @@ async function loadAbout() {
       ${d.pull_quote ? `<div class="about-pull">"${d.pull_quote}"</div>` : ''}
       ${d.paragraph2 ? `<p>${d.paragraph2}</p>` : ''}
       ${d.paragraph3 ? `<p>${d.paragraph3}</p>` : ''}
-      <div style="margin-top:2rem;"><a href="#donate" class="btn-primary">Donate to GOAA</a></div>`;
+      <div style="margin-top:2rem;"><a href="https://pikes.org/foundation/guide-to-giving/" target="_blank" rel="noopener noreferrer" class="btn-primary">Donate to GOAA</a></div>`;
   }
   if (d.dues_card_title) document.getElementById('dues-card-title').textContent = d.dues_card_title;
   if (d.dues_card_items && d.dues_card_items.length) {
@@ -884,17 +887,6 @@ async function loadDonateContent() {
   const d = await fetchJSON('/_data/donate.json');
   if (!d) return;
   if (d.intro_text) document.getElementById('donate-intro').textContent = d.intro_text;
-  if (d.options && d.options.length) {
-    // Preserve dues-badge ID on the first option for settings.json dues_amount update
-    document.getElementById('donate-options').innerHTML = d.options.map((opt, i) => `
-      <div class="donate-option">
-        <div>
-          <div class="donate-option-name">${opt.name}</div>
-          <div class="donate-option-desc">${opt.desc}</div>
-        </div>
-        <div class="donate-option-badge"${i === 0 ? ' id="dues-badge"' : ''}>${opt.badge}</div>
-      </div>`).join('');
-  }
 }
 
 // ── ADVISORY SECTION ─────────────────────────────────────────────
@@ -908,12 +900,26 @@ async function loadAdvisoryContent() {
 }
 
 // ── NETLIFY IDENTITY REDIRECT ────────────────────────────────────
+function handleAdminLogin() {
+  if (window.netlifyIdentity) {
+    const user = window.netlifyIdentity.currentUser();
+    if (user) {
+      // Already logged in, go to admin
+      document.location.href = '/admin/';
+    } else {
+      // Open the login modal
+      window.netlifyIdentity.open('login');
+    }
+  }
+}
+
 if (window.netlifyIdentity) {
   window.netlifyIdentity.on('init', user => {
     if (!user) {
       window.netlifyIdentity.on('login', () => { document.location.href = '/admin/'; });
     }
   });
+  window.netlifyIdentity.on('login', () => { document.location.href = '/admin/'; });
 }
 
 // ── INIT ─────────────────────────────────────────────────────────
