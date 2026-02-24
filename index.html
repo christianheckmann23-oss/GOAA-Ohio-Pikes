@@ -275,9 +275,9 @@
 
 <!-- HERO (static, settings loaded via JS) -->
 <section id="home">
-  <div class="hero-badge" id="hero-badge">Est. 1930 · Refounded 1987 · Ohio University</div>
+  <div class="hero-badge" id="hero-badge">Est. 1930 · Refounded 2019 · Ohio University</div>
   <h1 class="hero-title">Gamma <em>Omicron</em><br>Alumni</h1>
-  <p class="hero-sub" id="hero-sub">Once a Pike, always a Pike.</p>
+  <p class="hero-sub" id="hero-sub">Once a Pike, Always a Pike.</p>
   <div class="hero-stats">
     <div class="hero-stat">
       <div class="hero-stat-num" id="stat-alumni">1,200+</div>
@@ -295,7 +295,7 @@
     </div>
   </div>
   <div class="hero-cta">
-    <a href="#donate" class="btn-primary">Pay Dues / Donate</a>
+    <a href="#donate" class="btn-primary">Donate</a>
     <a href="#about" class="btn-outline-light">Learn More</a>
   </div>
   <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
@@ -310,25 +310,11 @@
       <div class="section-rule"></div>
     </div>
     <div class="about-grid">
-      <div class="about-text" id="about-text">
-        <p>The Gamma Omicron Alumni Association (GOAA) serves as the enduring bond between more than 1,200 brothers who wore the Pi Kappa Alpha badge at Ohio University. Through events, newsletters, scholarships, and support of the active chapter, GOAA keeps the brotherhood alive long after graduation.</p>
-        <div class="about-pull">"The true measure of a fraternity is not in the men it initiates, but in the men it produces."</div>
-        <p>GOAA organizes annual reunions, a popular golf outing, and "Feed‑a‑Pike" nights that bring alumni and actives together. Annual dues of $35 fund these activities, the chapter newsletter, web hosting, and travel to leadership conferences.</p>
-        <p>Tax-deductible donations to the William Sutherin and Martha Banfield Memorial Scholarship funds are managed through our 501(c)(3) educational fund, ensuring your generosity directly benefits deserving brothers.</p>
-        <div style="margin-top:2rem;"><a href="https://pikes.org/foundation/guide-to-giving/" target="_blank" rel="noopener noreferrer" class="btn-primary">Donate to GOAA</a></div>
-      </div>
+      <div class="about-text" id="about-text"></div>
       <div>
         <div class="about-card">
           <div class="about-card-title" id="dues-card-title">What Your Dues Support</div>
-          <ul class="about-card-items" id="dues-card-items">
-            <li>Annual alumni newsletter and communications</li>
-            <li>Website hosting and member directory</li>
-            <li>Alumni events, reunions, and golf outing</li>
-            <li>"Feed‑a‑Pike" nights with the active chapter</li>
-            <li>Leadership conference travel for actives</li>
-            <li>Scholarship fund contributions</li>
-            <li>Housing corporation maintenance support</li>
-          </ul>
+          <ul class="about-card-items" id="dues-card-items"></ul>
           <div style="margin-top:2rem;"><a id="about-dues-btn" href="https://pikes.org/foundation/guide-to-giving/" data-paypal target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size:11px;">Pay $35 Annual Dues</a></div>
         </div>
       </div>
@@ -372,22 +358,11 @@
       <div class="section-rule"></div>
     </div>
     <div class="history-grid">
-      <div class="timeline" id="history-timeline">
-        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-year">1921</div><h3 class="timeline-title">Tau Sigma Delta Founded</h3><p class="timeline-body">A group of Ohio University men founded Tau Sigma Delta, a local fraternity, laying the groundwork for what would become Pi Kappa Alpha's Gamma Omicron chapter.</p></div>
-        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-year">1930</div><h3 class="timeline-title">Gamma Omicron Chartered</h3><p class="timeline-body">Tau Sigma Delta was formally installed as Gamma Omicron chapter of Pi Kappa Alpha International Fraternity, joining one of America's most prestigious Greek organizations.</p></div>
-        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-year">1974</div><h3 class="timeline-title">Chapter Closes</h3><p class="timeline-body">Social and political turmoil of the era, coupled with declining rush numbers, forced the chapter to close. The 8 Church Street house was vacated after 44 years of history.</p></div>
-        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-year">1987</div><h3 class="timeline-title">Gamma Omicron Refounded</h3><p class="timeline-body">Dedicated alumni rallied to re-establish the chapter. After earning colony recognition, Gamma Omicron was rechartered and moved to 12 N College St.</p></div>
-        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-year">1990s–Present</div><h3 class="timeline-title">Growth & Excellence</h3><p class="timeline-body">The refounded chapter earned multiple Smythe Trophies and established itself as a leading organization at Ohio University.</p></div>
-      </div>
+      <div class="timeline" id="history-timeline"><div class="loading" style="color:rgba(255,255,255,0.4);">Loading…</div></div>
       <div>
         <div class="history-table">
           <div class="history-table-title">Chapter Houses</div>
-          <div id="history-houses">
-            <div class="house-row"><span class="house-addr">41 Mill Street</span><span class="house-years">1922 – 1926</span></div>
-            <div class="house-row"><span class="house-addr">8 Church Street</span><span class="house-years">1926 – 1974</span></div>
-            <div class="house-row"><span class="house-addr">Chapter Closed</span><span class="house-years">1974 – 1987</span></div>
-            <div class="house-row"><span class="house-addr">12 N College Street</span><span class="house-years">1987 – Present</span></div>
-          </div>
+          <div id="history-houses"></div>
         </div>
         <div style="margin-top:2rem;" class="history-table">
           <div class="history-table-title">Chapter Presidents (Selected)</div>
@@ -433,12 +408,8 @@
     </div>
     <div class="chapter-grid">
       <div>
-        <div class="chapter-mission" id="chapter-mission">"We seek scholars, leaders, athletes, and gentlemen — men of character who will carry our values beyond the university."</div>
-        <div class="chapter-text" id="chapter-text">
-          <p>Gamma Omicron has been a cornerstone of Ohio University's Greek community since its 1930 chartering. With over 90 years of brotherhood — including a celebrated period following the chapter's 1987 refounding — the active chapter continues to set the standard for academic excellence, community service, and leadership development.</p>
-          <p>Located at 12 N College Street, the chapter house serves as home to an active brotherhood committed to the Pi Kappa Alpha values of scholarship, leadership, athletics, and fellowship.</p>
-          <p>Alumni are encouraged to engage with the active chapter through the Advisory Board, Feed‑a‑Pike nights, and rush events. Your mentorship and support are invaluable to the next generation of Gamma Omicron brothers.</p>
-        </div>
+        <div class="chapter-mission" id="chapter-mission"></div>
+        <div class="chapter-text" id="chapter-text"></div>
         <div class="smythe-banner" style="margin-top:2rem;">
           <div class="smythe-count" id="smythe-display">7×</div>
           <div class="smythe-label">Smythe Trophy Recipients — Chapter Excellence Award</div>
@@ -529,7 +500,7 @@
       <div style="font-size:2.5rem;color:rgba(255,255,255,0.15);">ΠΚΑ</div>
       <div class="footer-brand-name">Gamma Omicron</div>
       <div class="footer-brand-sub">Pi Kappa Alpha · Ohio University</div>
-      <p class="footer-brand-p">Chartered 1930. Refounded 1987. Over 1,200 brothers strong. The Gamma Omicron Alumni Association keeps the brotherhood alive and the chapter thriving.</p>
+      <p class="footer-brand-p" id="footer-blurb">Chartered 1930. Refounded 2019. Over 1,200 brothers strong. The Gamma Omicron Alumni Association keeps the brotherhood alive and the chapter thriving.</p>
     </div>
     <div>
       <div class="footer-col-title">Navigate</div>
@@ -565,8 +536,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span>&copy; 2025 Pi Kappa Alpha &ndash; Gamma Omicron Alumni Association. All rights reserved.</span>
-    <span id="footer-address">12 N College St., Athens OH 45701</span>
+    <span>&copy; 2026 Pi Kappa Alpha &ndash; Gamma Omicron Alumni Association. All rights reserved.</span>
     <button class="admin-btn" id="admin-login-btn" onclick="handleAdminLogin()">Admin</button>
   </div>
 </footer>
@@ -622,6 +592,10 @@ async function loadSettings() {
   if (s.rush_link) {
     const rushBtn = document.getElementById('rush-btn');
     if (rushBtn) rushBtn.href = s.rush_link;
+  }
+  if (s.footer_blurb) {
+    const fb = document.getElementById('footer-blurb');
+    if (fb) fb.textContent = s.footer_blurb;
   }
 }
 
@@ -709,21 +683,25 @@ async function loadPresidents() {
 
 // ── SCHOLARSHIPS ─────────────────────────────────────────────────
 function renderScholarship(s) {
+  if (!s) return '';
+  const donateUrl = (siteSettings.paypal_link && siteSettings.paypal_link !== 'TBD')
+    ? siteSettings.paypal_link : 'https://pikes.org/foundation/guide-to-giving/';
   return `
     <div class="scholarship-card reveal">
       <div class="scholarship-name">${s.name}</div>
-      <div class="scholarship-honor">${s.honor}</div>
-      <p class="scholarship-body">${s.description}</p>
+      <div class="scholarship-honor">${s.honor || ''}</div>
+      <p class="scholarship-body">${s.description || ''}</p>
       <ul class="scholarship-criteria">
-        ${s.criteria.map(c=>`<li>${c}</li>`).join('')}
+        ${(s.criteria || []).map(c=>`<li>${c}</li>`).join('')}
       </ul>
+      ${s.recipients && s.recipients.length ? `
       <div class="scholarship-recipients">
         <div class="scholarship-recipients-title">Recent Recipients</div>
         <div class="scholarship-recipients-list">
           ${s.recipients.map(r=>`<span class="recipient-chip">${r.year} · ${r.name}</span>`).join('')}
         </div>
-      </div>
-      <div style="margin-top:1.5rem;"><a href="https://pikes.org/foundation/guide-to-giving/" target="_blank" rel="noopener noreferrer" class="btn-primary">Donate Now</a></div>
+      </div>` : ''}
+      <div style="margin-top:1.5rem;"><a href="${donateUrl}" target="_blank" rel="noopener noreferrer" class="btn-primary">Donate Now</a></div>
     </div>`;
 }
 
@@ -733,32 +711,25 @@ async function loadScholarships() {
     fetchJSON('/_data/scholarship_sutherin.json'),
     fetchJSON('/_data/scholarship_banfield.json')
   ]);
-  const fallback1 = { name:'William Sutherin Scholarship', honor:'Honoring Brother William Sutherin, Class of 1963', description:'Awarded annually to a junior or senior active member who exemplifies academic achievement and meaningful campus involvement.', criteria:['Junior or senior class standing','Minimum 2.8 GPA required','Demonstrated campus involvement','Letter of recommendation from chapter advisor'], recipients:[{year:'2024',name:'T. Anderson'},{year:'2023',name:'M. Kowalski'},{year:'2022',name:'J. Patterson'}] };
-  const fallback2 = { name:'Martha Banfield Memorial Scholarship', honor:'In Memory of Martha Banfield, Chapter Mother', description:'This scholarship honors the memory of Martha Banfield and is awarded to an active member who holds a chapter leadership position.', criteria:['Active chapter leadership role required','Minimum 3.0 GPA required','Demonstrated service to the chapter','Personal essay on leadership philosophy'], recipients:[{year:'2024',name:'D. Harrington'},{year:'2023',name:'A. Steele'},{year:'2022',name:'B. Morrison'}] };
-  grid.innerHTML = renderScholarship(s1||fallback1) + renderScholarship(s2||fallback2);
+  grid.innerHTML = renderScholarship(s1) + renderScholarship(s2);
   attachReveal();
 }
 
 // ── AWARDS ───────────────────────────────────────────────────────
-const DEMO_AWARDS = [
-  { icon:'✦', name:"President's Award", description:"The highest honor bestowed by GOAA, recognizing extraordinary and sustained service to the alumni association and the Gamma Omicron chapter.", recent_recipient:"Brother J. Michaels '84" },
-  { icon:'◈', name:'Outstanding Alumnus Award', description:"Recognizes an alumnus who has achieved distinction in their professional career and brought honor to the Pi Kappa Alpha name.", recent_recipient:"Brother T. Sullivan '97" },
-  { icon:'◆', name:'Dave Ritchey Award', description:"Named for Brother Dave Ritchey '68, this award honors alumni who best embody the true spirit of brotherhood in their daily lives.", recent_recipient:"Brother C. Graham '03" },
-  { icon:'★', name:'Mert Simons Award', description:'Presented to an alumnus for exceptional and dedicated service to the Gamma Omicron Alumni Association over many years.', recent_recipient:"Brother R. Thompson '79" },
-  { icon:'♦', name:'Mom Heidler Award', description:'A unique honor recognizing women who have gone above and beyond in their dedication to the chapter and its members.', recent_recipient:'Patricia Anderson' },
-  { icon:'◇', name:'Ron Schuff Pledge Award', description:'Given to the outstanding new member pledge class member, recognizing academic achievement, brotherhood, and leadership potential.', recent_recipient:"M. Chen, Class of 2025" },
-];
-
 async function loadAwards() {
   const grid = document.getElementById('awards-grid');
-  const data = await fetchJSON('/_data/awards-index.json');
-  const awards = data ? data.awards : DEMO_AWARDS;
-  grid.innerHTML = awards.map(a => `
+  const data = await fetchJSON('/_data/awards.json');
+  if (!data || !data.awards || !data.awards.length) {
+    grid.innerHTML = '';
+    return;
+  }
+  const sorted = [...data.awards].sort((a, b) => (a.order || 99) - (b.order || 99));
+  grid.innerHTML = sorted.map(a => `
     <div class="award-card reveal">
-      <div class="award-icon">${a.icon}</div>
+      <div class="award-icon">${a.icon || '✦'}</div>
       <div class="award-name">${a.name}</div>
       <p class="award-desc">${a.description}</p>
-      <div class="award-recent">Most Recent: ${a.recent_recipient}</div>
+      ${a.recent_recipient ? `<div class="award-recent">Most Recent: ${a.recent_recipient}</div>` : ''}
     </div>`).join('');
   attachReveal();
 }
@@ -797,13 +768,11 @@ function getInitials(name) {
 async function loadAdvisoryBoard() {
   const data = await fetchJSON('/_data/advisory_board.json');
   const grid = document.getElementById('board-grid');
-  const members = data ? data.members : [
-    {name:'Robert Jenkins',class_year:'1989',role:'Chair'},{name:'Michael Walsh',class_year:'1994',role:''},
-    {name:'Daniel Simmons',class_year:'1998',role:''},{name:'Christopher Torres',class_year:'2002',role:''},
-    {name:'Brian Lawson',class_year:'2005',role:''},{name:'Kevin Park',class_year:'2009',role:''},
-    {name:'Andrew Hayes',class_year:'2013',role:''},{name:'Jason Merrill',class_year:'2017',role:''}
-  ];
-  grid.innerHTML = members.map(m => `
+  if (!data || !data.members || !data.members.length) {
+    grid.innerHTML = '';
+    return;
+  }
+  grid.innerHTML = data.members.map(m => `
     <div class="board-member reveal">
       <div class="board-initials">${getInitials(m.name)}</div>
       <div class="board-name">${m.name}</div>

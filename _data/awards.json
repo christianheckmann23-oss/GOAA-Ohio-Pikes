@@ -1,0 +1,52 @@
+{
+  "awards": [
+    {
+      "icon": "✦",
+      "name": "President's Award",
+      "description": "The highest honor bestowed by GOAA, recognizing extraordinary and sustained service to the alumni association and the Gamma Omicron chapter.",
+      "recent_recipient": "",
+      "recipients": [],
+      "order": 1
+    },
+    {
+      "icon": "◈",
+      "name": "Outstanding Alumnus Award",
+      "description": "Recognizes an alumnus who has achieved distinction in their professional career and brought honor to the Pi Kappa Alpha name.",
+      "recent_recipient": "",
+      "recipients": [],
+      "order": 2
+    },
+    {
+      "icon": "◆",
+      "name": "Dave Ritchey Award",
+      "description": "Named for Brother Dave Ritchey '68, this award honors alumni who best embody the true spirit of brotherhood in their daily lives.",
+      "recent_recipient": "",
+      "recipients": [],
+      "order": 3
+    },
+    {
+      "icon": "★",
+      "name": "Mert Simons Award",
+      "description": "Presented to an alumnus for exceptional and dedicated service to the Gamma Omicron Alumni Association over many years.",
+      "recent_recipient": "",
+      "recipients": [],
+      "order": 4
+    },
+    {
+      "icon": "♦",
+      "name": "Mom Heidler Award",
+      "description": "A unique honor recognizing women who have gone above and beyond in their dedication to the chapter and its members.",
+      "recent_recipient": "",
+      "recipients": [],
+      "order": 5
+    },
+    {
+      "icon": "◇",
+      "name": "Ron Schuff Pledge Award",
+      "description": "Given to the outstanding new member pledge class, recognizing academic achievement, brotherhood, and leadership potential.",
+      "recent_recipient": "",
+      "recipients": [],
+      "order": 6
+    }
+  ]
+}

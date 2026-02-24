@@ -22,15 +22,25 @@
       "body": "Dedicated alumni rallied to re-establish the chapter. After earning colony recognition, Gamma Omicron was rechartered and moved to 12 N College St."
     },
     {
-      "year": "1990s–Present",
+      "year": "1990s–2012",
       "title": "Growth & Excellence",
       "body": "The refounded chapter earned multiple Smythe Trophies and established itself as a leading organization at Ohio University."
-    }
+    },
+    {
+    "year": "2012",
+    "title": "Chapter Closed",
+    "body": "The once excellent chapter was forced to close due to violations of the university's Greek Life policies as well as violations of its lease. The chapter house is currently vacant and owned by Prokos Rental Company."
+  },
+    {
+    "year": "2017–Present",
+    "title": "Growth & Excellence",
+    "body": "The chapter rebuilt started rebuilding but Covid-19 disruptions stalled growth. Gamma Omicron is now thriving on campus but still is seeking a place to call home."
+  }
   ],
   "houses": [
     { "address": "41 Mill Street", "years": "1922 – 1926" },
     { "address": "8 Church Street", "years": "1926 – 1974" },
     { "address": "Chapter Closed", "years": "1974 – 1987" },
-    { "address": "12 N College Street", "years": "1987 – Present" }
+    { "address": "12 N College Street", "years": "1987 – 2012" }
   ]
 }

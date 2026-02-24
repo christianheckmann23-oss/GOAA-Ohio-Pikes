@@ -28,6 +28,7 @@ collections:
           - { label: "Contact Email", name: "contact_email", widget: "string" }
           - { label: "PayPal Donate Link", name: "paypal_link", widget: "string", required: false }
           - { label: "Rush PIKE Button Link", name: "rush_link", widget: "string", required: false, hint: "URL for the Rush PIKE button on the Active Chapter section (e.g. https://instagram.com/pikesohio)" }
+          - { label: "Footer Description", name: "footer_blurb", widget: "text", required: false, hint: "Short blurb shown in the footer below the chapter name" }
 
   # ── NEWS POSTS ─────────────────────────────────────────────────
   - name: "news"
@@ -119,24 +120,29 @@ collections:
   # ── AWARDS ─────────────────────────────────────────────────────
   - name: "awards"
     label: "🏆 Awards"
-    folder: "_data/awards"
-    create: true
-    slug: "{{slug}}"
-    summary: "{{name}}"
-    fields:
-      - { label: "Award Name", name: "name", widget: "string" }
-      - { label: "Icon (symbol)", name: "icon", widget: "string", default: "✦", hint: "A single character symbol e.g. ✦ ◈ ◆ ★" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Most Recent Recipient", name: "recent_recipient", widget: "string" }
-      - label: "All Past Recipients"
-        name: "recipients"
-        widget: "list"
-        required: false
-        summary: "{{fields.year}} · {{fields.name}}"
+    files:
+      - name: "all_awards"
+        label: "All Awards"
+        file: "_data/awards.json"
         fields:
-          - { label: "Year", name: "year", widget: "string" }
-          - { label: "Name", name: "name", widget: "string" }
-      - { label: "Sort Order", name: "order", widget: "number", default: 1 }
+          - label: "Awards"
+            name: "awards"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Award Name", name: "name", widget: "string" }
+              - { label: "Icon (symbol)", name: "icon", widget: "string", default: "✦", hint: "A single character symbol e.g. ✦ ◈ ◆ ★" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Most Recent Recipient", name: "recent_recipient", widget: "string", required: false }
+              - label: "All Past Recipients"
+                name: "recipients"
+                widget: "list"
+                required: false
+                summary: "{{fields.year}} · {{fields.name}}"
+                fields:
+                  - { label: "Year", name: "year", widget: "string" }
+                  - { label: "Name", name: "name", widget: "string" }
+              - { label: "Sort Order", name: "order", widget: "number", default: 1 }
 
   # ── EXECUTIVE BOARD ────────────────────────────────────────────
   - name: "exec_board"
