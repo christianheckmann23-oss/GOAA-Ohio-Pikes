@@ -1,12 +1,12 @@
 ---
 title: Homecoming Reunion Weekend
-date: 2025-09-27
-month_short: Sep
-day: "27"
-year: "2025"
-location: 12 N College St., Athens OH
-time: Friday–Saturday
-notes: All Classes Welcome
+date: Oct 10, 2026
+month_short: October
+day: TBD
+year: "2026"
+location: 60 N Court St, Athens Ohio 45701
+time: 12:00 PM
+notes: All Classes Welcome!
 rsvp_link: "#"
 published: true
 ---
