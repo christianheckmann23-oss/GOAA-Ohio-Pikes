@@ -1,41 +1,14 @@
 {
   "year": "2026",
   "officers": [
-    {
-      "position": "President (SMC)",
-      "name": "Christian Heckmann"
-    },
-    {
-      "position": "Internal Vice President",
-      "name": "Sam Fujii"
-    },
-    {
-      "position": "External Vice President",
-      "name": "Luke George"
-    },
-    {
-      "position": "Secretary",
-      "name": "Lukas Bobak-Rouce"
-    },
-    {
-      "position": "Treasurer",
-      "name": "Andy Holben"
-    },
-    {
-      "position": "Health & Safety Chair",
-      "name": "Carson Sanders"
-    },
-    {
-      "position": "VP Membership",
-      "name": "Nate Caudill"
-    },
-    {
-      "position": "Recruitment Chair",
-      "name": "Hudson Lisner"
-    },
-    {
-      "position": "Sergeant-at-Arms",
-      "name": "Donnie Mikuluk"
-    }
+    { "position": "President (SMC)", "name": "Christian Heckmann", "email": "", "link": "" },
+    { "position": "Internal Vice President", "name": "Sam Fujii", "email": "", "link": "" },
+    { "position": "External Vice President", "name": "Luke George", "email": "", "link": "" },
+    { "position": "Secretary", "name": "Lukas Bobak-Rouce", "email": "", "link": "" },
+    { "position": "Treasurer", "name": "Andy Holben", "email": "", "link": "" },
+    { "position": "Health & Safety Chair", "name": "Carson Sanders", "email": "", "link": "" },
+    { "position": "VP Membership", "name": "Nate Caudill", "email": "", "link": "" },
+    { "position": "Recruitment Chair", "name": "Hudson Lisner", "email": "", "link": "" },
+    { "position": "Sergeant-at-Arms", "name": "Donnie Mikuluk", "email": "", "link": "" }
   ]
 }

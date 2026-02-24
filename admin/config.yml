@@ -27,6 +27,7 @@ collections:
           - { label: "Annual Dues Amount", name: "dues_amount", widget: "string", default: "$35" }
           - { label: "Contact Email", name: "contact_email", widget: "string" }
           - { label: "PayPal Donate Link", name: "paypal_link", widget: "string", required: false }
+          - { label: "Rush PIKE Button Link", name: "rush_link", widget: "string", required: false, hint: "URL for the Rush PIKE button on the Active Chapter section (e.g. https://instagram.com/pikesohio)" }
 
   # ── NEWS POSTS ─────────────────────────────────────────────────
   - name: "news"
@@ -147,6 +148,8 @@ collections:
             fields:
               - { label: "Position", name: "position", widget: "string", hint: "e.g. President (SMC)" }
               - { label: "Brother's Name", name: "name", widget: "string" }
+              - { label: "Email Address (optional)", name: "email", widget: "string", required: false, hint: "e.g. jsmith@ohio.edu — name will become a clickable mailto link" }
+              - { label: "Profile / Social Link (optional)", name: "link", widget: "string", required: false, hint: "e.g. https://instagram.com/username — used if no email is set" }
 
   # ── ADVISORY BOARD ─────────────────────────────────────────────
   - name: "advisory_board"

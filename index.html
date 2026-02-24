@@ -167,6 +167,8 @@
   .exec-row:last-child { border-bottom: none; }
   .exec-position { color: rgba(255,255,255,0.5); font-style: italic; }
   .exec-name { color: #fff; font-weight: 700; }
+  .exec-name a { color: var(--gold-light); text-decoration: none; border-bottom: 1px solid rgba(232,200,106,0.3); transition: border-color 0.2s, color 0.2s; }
+  .exec-name a:hover { color: var(--gold); border-bottom-color: var(--gold); }
   .smythe-banner { background: linear-gradient(135deg, var(--gold), var(--gold-light)); padding: 2rem; text-align: center; margin-top: 2rem; }
   .smythe-count { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 800; color: var(--garnet-dark); line-height: 1; }
   .smythe-label { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); margin-top: 4px; }
@@ -446,7 +448,7 @@
         <div class="exec-board">
           <div class="exec-board-title" id="exec-year-title">2024–2025 Executive Board</div>
           <div id="exec-officers"><div class="loading" style="color:rgba(255,255,255,0.4);">Loading…</div></div>
-          <div style="margin-top:1.5rem;text-align:center;"><a href="#" class="btn-primary" style="font-size:11px;padding:10px 20px;">Rush PIKE</a></div>
+          <div style="margin-top:1.5rem;text-align:center;"><a id="rush-btn" href="#" class="btn-primary" style="font-size:11px;padding:10px 20px;">Rush PIKE</a></div>
         </div>
         <div style="background:var(--gold-pale);padding:2rem;margin-top:1rem;border-left:3px solid var(--gold);">
           <div style="font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--mid);margin-bottom:0.75rem;">Chapter Address</div>
@@ -617,6 +619,10 @@ async function loadSettings() {
   if (s.paypal_link && s.paypal_link !== 'TBD') {
     document.querySelectorAll('[data-paypal]').forEach(el => { el.href = s.paypal_link; });
   }
+  if (s.rush_link) {
+    const rushBtn = document.getElementById('rush-btn');
+    if (rushBtn) rushBtn.href = s.rush_link;
+  }
 }
 
 // ── NEWS ─────────────────────────────────────────────────────────
@@ -763,11 +769,20 @@ async function loadExecBoard() {
     {position:'Scholarship Chair',name:'TBD'}
   ]};
   document.getElementById('exec-year-title').textContent = d.year + ' Executive Board';
-  document.getElementById('exec-officers').innerHTML = d.officers.map(o => `
-    <div class="exec-row">
+  document.getElementById('exec-officers').innerHTML = d.officers.map(o => {
+    let nameHtml;
+    if (o.email) {
+      nameHtml = `<a href="mailto:${o.email}">${o.name}</a>`;
+    } else if (o.link) {
+      nameHtml = `<a href="${o.link}" target="_blank" rel="noopener noreferrer">${o.name}</a>`;
+    } else {
+      nameHtml = o.name;
+    }
+    return `<div class="exec-row">
       <span class="exec-position">${o.position}</span>
-      <span class="exec-name">${o.name}</span>
-    </div>`).join('');
+      <span class="exec-name">${nameHtml}</span>
+    </div>`;
+  }).join('');
 }
 
 // ── ADVISORY BOARD ───────────────────────────────────────────────
