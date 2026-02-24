@@ -8,11 +8,5 @@
     "Demonstrated campus involvement",
     "Letter of recommendation from chapter advisor"
   ],
-  "recipients": [
-    { "year": "2024", "name": "T. Anderson" },
-    { "year": "2023", "name": "M. Kowalski" },
-    { "year": "2022", "name": "J. Patterson" },
-    { "year": "2021", "name": "R. Nguyen" },
-    { "year": "2020", "name": "C. Williams" }
-  ]
+  "recipients": []
 }
