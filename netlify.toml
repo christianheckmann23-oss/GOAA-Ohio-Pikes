@@ -1,8 +1,17 @@
 [build]
   publish = "."
 
+[functions]
+  directory = "netlify/functions"
+
+# Rewrite /admin/* to the CMS shell, but let real files (users.html, config.yml) serve directly
 [[redirects]]
-  from = "/admin/*"
+  from = "/admin"
+  to = "/admin/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/admin/"
   to = "/admin/index.html"
   status = 200
 

@@ -1,0 +1,36 @@
+{
+  "eyebrow": "Since 1921",
+  "timeline": [
+    {
+      "year": "1921",
+      "title": "Tau Sigma Delta Founded",
+      "body": "A group of Ohio University men founded Tau Sigma Delta, a local fraternity, laying the groundwork for what would become Pi Kappa Alpha's Gamma Omicron chapter."
+    },
+    {
+      "year": "1930",
+      "title": "Gamma Omicron Chartered",
+      "body": "Tau Sigma Delta was formally installed as Gamma Omicron chapter of Pi Kappa Alpha International Fraternity, joining one of America's most prestigious Greek organizations."
+    },
+    {
+      "year": "1974",
+      "title": "Chapter Closes",
+      "body": "Social and political turmoil of the era, coupled with declining rush numbers, forced the chapter to close. The 8 Church Street house was vacated after 44 years of history."
+    },
+    {
+      "year": "1987",
+      "title": "Gamma Omicron Refounded",
+      "body": "Dedicated alumni rallied to re-establish the chapter. After earning colony recognition, Gamma Omicron was rechartered and moved to 12 N College St."
+    },
+    {
+      "year": "1990s–Present",
+      "title": "Growth & Excellence",
+      "body": "The refounded chapter earned multiple Smythe Trophies and established itself as a leading organization at Ohio University."
+    }
+  ],
+  "houses": [
+    { "address": "41 Mill Street", "years": "1922 – 1926" },
+    { "address": "8 Church Street", "years": "1926 – 1974" },
+    { "address": "Chapter Closed", "years": "1974 – 1987" },
+    { "address": "12 N College Street", "years": "1987 – Present" }
+  ]
+}

@@ -276,7 +276,7 @@
     </div>
     <div class="hero-divider"></div>
     <div class="hero-stat">
-      <div class="hero-stat-num">94</div>
+      <div class="hero-stat-num" id="stat-years">94</div>
       <div class="hero-stat-label">Years of Brotherhood</div>
     </div>
     <div class="hero-divider"></div>
@@ -296,12 +296,12 @@
 <section id="about">
   <div class="section-inner">
     <div class="section-header">
-      <span class="section-eyebrow">Alumni Association</span>
-      <h2 class="section-title">Gamma Omicron<br><em>Alumni Association</em></h2>
+      <span class="section-eyebrow" id="about-eyebrow">Alumni Association</span>
+      <h2 class="section-title" id="about-title">Gamma Omicron<br><em>Alumni Association</em></h2>
       <div class="section-rule"></div>
     </div>
     <div class="about-grid">
-      <div class="about-text">
+      <div class="about-text" id="about-text">
         <p>The Gamma Omicron Alumni Association (GOAA) serves as the enduring bond between more than 1,200 brothers who wore the Pi Kappa Alpha badge at Ohio University. Through events, newsletters, scholarships, and support of the active chapter, GOAA keeps the brotherhood alive long after graduation.</p>
         <div class="about-pull">"The true measure of a fraternity is not in the men it initiates, but in the men it produces."</div>
         <p>GOAA organizes annual reunions, a popular golf outing, and "Feed‑a‑Pike" nights that bring alumni and actives together. Annual dues of $35 fund these activities, the chapter newsletter, web hosting, and travel to leadership conferences.</p>
@@ -310,8 +310,8 @@
       </div>
       <div>
         <div class="about-card">
-          <div class="about-card-title">What Your Dues Support</div>
-          <ul class="about-card-items">
+          <div class="about-card-title" id="dues-card-title">What Your Dues Support</div>
+          <ul class="about-card-items" id="dues-card-items">
             <li>Annual alumni newsletter and communications</li>
             <li>Website hosting and member directory</li>
             <li>Alumni events, reunions, and golf outing</li>
@@ -354,16 +354,16 @@
   </div>
 </section>
 
-<!-- HISTORY (static) -->
+<!-- HISTORY -->
 <section id="history">
   <div class="section-inner">
     <div class="section-header">
-      <span class="section-eyebrow">Since 1921</span>
+      <span class="section-eyebrow" id="history-eyebrow">Since 1921</span>
       <h2 class="section-title" style="color:#fff;">Our <em style="color:var(--gold);">History</em></h2>
       <div class="section-rule"></div>
     </div>
     <div class="history-grid">
-      <div class="timeline">
+      <div class="timeline" id="history-timeline">
         <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-year">1921</div><h3 class="timeline-title">Tau Sigma Delta Founded</h3><p class="timeline-body">A group of Ohio University men founded Tau Sigma Delta, a local fraternity, laying the groundwork for what would become Pi Kappa Alpha's Gamma Omicron chapter.</p></div>
         <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-year">1930</div><h3 class="timeline-title">Gamma Omicron Chartered</h3><p class="timeline-body">Tau Sigma Delta was formally installed as Gamma Omicron chapter of Pi Kappa Alpha International Fraternity, joining one of America's most prestigious Greek organizations.</p></div>
         <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-year">1974</div><h3 class="timeline-title">Chapter Closes</h3><p class="timeline-body">Social and political turmoil of the era, coupled with declining rush numbers, forced the chapter to close. The 8 Church Street house was vacated after 44 years of history.</p></div>
@@ -373,10 +373,12 @@
       <div>
         <div class="history-table">
           <div class="history-table-title">Chapter Houses</div>
-          <div class="house-row"><span class="house-addr">41 Mill Street</span><span class="house-years">1922 – 1926</span></div>
-          <div class="house-row"><span class="house-addr">8 Church Street</span><span class="house-years">1926 – 1974</span></div>
-          <div class="house-row"><span class="house-addr">Chapter Closed</span><span class="house-years">1974 – 1987</span></div>
-          <div class="house-row"><span class="house-addr">12 N College Street</span><span class="house-years">1987 – Present</span></div>
+          <div id="history-houses">
+            <div class="house-row"><span class="house-addr">41 Mill Street</span><span class="house-years">1922 – 1926</span></div>
+            <div class="house-row"><span class="house-addr">8 Church Street</span><span class="house-years">1926 – 1974</span></div>
+            <div class="house-row"><span class="house-addr">Chapter Closed</span><span class="house-years">1974 – 1987</span></div>
+            <div class="house-row"><span class="house-addr">12 N College Street</span><span class="house-years">1987 – Present</span></div>
+          </div>
         </div>
         <div style="margin-top:2rem;" class="history-table">
           <div class="history-table-title">Chapter Presidents (Selected)</div>
@@ -422,8 +424,8 @@
     </div>
     <div class="chapter-grid">
       <div>
-        <div class="chapter-mission">"We seek scholars, leaders, athletes, and gentlemen — men of character who will carry our values beyond the university."</div>
-        <div class="chapter-text">
+        <div class="chapter-mission" id="chapter-mission">"We seek scholars, leaders, athletes, and gentlemen — men of character who will carry our values beyond the university."</div>
+        <div class="chapter-text" id="chapter-text">
           <p>Gamma Omicron has been a cornerstone of Ohio University's Greek community since its 1930 chartering. With over 90 years of brotherhood — including a celebrated period following the chapter's 1987 refounding — the active chapter continues to set the standard for academic excellence, community service, and leadership development.</p>
           <p>Located at 12 N College Street, the chapter house serves as home to an active brotherhood committed to the Pi Kappa Alpha values of scholarship, leadership, athletics, and fellowship.</p>
           <p>Alumni are encouraged to engage with the active chapter through the Advisory Board, Feed‑a‑Pike nights, and rush events. Your mentorship and support are invaluable to the next generation of Gamma Omicron brothers.</p>
@@ -458,8 +460,8 @@
     </div>
     <div class="donate-grid">
       <div>
-        <p style="font-size:1rem;line-height:1.9;color:rgba(255,255,255,0.7);margin-bottom:2rem;">Your support keeps Gamma Omicron strong. Whether you pay annual dues, contribute to scholarships, or support the housing corporation, every dollar makes a direct difference to the brotherhood you love.</p>
-        <div class="donate-options">
+        <p id="donate-intro" style="font-size:1rem;line-height:1.9;color:rgba(255,255,255,0.7);margin-bottom:2rem;">Your support keeps Gamma Omicron strong. Whether you pay annual dues, contribute to scholarships, or support the housing corporation, every dollar makes a direct difference to the brotherhood you love.</p>
+        <div class="donate-options" id="donate-options">
           <div class="donate-option"><div><div class="donate-option-name">Annual Alumni Dues</div><div class="donate-option-desc">Funds newsletters, events, and chapter support</div></div><div class="donate-option-badge" id="dues-badge">$35 / year</div></div>
           <div class="donate-option"><div><div class="donate-option-name">William Sutherin Scholarship</div><div class="donate-option-desc">Tax-deductible · 501(c)(3) educational fund</div></div><div class="donate-option-badge">Any Amount</div></div>
           <div class="donate-option"><div><div class="donate-option-name">Martha Banfield Scholarship</div><div class="donate-option-desc">Tax-deductible · 501(c)(3) educational fund</div></div><div class="donate-option-badge">Any Amount</div></div>
@@ -503,14 +505,14 @@
       <h2 class="section-title">Alumni <em>Advisory Board</em></h2>
       <div class="section-rule"></div>
     </div>
-    <p style="text-align:center;max-width:640px;margin:-2rem auto 3rem;font-size:0.95rem;line-height:1.8;color:var(--text-light);">The Alumni Advisory Board bridges the active chapter and alumni network, providing mentorship, guidance, and accountability to help Gamma Omicron brothers succeed.</p>
+    <p id="advisory-desc" style="text-align:center;max-width:640px;margin:-2rem auto 3rem;font-size:0.95rem;line-height:1.8;color:var(--text-light);">The Alumni Advisory Board bridges the active chapter and alumni network, providing mentorship, guidance, and accountability to help Gamma Omicron brothers succeed.</p>
     <div class="board-grid" id="board-grid"><div class="loading">Loading board members…</div></div>
 
     <div style="background:var(--garnet-dark);padding:3rem;margin-top:4rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;">
       <div>
-        <div style="font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;">We're Looking For You</div>
-        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800;color:#fff;margin-bottom:0.5rem;">Missing Alumni</div>
-        <div style="font-size:0.875rem;color:rgba(255,255,255,0.55);line-height:1.7;">We've lost contact with many brothers over the decades. If you know the whereabouts of a fellow Pike, please let us know.</div>
+        <div id="missing-eyebrow" style="font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;">We're Looking For You</div>
+        <div id="missing-title" style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800;color:#fff;margin-bottom:0.5rem;">Missing Alumni</div>
+        <div id="missing-desc" style="font-size:0.875rem;color:rgba(255,255,255,0.55);line-height:1.7;">We've lost contact with many brothers over the decades. If you know the whereabouts of a fellow Pike, please let us know.</div>
       </div>
       <div><a href="#" class="btn-primary">View Missing Alumni List</a></div>
     </div>
@@ -816,6 +818,95 @@ window.addEventListener('scroll', () => {
   });
 }, { passive: true });
 
+// ── ABOUT SECTION ────────────────────────────────────────────────
+async function loadAbout() {
+  const d = await fetchJSON('/_data/about.json');
+  if (!d) return;
+  if (d.eyebrow) document.getElementById('about-eyebrow').textContent = d.eyebrow;
+  if (d.title_line1 || d.title_line2) {
+    const t1 = d.title_line1 || 'Gamma Omicron';
+    const t2 = d.title_line2 || 'Alumni Association';
+    document.getElementById('about-title').innerHTML = `${t1}<br><em>${t2}</em>`;
+  }
+  if (d.paragraph1 || d.pull_quote || d.paragraph2 || d.paragraph3) {
+    document.getElementById('about-text').innerHTML = `
+      ${d.paragraph1 ? `<p>${d.paragraph1}</p>` : ''}
+      ${d.pull_quote ? `<div class="about-pull">"${d.pull_quote}"</div>` : ''}
+      ${d.paragraph2 ? `<p>${d.paragraph2}</p>` : ''}
+      ${d.paragraph3 ? `<p>${d.paragraph3}</p>` : ''}
+      <div style="margin-top:2rem;"><a href="#donate" class="btn-primary">Donate to GOAA</a></div>`;
+  }
+  if (d.dues_card_title) document.getElementById('dues-card-title').textContent = d.dues_card_title;
+  if (d.dues_card_items && d.dues_card_items.length) {
+    document.getElementById('dues-card-items').innerHTML =
+      d.dues_card_items.map(item => `<li>${item}</li>`).join('');
+  }
+}
+
+// ── HISTORY SECTION ───────────────────────────────────────────────
+async function loadHistoryContent() {
+  const d = await fetchJSON('/_data/history.json');
+  if (!d) return;
+  if (d.eyebrow) document.getElementById('history-eyebrow').textContent = d.eyebrow;
+  if (d.timeline && d.timeline.length) {
+    document.getElementById('history-timeline').innerHTML = d.timeline.map(item => `
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">${item.year}</div>
+        <h3 class="timeline-title">${item.title}</h3>
+        <p class="timeline-body">${item.body}</p>
+      </div>`).join('');
+  }
+  if (d.houses && d.houses.length) {
+    document.getElementById('history-houses').innerHTML = d.houses.map(h => `
+      <div class="house-row">
+        <span class="house-addr">${h.address}</span>
+        <span class="house-years">${h.years}</span>
+      </div>`).join('');
+  }
+}
+
+// ── CHAPTER SECTION ───────────────────────────────────────────────
+async function loadChapterContent() {
+  const d = await fetchJSON('/_data/chapter.json');
+  if (!d) return;
+  if (d.mission_quote) document.getElementById('chapter-mission').textContent = `"${d.mission_quote}"`;
+  if (d.paragraph1 || d.paragraph2 || d.paragraph3) {
+    document.getElementById('chapter-text').innerHTML = [d.paragraph1, d.paragraph2, d.paragraph3]
+      .filter(Boolean).map(p => `<p>${p}</p>`).join('');
+  }
+  if (d.smythe_label) document.querySelector('.smythe-label').textContent = d.smythe_label;
+  if (d.years_of_brotherhood) document.getElementById('stat-years').textContent = d.years_of_brotherhood;
+}
+
+// ── DONATE SECTION ────────────────────────────────────────────────
+async function loadDonateContent() {
+  const d = await fetchJSON('/_data/donate.json');
+  if (!d) return;
+  if (d.intro_text) document.getElementById('donate-intro').textContent = d.intro_text;
+  if (d.options && d.options.length) {
+    // Preserve dues-badge ID on the first option for settings.json dues_amount update
+    document.getElementById('donate-options').innerHTML = d.options.map((opt, i) => `
+      <div class="donate-option">
+        <div>
+          <div class="donate-option-name">${opt.name}</div>
+          <div class="donate-option-desc">${opt.desc}</div>
+        </div>
+        <div class="donate-option-badge"${i === 0 ? ' id="dues-badge"' : ''}>${opt.badge}</div>
+      </div>`).join('');
+  }
+}
+
+// ── ADVISORY SECTION ─────────────────────────────────────────────
+async function loadAdvisoryContent() {
+  const d = await fetchJSON('/_data/advisory_content.json');
+  if (!d) return;
+  if (d.description) document.getElementById('advisory-desc').textContent = d.description;
+  if (d.missing_eyebrow) document.getElementById('missing-eyebrow').textContent = d.missing_eyebrow;
+  if (d.missing_title) document.getElementById('missing-title').textContent = d.missing_title;
+  if (d.missing_desc) document.getElementById('missing-desc').textContent = d.missing_desc;
+}
+
 // ── NETLIFY IDENTITY REDIRECT ────────────────────────────────────
 if (window.netlifyIdentity) {
   window.netlifyIdentity.on('init', user => {
@@ -831,7 +922,9 @@ if (window.netlifyIdentity) {
   await Promise.all([
     loadNews(), loadEvents(), loadPresidents(),
     loadScholarships(), loadAwards(),
-    loadExecBoard(), loadAdvisoryBoard()
+    loadExecBoard(), loadAdvisoryBoard(),
+    loadAbout(), loadHistoryContent(), loadChapterContent(),
+    loadDonateContent(), loadAdvisoryContent()
   ]);
 })();
 </script>

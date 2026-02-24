@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Management — GOAA Admin</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=Josefin+Sans:wght@300;400;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --garnet: #8B1A2E;
+      --garnet-dark: #5C0F1C;
+      --garnet-light: #B52340;
+      --gold: #C9A84C;
+      --gold-light: #E8C86A;
+      --gold-pale: #F5E9C8;
+      --cream: #FAF6EE;
+      --dark: #1A1009;
+      --mid: #3D2B1F;
+      --text: #2C1A10;
+      --text-light: #7A5C44;
+      --border: #D4B896;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Libre Baskerville', Georgia, serif; background: var(--cream); color: var(--text); min-height: 100vh; }
+
+    /* NAV */
+    nav { background: var(--garnet-dark); border-bottom: 3px solid var(--gold); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 64px; }
+    .nav-brand { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 800; color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 12px; }
+    .nav-crest { width: 36px; height: 36px; background: var(--gold); clip-path: polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; color: var(--garnet-dark); }
+    .nav-links { display: flex; gap: 4px; }
+    .nav-links a { font-family: 'Josefin Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.7); text-decoration: none; padding: 8px 14px; border-radius: 2px; transition: background 0.2s, color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { background: rgba(201,168,76,0.12); color: var(--gold-light); }
+    .nav-logout { background: rgba(255,255,255,0.08) !important; color: rgba(255,255,255,0.5) !important; }
+
+    /* LAYOUT */
+    .page { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; }
+    .page-header { margin-bottom: 2.5rem; border-bottom: 2px solid var(--border); padding-bottom: 1.5rem; }
+    .page-eyebrow { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+    .page-title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 800; color: var(--garnet-dark); }
+    .page-sub { font-size: 0.875rem; color: var(--text-light); margin-top: 0.5rem; line-height: 1.6; }
+
+    /* STATUS MESSAGES */
+    .alert { padding: 1rem 1.5rem; border-left: 4px solid; margin-bottom: 1.5rem; font-size: 0.875rem; line-height: 1.6; border-radius: 0 2px 2px 0; }
+    .alert-info { background: #EEF2FF; border-color: #6366F1; color: #3730A3; }
+    .alert-error { background: #FEF2F2; border-color: var(--garnet); color: var(--garnet-dark); }
+    .alert-success { background: #F0FDF4; border-color: #16A34A; color: #14532D; }
+    .alert-warn { background: #FFFBEB; border-color: var(--gold); color: var(--mid); }
+
+    /* TABLE */
+    .table-wrap { background: #fff; border: 1px solid var(--border); overflow: hidden; }
+    .table-toolbar { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .table-count { font-family: 'Josefin Sans', sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); }
+    .search-box { font-family: 'Josefin Sans', sans-serif; font-size: 12px; padding: 8px 14px; border: 1px solid var(--border); background: var(--cream); color: var(--text); outline: none; width: 220px; }
+    .search-box:focus { border-color: var(--garnet); }
+    table { width: 100%; border-collapse: collapse; }
+    thead { background: var(--garnet-dark); }
+    thead th { font-family: 'Josefin Sans', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); padding: 0.85rem 1.25rem; text-align: left; white-space: nowrap; }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--gold-pale); }
+    td { padding: 0.9rem 1.25rem; font-size: 0.875rem; vertical-align: middle; }
+    .td-email { font-weight: 600; color: var(--dark); }
+    .td-name { color: var(--text-light); font-style: italic; }
+    .td-date { font-family: 'Josefin Sans', sans-serif; font-size: 11px; color: var(--text-light); white-space: nowrap; }
+
+    /* ROLE BADGES */
+    .role-badge { display: inline-block; font-family: 'Josefin Sans', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 3px 8px; border-radius: 2px; }
+    .role-admin { background: var(--garnet-dark); color: var(--gold); }
+    .role-alumni { background: var(--gold-pale); color: var(--mid); }
+    .role-member { background: #E0F2FE; color: #0369A1; }
+    .role-none { background: #F3F4F6; color: #6B7280; }
+
+    /* ROLE EDITOR */
+    .role-editor { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .role-select { font-family: 'Josefin Sans', sans-serif; font-size: 11px; padding: 6px 10px; border: 1px solid var(--border); background: #fff; color: var(--text); cursor: pointer; outline: none; }
+    .role-select:focus { border-color: var(--garnet); }
+    .btn-save { font-family: 'Josefin Sans', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; background: var(--garnet); color: #fff; border: none; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
+    .btn-save:hover { background: var(--garnet-light); }
+    .btn-save:disabled { background: var(--border); cursor: not-allowed; }
+    .save-status { font-family: 'Josefin Sans', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.05em; }
+    .save-status.ok { color: #16A34A; }
+    .save-status.err { color: var(--garnet); }
+    .save-status.saving { color: var(--gold); }
+
+    /* AUTH GATE */
+    #auth-gate { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; text-align: center; gap: 1.5rem; }
+    .auth-icon { font-size: 3rem; color: var(--garnet-dark); opacity: 0.2; }
+    .auth-msg { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--mid); }
+    .auth-sub { font-size: 0.875rem; color: var(--text-light); }
+    .btn-login { font-family: 'Josefin Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 14px 32px; background: var(--gold); color: var(--garnet-dark); border: none; cursor: pointer; }
+    .btn-login:hover { background: var(--gold-light); }
+
+    /* SPINNER */
+    .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid var(--border); border-top-color: var(--garnet); border-radius: 50%; animation: spin 0.7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-row td { text-align: center; padding: 3rem; color: var(--text-light); font-family: 'Josefin Sans', sans-serif; font-size: 11px; letter-spacing: 0.2em; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-brand">
+    <div class="nav-crest">ΠΚΑ</div>
+    GOAA Admin
+  </a>
+  <div class="nav-links">
+    <a href="/admin/">CMS Editor</a>
+    <a href="/admin/users.html" class="active">User Management</a>
+    <a href="/" >View Site</a>
+    <a href="#" class="nav-logout" id="logout-btn">Log Out</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- AUTH GATE (shown when not logged in or not admin) -->
+  <div id="auth-gate" style="display:none;">
+    <div class="auth-icon">🔒</div>
+    <div class="auth-msg" id="auth-msg">Admin access required</div>
+    <div class="auth-sub" id="auth-sub">You must be logged in with an admin account to manage users.</div>
+    <button class="btn-login" id="login-btn">Log In</button>
+  </div>
+
+  <!-- MAIN CONTENT (shown when admin) -->
+  <div id="main-content" style="display:none;">
+    <div class="page-header">
+      <div class="page-eyebrow">Administration</div>
+      <h1 class="page-title">User Management</h1>
+      <p class="page-sub">Manage member accounts and their roles. Roles control what content members can access on the site.<br>
+        <strong>admin</strong> — can edit the CMS &amp; manage users &nbsp;|&nbsp;
+        <strong>alumni</strong> — verified alumni &nbsp;|&nbsp;
+        <strong>member</strong> — active chapter member
+      </p>
+    </div>
+
+    <div id="flash-msg" style="display:none;"></div>
+
+    <div class="table-wrap">
+      <div class="table-toolbar">
+        <span class="table-count" id="user-count">Loading users…</span>
+        <input type="text" class="search-box" id="search-box" placeholder="Search by name or email…">
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Current Role</th>
+            <th>Change Role</th>
+            <th>Joined</th>
+          </tr>
+        </thead>
+        <tbody id="users-tbody">
+          <tr class="loading-row"><td colspan="5"><span class="spinner"></span> &nbsp; Loading users…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const ROLES = ['admin', 'alumni', 'member'];
+
+let allUsers = [];
+let currentUser = null;
+
+// ── NETLIFY IDENTITY ────────────────────────────────────────────
+function init() {
+  if (!window.netlifyIdentity) {
+    showAuthGate('Netlify Identity not available', 'This page requires Netlify Identity to be enabled on your site.');
+    return;
+  }
+
+  netlifyIdentity.on('init', user => {
+    if (user) {
+      handleUser(user);
+    } else {
+      showAuthGate('Admin access required', 'Please log in with an admin account to manage users.');
+    }
+  });
+
+  netlifyIdentity.on('login', user => {
+    netlifyIdentity.close();
+    handleUser(user);
+  });
+
+  netlifyIdentity.on('logout', () => {
+    currentUser = null;
+    showAuthGate('Logged out', 'Log back in to manage users.');
+  });
+
+  netlifyIdentity.init();
+}
+
+function handleUser(user) {
+  currentUser = user;
+  const roles = (user.app_metadata && user.app_metadata.roles) || [];
+  if (!roles.includes('admin')) {
+    showAuthGate(
+      'Admin role required',
+      `You are logged in as ${user.email}, but your account does not have the admin role. Contact your site administrator.`
+    );
+    return;
+  }
+  showMainContent();
+  loadUsers();
+}
+
+function showAuthGate(msg, sub) {
+  document.getElementById('auth-gate').style.display = 'flex';
+  document.getElementById('main-content').style.display = 'none';
+  document.getElementById('auth-msg').textContent = msg;
+  document.getElementById('auth-sub').textContent = sub;
+}
+
+function showMainContent() {
+  document.getElementById('auth-gate').style.display = 'none';
+  document.getElementById('main-content').style.display = 'block';
+}
+
+// ── LOAD USERS ──────────────────────────────────────────────────
+async function loadUsers() {
+  try {
+    const token = currentUser.token.access_token;
+    const res = await fetch('/.netlify/functions/list-users', {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    allUsers = data.users || [];
+    renderUsers(allUsers);
+    document.getElementById('user-count').textContent = `${allUsers.length} user${allUsers.length !== 1 ? 's' : ''}`;
+  } catch (err) {
+    document.getElementById('users-tbody').innerHTML =
+      `<tr class="loading-row"><td colspan="5" style="color:var(--garnet);">Error loading users: ${err.message}</td></tr>`;
+  }
+}
+
+// ── RENDER TABLE ────────────────────────────────────────────────
+function renderUsers(users) {
+  const tbody = document.getElementById('users-tbody');
+  if (!users.length) {
+    tbody.innerHTML = '<tr class="loading-row"><td colspan="5">No users found.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = users.map(u => {
+    const roles = (u.app_metadata && u.app_metadata.roles) || [];
+    const primaryRole = roles[0] || '';
+    const joined = u.created_at ? new Date(u.created_at).toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' }) : '—';
+    const fullName = u.user_metadata && (u.user_metadata.full_name || u.user_metadata.name) || '—';
+
+    const currentBadge = primaryRole
+      ? `<span class="role-badge role-${primaryRole}">${primaryRole}</span>`
+      : `<span class="role-badge role-none">no role</span>`;
+
+    const options = ['', ...ROLES].map(r =>
+      `<option value="${r}" ${primaryRole === r ? 'selected' : ''}>${r || '(no role)'}</option>`
+    ).join('');
+
+    return `
+      <tr data-uid="${u.id}">
+        <td class="td-email">${u.email}</td>
+        <td class="td-name">${fullName}</td>
+        <td>${currentBadge}</td>
+        <td>
+          <div class="role-editor">
+            <select class="role-select" data-uid="${u.id}" data-email="${u.email}" onchange="onRoleChange(this)">
+              ${options}
+            </select>
+            <button class="btn-save" data-uid="${u.id}" onclick="saveRole('${u.id}')" disabled>Save</button>
+            <span class="save-status" id="status-${u.id}"></span>
+          </div>
+        </td>
+        <td class="td-date">${joined}</td>
+      </tr>`;
+  }).join('');
+}
+
+function onRoleChange(select) {
+  const uid = select.dataset.uid;
+  const btn = document.querySelector(`button[data-uid="${uid}"]`);
+  btn.disabled = false;
+}
+
+// ── SAVE ROLE ───────────────────────────────────────────────────
+async function saveRole(userId) {
+  const select = document.querySelector(`select[data-uid="${userId}"]`);
+  const btn = document.querySelector(`button[data-uid="${userId}"]`);
+  const statusEl = document.getElementById(`status-${userId}`);
+  const newRole = select.value;
+  const newRoles = newRole ? [newRole] : [];
+
+  btn.disabled = true;
+  statusEl.textContent = 'Saving…';
+  statusEl.className = 'save-status saving';
+
+  try {
+    const token = currentUser.token.access_token;
+    const res = await fetch('/.netlify/functions/update-user-role', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ userId, newRoles })
+    });
+
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.error || `HTTP ${res.status}`);
+    }
+
+    // Update the badge in the current role column
+    const row = document.querySelector(`tr[data-uid="${userId}"]`);
+    const badgeCell = row.querySelector('td:nth-child(3)');
+    badgeCell.innerHTML = newRole
+      ? `<span class="role-badge role-${newRole}">${newRole}</span>`
+      : `<span class="role-badge role-none">no role</span>`;
+
+    // Update local data
+    const user = allUsers.find(u => u.id === userId);
+    if (user) {
+      user.app_metadata = user.app_metadata || {};
+      user.app_metadata.roles = newRoles;
+    }
+
+    statusEl.textContent = '✓ Saved';
+    statusEl.className = 'save-status ok';
+    setTimeout(() => { statusEl.textContent = ''; }, 3000);
+  } catch (err) {
+    statusEl.textContent = `✗ ${err.message}`;
+    statusEl.className = 'save-status err';
+    btn.disabled = false;
+  }
+}
+
+// ── SEARCH ──────────────────────────────────────────────────────
+document.getElementById('search-box').addEventListener('input', function () {
+  const q = this.value.toLowerCase().trim();
+  const filtered = allUsers.filter(u =>
+    u.email.toLowerCase().includes(q) ||
+    ((u.user_metadata && (u.user_metadata.full_name || u.user_metadata.name)) || '').toLowerCase().includes(q)
+  );
+  renderUsers(filtered);
+  document.getElementById('user-count').textContent =
+    filtered.length === allUsers.length
+      ? `${allUsers.length} users`
+      : `${filtered.length} of ${allUsers.length} users`;
+});
+
+// ── LOGOUT ──────────────────────────────────────────────────────
+document.getElementById('login-btn').addEventListener('click', () => netlifyIdentity.open('login'));
+document.getElementById('logout-btn').addEventListener('click', e => { e.preventDefault(); netlifyIdentity.logout(); });
+
+init();
+</script>
+</body>
+</html>

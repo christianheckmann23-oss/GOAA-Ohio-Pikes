@@ -1,0 +1,10 @@
+{
+  "intro_text": "Your support keeps Gamma Omicron strong. Whether you pay annual dues, contribute to scholarships, or support the housing corporation, every dollar makes a direct difference to the brotherhood you love.",
+  "options": [
+    { "name": "Annual Alumni Dues", "desc": "Funds newsletters, events, and chapter support", "badge": "$35 / year" },
+    { "name": "William Sutherin Scholarship", "desc": "Tax-deductible · 501(c)(3) educational fund", "badge": "Any Amount" },
+    { "name": "Martha Banfield Scholarship", "desc": "Tax-deductible · 501(c)(3) educational fund", "badge": "Any Amount" },
+    { "name": "Housing Corporation", "desc": "Maintenance and capital improvements", "badge": "Any Amount" },
+    { "name": "National PIKE Fund", "desc": "Support Pi Kappa Alpha International programs", "badge": "Any Amount" }
+  ]
+}

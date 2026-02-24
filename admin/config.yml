@@ -1,7 +1,8 @@
 backend:
-  name: github
-  repo: christianheckmann23-oss/GOAA-Ohio-Pikes
+  name: git-gateway
   branch: main
+  accept_roles:
+    - admin
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
@@ -198,6 +199,98 @@ collections:
                 name: "names"
                 widget: "list"
                 field: { label: "Name", name: "item", widget: "string" }
+
+  # ── ABOUT SECTION ──────────────────────────────────────────────
+  - name: "about"
+    label: "📖 About Section"
+    files:
+      - name: "content"
+        label: "About Section Text"
+        file: "_data/about.json"
+        fields:
+          - { label: "Eyebrow Label", name: "eyebrow", widget: "string", default: "Alumni Association" }
+          - { label: "Title Line 1", name: "title_line1", widget: "string", default: "Gamma Omicron" }
+          - { label: "Title Line 2 (italic)", name: "title_line2", widget: "string", default: "Alumni Association" }
+          - { label: "Paragraph 1", name: "paragraph1", widget: "text" }
+          - { label: "Pull Quote", name: "pull_quote", widget: "text" }
+          - { label: "Paragraph 2", name: "paragraph2", widget: "text" }
+          - { label: "Paragraph 3", name: "paragraph3", widget: "text" }
+          - { label: "Dues Card Title", name: "dues_card_title", widget: "string", default: "What Your Dues Support" }
+          - label: "Dues Card Bullet Points"
+            name: "dues_card_items"
+            widget: "list"
+            field: { label: "Bullet Point", name: "item", widget: "string" }
+
+  # ── HISTORY SECTION ─────────────────────────────────────────────
+  - name: "history"
+    label: "🏛️ History Section"
+    files:
+      - name: "content"
+        label: "History Timeline & Houses"
+        file: "_data/history.json"
+        fields:
+          - { label: "Section Eyebrow", name: "eyebrow", widget: "string", default: "Since 1921" }
+          - label: "Timeline Items"
+            name: "timeline"
+            widget: "list"
+            summary: "{{fields.year}} — {{fields.title}}"
+            fields:
+              - { label: "Year / Era", name: "year", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Body Text", name: "body", widget: "text" }
+          - label: "Chapter Houses"
+            name: "houses"
+            widget: "list"
+            summary: "{{fields.address}} ({{fields.years}})"
+            fields:
+              - { label: "Address", name: "address", widget: "string" }
+              - { label: "Years", name: "years", widget: "string" }
+
+  # ── ACTIVE CHAPTER SECTION ──────────────────────────────────────
+  - name: "chapter_content"
+    label: "🏠 Active Chapter Section"
+    files:
+      - name: "content"
+        label: "Active Chapter Text"
+        file: "_data/chapter.json"
+        fields:
+          - { label: "Mission Quote", name: "mission_quote", widget: "text" }
+          - { label: "Paragraph 1", name: "paragraph1", widget: "text" }
+          - { label: "Paragraph 2", name: "paragraph2", widget: "text" }
+          - { label: "Paragraph 3", name: "paragraph3", widget: "text" }
+          - { label: "Smythe Banner Label", name: "smythe_label", widget: "string", default: "Smythe Trophy Recipients — Chapter Excellence Award" }
+          - { label: "Years of Brotherhood", name: "years_of_brotherhood", widget: "string", default: "94" }
+
+  # ── DONATE SECTION ──────────────────────────────────────────────
+  - name: "donate_content"
+    label: "💝 Donate Section"
+    files:
+      - name: "content"
+        label: "Donate Section Text"
+        file: "_data/donate.json"
+        fields:
+          - { label: "Intro Paragraph", name: "intro_text", widget: "text" }
+          - label: "Donation Options"
+            name: "options"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Option Name", name: "name", widget: "string" }
+              - { label: "Description", name: "desc", widget: "string" }
+              - { label: "Badge / Amount", name: "badge", widget: "string" }
+
+  # ── ADVISORY SECTION TEXT ───────────────────────────────────────
+  - name: "advisory_content"
+    label: "👥 Advisory Section Text"
+    files:
+      - name: "content"
+        label: "Advisory Section Text"
+        file: "_data/advisory_content.json"
+        fields:
+          - { label: "Section Description", name: "description", widget: "text" }
+          - { label: "Missing Alumni Eyebrow", name: "missing_eyebrow", widget: "string", default: "We're Looking For You" }
+          - { label: "Missing Alumni Title", name: "missing_title", widget: "string", default: "Missing Alumni" }
+          - { label: "Missing Alumni Description", name: "missing_desc", widget: "text" }
 
   # ── HOUSING CORPORATION ────────────────────────────────────────
   - name: "housing"
