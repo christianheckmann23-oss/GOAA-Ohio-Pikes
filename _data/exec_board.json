@@ -1,12 +1,41 @@
 {
-  "year": "2024–2025",
+  "year": "2026",
   "officers": [
-    { "position": "President (SMC)", "name": "TBD" },
-    { "position": "VP Membership", "name": "TBD" },
-    { "position": "VP Operations", "name": "TBD" },
-    { "position": "Secretary", "name": "TBD" },
-    { "position": "Treasurer", "name": "TBD" },
-    { "position": "Risk Manager", "name": "TBD" },
-    { "position": "Scholarship Chair", "name": "TBD" }
+    {
+      "position": "President (SMC)",
+      "name": "Christian Heckmann"
+    },
+    {
+      "position": "Internal Vice President",
+      "name": "Sam Fujii"
+    },
+    {
+      "position": "External Vice President",
+      "name": "Luke George"
+    },
+    {
+      "position": "Secretary",
+      "name": "Lukas Bobak-Rouce"
+    },
+    {
+      "position": "Treasurer",
+      "name": "Andy Holben"
+    },
+    {
+      "position": "Health & Safety Chair",
+      "name": "Carson Sanders"
+    },
+    {
+      "position": "VP Membership",
+      "name": "Nate Caudill"
+    },
+    {
+      "position": "Recruitment Chair",
+      "name": "Hudson Lisner"
+    },
+    {
+      "position": "Sergeant-at-Arms",
+      "name": "Donnie Mikuluk"
+    }
   ]
 }
