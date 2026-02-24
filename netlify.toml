@@ -4,14 +4,10 @@
 [functions]
   directory = "netlify/functions"
 
-# Rewrite /admin/* to the CMS shell, but let real files (users.html, config.yml) serve directly
+# Serve /admin/ from the CMS shell. Real files (users.html, config.yml) are
+# found on disk first; only unmatched paths fall through to this rewrite.
 [[redirects]]
-  from = "/admin"
-  to = "/admin/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/admin/"
+  from = "/admin/*"
   to = "/admin/index.html"
   status = 200
 
