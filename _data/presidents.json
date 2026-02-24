@@ -1,12 +1,20 @@
 {
   "presidents": [
-    { "year": "1930", "name": "James Thornton" },
-    { "year": "1951", "name": "Robert Heidler" },
-    { "year": "1963", "name": "William Sutherin" },
-    { "year": "1967", "name": "David Ritchey" },
-    { "year": "1972", "name": "Ronald Schuff" },
-    { "year": "1974", "name": "Chapter Closed" },
-    { "year": "1987", "name": "Colony Refounded" },
-    { "year": "2025", "name": "Current President" }
+    {
+      "year": "2026",
+      "name": "Christian Heckmann"
+    },
+    {
+      "year": "2025 ",
+      "name": "Braeden Beck"
+    },
+    {
+      "year": "2024",
+      "name": "Zach Hampu"
+    },
+    {
+      "year": "2023",
+      "name": "Graham Knerr"
+    }
   ]
 }
