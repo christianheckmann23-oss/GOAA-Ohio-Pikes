@@ -6,10 +6,6 @@ backend:
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
-# Netlify Identity — editors log in with email/password, no GitHub needed
-identity:
-  providers: []
-
 collections:
 
   # ── SITE SETTINGS ──────────────────────────────────────────────
