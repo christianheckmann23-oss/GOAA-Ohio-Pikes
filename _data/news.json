@@ -1,3 +1,18 @@
 {
-  "posts": []
+  "posts": [
+    {
+      "title": "Happy Founder's Day!",
+      "date": "March 2025",
+      "category": "Events",
+      "excerpt": "Today the chapter is celebrating 158 years of the Pi Kappa Alpha International Fraternity. The active brothers are participating in their annual Hot Dog eating contest. We welcome all alumni to attend!",
+      "published": true
+    },
+    {
+      "title": "In Memory of Philip Vaughn",
+      "date": "December 2025",
+      "category": "In Memoriam",
+      "excerpt": "Philip Vaughn was very dedicated to the success of Gamma Omicron. He began the original Gamma Omicronicle Newsletter's and gathered tons of chapter memorabilia to put on display at various GOAA events.",
+      "published": true
+    }
+  ]
 }
