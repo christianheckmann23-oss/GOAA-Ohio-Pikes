@@ -908,25 +908,14 @@ async function loadAdvisoryContent() {
 
 // ── NETLIFY IDENTITY REDIRECT ────────────────────────────────────
 function handleAdminLogin() {
-  if (window.netlifyIdentity) {
-    const user = window.netlifyIdentity.currentUser();
-    if (user) {
-      // Already logged in, go to admin
-      document.location.href = '/admin/';
-    } else {
-      // Open the login modal
-      window.netlifyIdentity.open('login');
-    }
+  if (!window.netlifyIdentity) return;
+  const user = window.netlifyIdentity.currentUser();
+  if (user) {
+    document.location.href = '/admin/';
+  } else {
+    window.netlifyIdentity.open('login');
+    window.netlifyIdentity.once('login', () => { document.location.href = '/admin/'; });
   }
-}
-
-if (window.netlifyIdentity) {
-  window.netlifyIdentity.on('init', user => {
-    if (!user) {
-      window.netlifyIdentity.on('login', () => { document.location.href = '/admin/'; });
-    }
-  });
-  window.netlifyIdentity.on('login', () => { document.location.href = '/admin/'; });
 }
 
 // ── INIT ─────────────────────────────────────────────────────────
