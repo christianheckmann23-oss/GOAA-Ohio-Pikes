@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Missing Alumni – Pi Kappa Alpha Gamma Omicron</title>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --garnet: #8B1A2E;
+    --garnet-dark: #5C0F1C;
+    --garnet-light: #B52340;
+    --gold: #C9A84C;
+    --gold-light: #E8C86A;
+    --gold-pale: #F5E9C8;
+    --cream: #FAF6EE;
+    --dark: #1A1009;
+    --mid: #3D2B1F;
+    --text: #2C1A10;
+    --text-light: #7A5C44;
+    --border: #D4B896;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Libre Baskerville', Georgia, serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--garnet-dark); border-bottom: 3px solid var(--gold); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 64px; }
+  .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-crest { width: 40px; height: 40px; background: var(--gold); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 800; color: var(--garnet-dark); flex-shrink: 0; }
+  .nav-title { font-family: 'Josefin Sans', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.15em; color: var(--gold-light); text-transform: uppercase; line-height: 1.3; }
+  .nav-title span { display: block; font-weight: 300; font-size: 10px; letter-spacing: 0.25em; color: var(--gold); opacity: 0.8; }
+  .nav-back { font-family: 'Josefin Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.75); text-decoration: none; padding: 8px 18px; border: 1px solid rgba(255,255,255,0.25); transition: border-color 0.2s, color 0.2s; }
+  .nav-back:hover { border-color: var(--gold); color: var(--gold); }
+  .nav-back::before { content: '← '; }
+
+  /* PAGE HERO */
+  .page-hero { padding: 130px 2rem 70px; background: linear-gradient(180deg, var(--garnet-dark) 0%, rgba(92,15,28,0.95) 100%); text-align: center; position: relative; overflow: hidden; }
+  .page-hero::before { content: 'ΠΚΑ'; position: absolute; font-family: 'Playfair Display', serif; font-size: 30vw; font-weight: 800; color: rgba(201,168,76,0.04); top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
+  .page-eyebrow { font-family: 'Josefin Sans', sans-serif; font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: block; }
+  .page-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; color: #fff; line-height: 1; margin-bottom: 0.5rem; }
+  .page-title em { color: var(--gold); font-style: italic; }
+  .page-subtitle { font-family: 'Josefin Sans', sans-serif; font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 0.75rem; margin-bottom: 2rem; }
+  .page-rule { width: 80px; height: 2px; background: linear-gradient(to right, var(--gold), transparent); margin: 0 auto; }
+
+  /* CALLOUT BANNER */
+  .callout { background: var(--garnet); padding: 3rem 2rem; }
+  .callout-inner { max-width: 760px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center; }
+  .callout p { font-size: 1rem; line-height: 1.9; color: rgba(255,255,255,0.85); }
+  .callout p a { color: var(--gold-light); text-underline-offset: 3px; }
+  .callout p a:hover { color: var(--gold); }
+
+  /* MAIN CONTENT */
+  .main-section { padding: 5rem 2rem; }
+  .main-inner { max-width: 900px; margin: 0 auto; }
+
+  /* DECADE BLOCKS */
+  .decade-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 2rem; }
+  .decade-block { background: #fff; border: 1px solid var(--border); padding: 2rem; }
+  .decade-label { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--border); }
+  .decade-names { list-style: none; }
+  .decade-names li { font-size: 0.9rem; color: var(--text); padding: 0.5rem 0; border-bottom: 1px solid rgba(212,184,150,0.4); display: flex; align-items: center; gap: 0.5rem; line-height: 1.5; }
+  .decade-names li:last-child { border-bottom: none; }
+  .decade-names li::before { content: '◆'; color: var(--border); font-size: 6px; flex-shrink: 0; }
+
+  .empty-state { text-align: center; padding: 4rem 2rem; color: var(--text-light); }
+  .empty-state p { font-size: 0.95rem; line-height: 1.8; }
+
+  /* SUBMIT PANEL */
+  .submit-panel { background: var(--garnet-dark); padding: 3.5rem 2rem; margin-top: 4rem; text-align: center; }
+  .submit-panel-inner { max-width: 600px; margin: 0 auto; }
+  .submit-eyebrow { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .submit-title { font-family: 'Playfair Display', serif; font-size: 1.75rem; font-weight: 800; color: #fff; margin-bottom: 1rem; }
+  .submit-desc { font-size: 0.9rem; line-height: 1.8; color: rgba(255,255,255,0.65); margin-bottom: 2rem; }
+  .submit-desc a { color: var(--gold-light); text-underline-offset: 3px; }
+  .submit-desc a:hover { color: var(--gold); }
+
+  /* BUTTONS */
+  .btn-primary { background: var(--gold); color: var(--garnet-dark); padding: 14px 32px; font-family: 'Josefin Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s, transform 0.2s; display: inline-block; }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer { background: var(--dark); border-top: 3px solid var(--garnet); padding: 2.5rem 2rem; text-align: center; }
+  footer p { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+
+  @media (max-width: 640px) {
+    .callout-inner { grid-template-columns: 1fr; }
+    .decade-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-brand">
+    <div class="nav-crest">ΠΚΑ</div>
+    <div class="nav-title">Gamma Omicron<span>Pi Kappa Alpha · Ohio University</span></div>
+  </a>
+  <a href="/#advisory" class="nav-back">Back to Advisory</a>
+</nav>
+
+<div class="page-hero">
+  <span class="page-eyebrow" id="page-eyebrow">We're Looking For You</span>
+  <h1 class="page-title"><em>Missing</em> Alumni</h1>
+  <div class="page-subtitle">Gamma Omicron Chapter · Pi Kappa Alpha</div>
+  <div class="page-rule"></div>
+</div>
+
+<div class="callout">
+  <div class="callout-inner">
+    <p id="missing-desc">We've lost contact with many brothers over the decades. If you know the whereabouts of a fellow Pike, please let us know. You may do this by emailing us at <a href="mailto:ohiopikes@gmail.com">ohiopikes@gmail.com</a>. Also, please make sure to update your myPIKE information to ensure you are receiving our newsletters and other important information.</p>
+    <a href="https://mypike.pikes.org/" target="_blank" rel="noopener noreferrer" class="btn-primary" style="white-space:nowrap;">Update myPIKE</a>
+  </div>
+</div>
+
+<div class="main-section">
+  <div class="main-inner" id="alumni-content">
+    <div style="text-align:center;padding:3rem;color:var(--text-light);">Loading…</div>
+  </div>
+</div>
+
+<div class="submit-panel">
+  <div class="submit-panel-inner">
+    <div class="submit-eyebrow">Know Where a Brother Is?</div>
+    <div class="submit-title">Help Us Reconnect</div>
+    <p class="submit-desc" id="contact-desc">If you have updated contact information for any of the brothers listed here, or if you know another alumnus who has lost touch with the chapter, please reach out. Every connection matters.<br><br>Email us at <a href="mailto:ohiopikes@gmail.com" id="contact-email-link">ohiopikes@gmail.com</a></p>
+    <a href="mailto:ohiopikes@gmail.com" id="contact-btn" class="btn-primary">Send Us a Tip</a>
+  </div>
+</div>
+
+<footer>
+  <p>Pi Kappa Alpha · Gamma Omicron Chapter · Ohio University · Est. 1930</p>
+</footer>
+
+<script>
+async function fetchJSON(url) {
+  try {
+    const res = await fetch(url);
+    if (!res.ok) return null;
+    return await res.json();
+  } catch { return null; }
+}
+
+async function loadPage() {
+  // Load settings for contact email
+  const settings = await fetchJSON('/_data/settings.json');
+  if (settings && settings.contact_email) {
+    const email = settings.contact_email;
+    const emailLink = `<a href="mailto:${email}">${email}</a>`;
+    document.getElementById('contact-desc').innerHTML =
+      `If you have updated contact information for any of the brothers listed here, or if you know another alumnus who has lost touch with the chapter, please reach out. Every connection matters.<br><br>Email us at ${emailLink}`;
+    document.getElementById('contact-btn').href = `mailto:${email}`;
+    document.getElementById('contact-email-link').href = `mailto:${email}`;
+    document.getElementById('contact-email-link').textContent = email;
+  }
+
+  // Load advisory content for the description
+  const advisory = await fetchJSON('/_data/advisory_content.json');
+  if (advisory) {
+    if (advisory.missing_eyebrow) document.getElementById('page-eyebrow').textContent = advisory.missing_eyebrow;
+    if (advisory.missing_desc) document.getElementById('missing-desc').innerHTML = advisory.missing_desc;
+  }
+
+  // Load missing alumni list
+  const data = await fetchJSON('/_data/missing_alumni.json');
+  const container = document.getElementById('alumni-content');
+
+  if (!data || !data.decades || !data.decades.length) {
+    container.innerHTML = `<div class="empty-state"><p>The missing alumni list is being compiled. Check back soon.</p></div>`;
+    return;
+  }
+
+  // Filter out placeholder decades
+  const validDecades = data.decades.filter(d =>
+    d.names && d.names.length && !d.names.every(n => n === 'Add names here' || n.trim() === '')
+  );
+
+  if (!validDecades.length) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <p>The missing alumni list is currently being compiled by the Alumni Association.<br>
+        If you know of a brother who has lost touch with the chapter, please email us at
+        <a href="mailto:${settings && settings.contact_email ? settings.contact_email : 'ohiopikes@gmail.com'}"
+           style="color:var(--garnet);">${settings && settings.contact_email ? settings.contact_email : 'ohiopikes@gmail.com'}</a>.</p>
+      </div>`;
+    return;
+  }
+
+  container.innerHTML = `<div class="decade-grid">${
+    validDecades.map(d => `
+      <div class="decade-block">
+        <div class="decade-label">${d.decade}</div>
+        <ul class="decade-names">
+          ${d.names.map(n => `<li>${n}</li>`).join('')}
+        </ul>
+      </div>`).join('')
+  }</div>`;
+}
+
+loadPage();
+</script>
+</body>
+</html>

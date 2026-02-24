@@ -327,7 +327,7 @@ collections:
           - { label: "Section Description", name: "description", widget: "text" }
           - { label: "Missing Alumni Eyebrow", name: "missing_eyebrow", widget: "string", default: "We're Looking For You" }
           - { label: "Missing Alumni Title", name: "missing_title", widget: "string", default: "Missing Alumni" }
-          - { label: "Missing Alumni Description", name: "missing_desc", widget: "text" }
+          - { label: "Missing Alumni Description", name: "missing_desc", widget: "text", hint: "Supports HTML links, e.g. <a href='mailto:you@email.com'>you@email.com</a>" }
 
   # ── HOUSING CORPORATION ────────────────────────────────────────
   - name: "housing"

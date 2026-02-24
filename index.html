@@ -331,9 +331,6 @@
       <div class="section-rule"></div>
     </div>
     <div class="news-grid" id="news-grid"><div class="loading">Loading news…</div></div>
-    <div style="text-align:center;margin-top:3rem;">
-      <a href="#" class="btn-outline">View All News</a>
-    </div>
   </div>
 </section>
 
@@ -488,7 +485,7 @@
         <div id="missing-title" style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800;color:#fff;margin-bottom:0.5rem;">Missing Alumni</div>
         <div id="missing-desc" style="font-size:0.875rem;color:rgba(255,255,255,0.55);line-height:1.7;">We've lost contact with many brothers over the decades. If you know the whereabouts of a fellow Pike, please let us know.</div>
       </div>
-      <div><a href="#" class="btn-primary">View Missing Alumni List</a></div>
+      <div><a href="/missing-alumni.html" class="btn-primary">View Missing Alumni List</a></div>
     </div>
   </div>
 </section>
@@ -520,7 +517,7 @@
         <li><a href="#chapter">Rush PIKE</a></li>
         <li><a href="#chapter">Executive Board</a></li>
         <li><a href="#advisory">Advisory Board</a></li>
-        <li><a href="#advisory">Missing Alumni</a></li>
+        <li><a href="/missing-alumni.html">Missing Alumni</a></li>
       </ul>
     </div>
     <div>
@@ -917,7 +914,7 @@ async function loadAdvisoryContent() {
   if (d.description) document.getElementById('advisory-desc').textContent = d.description;
   if (d.missing_eyebrow) document.getElementById('missing-eyebrow').textContent = d.missing_eyebrow;
   if (d.missing_title) document.getElementById('missing-title').textContent = d.missing_title;
-  if (d.missing_desc) document.getElementById('missing-desc').textContent = d.missing_desc;
+  if (d.missing_desc) document.getElementById('missing-desc').innerHTML = d.missing_desc;
 }
 
 // ── NETLIFY IDENTITY REDIRECT ────────────────────────────────────
