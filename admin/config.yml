@@ -1,6 +1,11 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: christianheckmann23-oss/GOAA-Ohio-Pikes
   branch: main
+  # base_url points to your Cloudflare Worker OAuth proxy.
+  # Setup: deploy sveltia-cms-auth (https://github.com/sveltia/sveltia-cms-auth)
+  # to Cloudflare Workers, then replace the placeholder below with your worker URL.
+  base_url: https://YOUR-WORKER-NAME.YOUR-ACCOUNT.workers.dev
   accept_roles:
     - admin
 

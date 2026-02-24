@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alumni Portal — Gamma Omicron Pi Kappa Alpha</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&family=Josefin+Sans:wght@300;400;600;700&family=Libre+Baskerville:wght@0,400;0,700&display=swap" rel="stylesheet">
+
+  <!--
+    amazon-cognito-identity-js — loaded from CDN so no build step is needed.
+    This library handles login, sign-up, token refresh, and password reset
+    against your Cognito User Pool without a server round-trip.
+  -->
+  <script src="https://unpkg.com/amazon-cognito-identity-js@6/dist/amazon-cognito-identity.min.js"></script>
+
+  <style>
+    :root {
+      --garnet: #8B1A2E;
+      --garnet-dark: #5C0F1C;
+      --garnet-light: #B52340;
+      --gold: #C9A84C;
+      --gold-light: #E8C86A;
+      --gold-pale: #F5E9C8;
+      --cream: #FAF6EE;
+      --dark: #1A1009;
+      --mid: #3D2B1F;
+      --text: #2C1A10;
+      --text-light: #7A5C44;
+      --border: #D4B896;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Libre Baskerville', Georgia, serif; background: var(--cream); color: var(--text); min-height: 100vh; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--garnet-dark); border-bottom: 3px solid var(--gold); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 64px; }
+    .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-crest { width: 36px; height: 36px; background: var(--gold); clip-path: polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 12px; font-weight: 800; color: var(--garnet-dark); }
+    .nav-title { font-family: 'Josefin Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-light); }
+    .nav-title span { display: block; font-weight: 300; font-size: 10px; color: rgba(255,255,255,0.5); }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .nav-link { font-family: 'Josefin Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: var(--gold-light); }
+    #nav-logout { display: none; }
+
+    /* PAGE LAYOUT */
+    .page { max-width: 800px; margin: 0 auto; padding: 100px 2rem 4rem; }
+
+    /* PANELS */
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    /* AUTH CARD */
+    .auth-card { background: #fff; border-top: 4px solid var(--garnet); padding: 3rem; max-width: 480px; margin: 0 auto; }
+    .auth-eyebrow { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+    .auth-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 800; color: var(--garnet-dark); margin-bottom: 0.5rem; }
+    .auth-sub { font-size: 0.875rem; color: var(--text-light); line-height: 1.6; margin-bottom: 2rem; }
+    .auth-tabs { display: flex; border-bottom: 2px solid var(--border); margin-bottom: 2rem; }
+    .auth-tab { font-family: 'Josefin Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 10px 20px; border: none; background: none; cursor: pointer; color: var(--text-light); border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.2s, border-color 0.2s; }
+    .auth-tab.active { color: var(--garnet); border-bottom-color: var(--garnet); }
+
+    /* FORMS */
+    .form-group { margin-bottom: 1.25rem; }
+    .form-label { display: block; font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); margin-bottom: 6px; }
+    .form-input { width: 100%; border: 1px solid var(--border); background: var(--cream); color: var(--text); padding: 11px 14px; font-family: 'Libre Baskerville', serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+    .form-input:focus { border-color: var(--garnet); background: #fff; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-hint { font-family: 'Josefin Sans', sans-serif; font-size: 10px; color: var(--text-light); margin-top: 4px; }
+    textarea.form-input { resize: vertical; min-height: 100px; }
+
+    /* BUTTONS */
+    .btn-primary { width: 100%; background: var(--garnet); color: #fff; border: none; padding: 14px; font-family: 'Josefin Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; margin-top: 0.5rem; }
+    .btn-primary:hover { background: var(--garnet-light); }
+    .btn-primary:disabled { background: var(--border); cursor: not-allowed; }
+    .btn-secondary { background: transparent; color: var(--garnet); border: 1px solid var(--border); padding: 10px 24px; font-family: 'Josefin Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: border-color 0.2s, color 0.2s; }
+    .btn-secondary:hover { border-color: var(--garnet); }
+    .btn-link { background: none; border: none; font-family: 'Josefin Sans', sans-serif; font-size: 11px; color: var(--garnet); cursor: pointer; text-decoration: underline; padding: 0; }
+
+    /* ALERTS */
+    .alert { padding: 0.9rem 1.25rem; font-size: 0.85rem; line-height: 1.6; border-left: 3px solid; margin-bottom: 1.25rem; display: none; }
+    .alert.show { display: block; }
+    .alert-error { background: #FEF2F2; border-color: var(--garnet); color: var(--garnet-dark); }
+    .alert-success { background: #F0FDF4; border-color: #16A34A; color: #14532D; }
+    .alert-info { background: var(--gold-pale); border-color: var(--gold); color: var(--mid); }
+
+    /* PROFILE DASHBOARD */
+    .dashboard-header { margin-bottom: 2.5rem; }
+    .dashboard-eyebrow { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+    .dashboard-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 800; color: var(--garnet-dark); }
+    .dashboard-welcome { font-size: 0.9rem; color: var(--text-light); margin-top: 0.25rem; }
+    .profile-card { background: #fff; border-top: 4px solid var(--garnet); padding: 2.5rem; }
+    .profile-section-title { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+    .profile-save-bar { display: flex; align-items: center; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+    .save-status { font-family: 'Josefin Sans', sans-serif; font-size: 11px; font-weight: 600; }
+    .save-status.ok { color: #16A34A; }
+    .save-status.err { color: var(--garnet); }
+    .pending-banner { background: var(--gold-pale); border: 1px solid var(--gold); padding: 1.5rem 2rem; margin-bottom: 2rem; display: flex; gap: 1rem; align-items: flex-start; }
+    .pending-banner-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .pending-banner-text { font-size: 0.9rem; line-height: 1.7; color: var(--mid); }
+    .pending-banner-text strong { display: block; font-family: 'Josefin Sans', sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); margin-bottom: 0.25rem; }
+
+    /* VERIFY CODE */
+    .verify-note { font-size: 0.875rem; color: var(--text-light); line-height: 1.6; margin-bottom: 1.5rem; }
+
+    /* FORGOT PW */
+    .auth-footer { text-align: center; margin-top: 1.5rem; font-size: 0.8rem; color: var(--text-light); }
+
+    /* CONFIG NOTICE */
+    .config-notice { background: #FEF2F2; border: 1px solid var(--garnet); padding: 1.5rem; margin-bottom: 2rem; font-size: 0.85rem; line-height: 1.6; color: var(--garnet-dark); display: none; }
+    .config-notice code { background: rgba(139,26,46,0.08); padding: 2px 6px; font-family: monospace; }
+
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+      .auth-card { padding: 2rem; }
+      .profile-card { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-brand">
+    <div class="nav-crest">ΠΚΑ</div>
+    <div class="nav-title">Alumni Portal <span>Gamma Omicron · Pi Kappa Alpha</span></div>
+  </a>
+  <div class="nav-right">
+    <a href="/" class="nav-link">← Main Site</a>
+    <a href="#" class="nav-link" id="nav-logout" onclick="signOut(); return false;">Log Out</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- CONFIG NOTICE: shown if Cognito is not yet configured -->
+  <div class="config-notice" id="config-notice">
+    <strong>Setup Required:</strong> This page needs your AWS Cognito credentials to work.
+    Edit the <code>COGNITO_USER_POOL_ID</code> and <code>COGNITO_CLIENT_ID</code> at the top of
+    <code>alumni/index.html</code> with the values from your AWS Cognito User Pool.
+  </div>
+
+  <!-- ── PANEL: LOGIN / SIGN UP ───────────────────────────────── -->
+  <div class="panel active" id="panel-auth">
+    <div class="auth-card">
+      <div class="auth-eyebrow">Alumni Portal</div>
+      <h1 class="auth-title">Brother Login</h1>
+      <p class="auth-sub">Access your alumni profile, stay connected, and update your contact information.</p>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" onclick="showTab('login')">Log In</button>
+        <button class="auth-tab" onclick="showTab('signup')">Create Account</button>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <div id="tab-login">
+        <div class="alert alert-error" id="login-error"></div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-input" id="login-email" placeholder="brother@example.com" autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-input" id="login-password" placeholder="••••••••" autocomplete="current-password">
+        </div>
+        <button class="btn-primary" id="login-btn" onclick="doLogin()">Log In</button>
+        <div class="auth-footer">
+          <button class="btn-link" onclick="showTab('forgot')">Forgot password?</button>
+        </div>
+      </div>
+
+      <!-- SIGN UP FORM -->
+      <div id="tab-signup" style="display:none;">
+        <div class="alert alert-info show">
+          After registering, an admin will verify your alumni status before you can log in.
+          You'll receive an email once approved.
+        </div>
+        <div class="alert alert-error" id="signup-error"></div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-input" id="signup-first" placeholder="John" autocomplete="given-name">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <input type="text" class="form-input" id="signup-last" placeholder="Pike" autocomplete="family-name">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-input" id="signup-email" placeholder="brother@example.com" autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-input" id="signup-password" placeholder="Min. 8 characters" autocomplete="new-password">
+          <div class="form-hint">At least 8 characters with a number and uppercase letter.</div>
+        </div>
+        <button class="btn-primary" id="signup-btn" onclick="doSignup()">Create Account</button>
+      </div>
+
+      <!-- FORGOT PASSWORD FORM -->
+      <div id="tab-forgot" style="display:none;">
+        <div class="alert alert-error" id="forgot-error"></div>
+        <div class="alert alert-success" id="forgot-success"></div>
+        <p style="font-size:0.875rem;color:var(--text-light);margin-bottom:1.5rem;">Enter your email and we'll send a reset code.</p>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-input" id="forgot-email" placeholder="brother@example.com">
+        </div>
+        <button class="btn-primary" onclick="doForgotPassword()">Send Reset Code</button>
+        <div id="reset-code-section" style="display:none; margin-top:1.5rem;">
+          <div class="form-group">
+            <label class="form-label">Reset Code (from email)</label>
+            <input type="text" class="form-input" id="forgot-code" placeholder="123456">
+          </div>
+          <div class="form-group">
+            <label class="form-label">New Password</label>
+            <input type="password" class="form-input" id="forgot-newpw" placeholder="New password">
+          </div>
+          <button class="btn-primary" onclick="doResetPassword()">Set New Password</button>
+        </div>
+        <div class="auth-footer"><button class="btn-link" onclick="showTab('login')">← Back to login</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PANEL: VERIFY EMAIL ──────────────────────────────────── -->
+  <div class="panel" id="panel-verify">
+    <div class="auth-card">
+      <div class="auth-eyebrow">One More Step</div>
+      <h1 class="auth-title">Verify Your Email</h1>
+      <p class="verify-note">We sent a 6-digit confirmation code to <strong id="verify-email-display"></strong>.
+        Enter it below to confirm your account. After verification, an admin will review and approve your request.</p>
+      <div class="alert alert-error" id="verify-error"></div>
+      <div class="form-group">
+        <label class="form-label">Confirmation Code</label>
+        <input type="text" class="form-input" id="verify-code" placeholder="123456" maxlength="10" inputmode="numeric">
+      </div>
+      <button class="btn-primary" onclick="doVerify()">Confirm Account</button>
+      <div class="auth-footer">
+        <button class="btn-link" onclick="doResendCode()">Resend code</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PANEL: PROFILE DASHBOARD ─────────────────────────────── -->
+  <div class="panel" id="panel-profile">
+
+    <!-- Shown while account is still pending approval -->
+    <div class="pending-banner" id="pending-banner" style="display:none;">
+      <div class="pending-banner-icon">⏳</div>
+      <div class="pending-banner-text">
+        <strong>Account Pending Approval</strong>
+        Your account has been created and your email is verified. An administrator will review
+        and approve your request shortly. You'll receive an email when you're approved.
+      </div>
+    </div>
+
+    <div class="dashboard-header">
+      <div class="dashboard-eyebrow">Alumni Portal</div>
+      <h1 class="dashboard-title" id="dashboard-name">Welcome, Brother</h1>
+      <p class="dashboard-welcome" id="dashboard-welcome"></p>
+    </div>
+
+    <div class="profile-card">
+      <div class="profile-section-title">Your Profile Information</div>
+
+      <div class="alert alert-error" id="profile-error"></div>
+      <div class="alert alert-success" id="profile-success"></div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">First Name</label>
+          <input type="text" class="form-input" id="p-first" placeholder="John">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Last Name</label>
+          <input type="text" class="form-input" id="p-last" placeholder="Pike">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-input" id="p-email" placeholder="brother@example.com" disabled>
+        <div class="form-hint">Email cannot be changed here — contact admin.</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Phone Number</label>
+        <input type="tel" class="form-input" id="p-phone" placeholder="(555) 867-5309">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Mailing Address</label>
+        <input type="text" class="form-input" id="p-address" placeholder="123 Main St, City, OH 12345">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Graduation Year</label>
+          <input type="text" class="form-input" id="p-grad-year" placeholder="e.g. 1995" maxlength="4">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Initiation Year</label>
+          <input type="text" class="form-input" id="p-init-year" placeholder="e.g. 1992" maxlength="4">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Major / Field of Study</label>
+        <input type="text" class="form-input" id="p-major" placeholder="e.g. Business Administration">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">About Me</label>
+        <textarea class="form-input" id="p-about" placeholder="Tell your brothers what you've been up to since graduation — career, family, location, hobbies..."></textarea>
+      </div>
+
+      <div class="profile-save-bar">
+        <button class="btn-primary" style="width:auto; padding:12px 32px;" onclick="saveProfile()">Save Changes</button>
+        <span class="save-status" id="save-status"></span>
+      </div>
+    </div>
+
+  </div>
+
+</div><!-- /.page -->
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// CONFIGURATION — Replace these with your actual AWS values
+// ═══════════════════════════════════════════════════════════════
+const COGNITO_USER_POOL_ID = 'us-east-1_6JAzCtAfN';          // e.g. us-east-1_abc123
+const COGNITO_CLIENT_ID    = '6v9k8ruhpfce3m95ihtp40k68u'; // App client ID (no secret)
+const API_BASE_URL         = 'https://XXXXXXXXXX.execute-api.us-east-1.amazonaws.com'; // API Gateway URL — fill in after creating API Gateway
+
+// ═══════════════════════════════════════════════════════════════
+// COGNITO SETUP
+// ═══════════════════════════════════════════════════════════════
+const poolData = {
+  UserPoolId: COGNITO_USER_POOL_ID,
+  ClientId: COGNITO_CLIENT_ID,
+};
+
+// Show config notice if placeholders haven't been replaced
+if (COGNITO_USER_POOL_ID.includes('XXXXXXX')) {
+  document.getElementById('config-notice').style.display = 'block';
+}
+
+const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+
+let currentUser = null;
+let pendingVerifyEmail = '';
+let accessToken = '';
+
+// ═══════════════════════════════════════════════════════════════
+// PANELS & TABS
+// ═══════════════════════════════════════════════════════════════
+function showPanel(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+}
+
+function showTab(tab) {
+  ['login', 'signup', 'forgot'].forEach(t => {
+    document.getElementById('tab-' + t).style.display = t === tab ? 'block' : 'none';
+  });
+  document.querySelectorAll('.auth-tab').forEach((btn, i) => {
+    const tabs = ['login', 'signup'];
+    btn.classList.toggle('active', tabs[i] === tab);
+  });
+}
+
+function showAlert(id, msg, type) {
+  const el = document.getElementById(id);
+  el.textContent = msg;
+  el.className = 'alert alert-' + type + ' show';
+}
+
+function clearAlert(id) {
+  const el = document.getElementById(id);
+  el.className = 'alert';
+  el.textContent = '';
+}
+
+// ═══════════════════════════════════════════════════════════════
+// CHECK SESSION ON LOAD
+// ═══════════════════════════════════════════════════════════════
+window.addEventListener('load', () => {
+  const cogUser = userPool.getCurrentUser();
+  if (!cogUser) return;
+  cogUser.getSession((err, session) => {
+    if (err || !session.isValid()) return;
+    accessToken = session.getAccessToken().getJwtToken();
+    currentUser = cogUser;
+    loadProfileAndShowDashboard(session.getIdToken().payload);
+  });
+});
+
+// ═══════════════════════════════════════════════════════════════
+// LOGIN
+// ═══════════════════════════════════════════════════════════════
+function doLogin() {
+  clearAlert('login-error');
+  const email = document.getElementById('login-email').value.trim();
+  const password = document.getElementById('login-password').value;
+
+  if (!email || !password) {
+    showAlert('login-error', 'Please enter your email and password.', 'error');
+    return;
+  }
+
+  const btn = document.getElementById('login-btn');
+  btn.disabled = true;
+  btn.textContent = 'Logging in…';
+
+  const authDetails = new AmazonCognitoIdentity.AuthenticationDetails({
+    Username: email,
+    Password: password,
+  });
+
+  const cogUser = new AmazonCognitoIdentity.CognitoUser({
+    Username: email,
+    Pool: userPool,
+  });
+
+  cogUser.authenticateUser(authDetails, {
+    onSuccess(session) {
+      accessToken = session.getAccessToken().getJwtToken();
+      currentUser = cogUser;
+      btn.disabled = false;
+      btn.textContent = 'Log In';
+      loadProfileAndShowDashboard(session.getIdToken().payload);
+    },
+    onFailure(err) {
+      btn.disabled = false;
+      btn.textContent = 'Log In';
+      let msg = err.message || 'Login failed. Please try again.';
+      // Surface the approval-pending message from the pre-auth Lambda
+      if (msg.includes('pending admin approval') || msg.includes('declined')) {
+        showAlert('login-error', msg, 'info');
+      } else if (err.code === 'UserNotConfirmedException') {
+        pendingVerifyEmail = email;
+        document.getElementById('verify-email-display').textContent = email;
+        showPanel('verify');
+      } else {
+        showAlert('login-error', msg, 'error');
+      }
+    },
+  });
+}
+
+// Allow Enter key to submit login
+document.getElementById('login-password').addEventListener('keydown', e => {
+  if (e.key === 'Enter') doLogin();
+});
+
+// ═══════════════════════════════════════════════════════════════
+// SIGN UP
+// ═══════════════════════════════════════════════════════════════
+function doSignup() {
+  clearAlert('signup-error');
+  const first    = document.getElementById('signup-first').value.trim();
+  const last     = document.getElementById('signup-last').value.trim();
+  const email    = document.getElementById('signup-email').value.trim();
+  const password = document.getElementById('signup-password').value;
+
+  if (!first || !last || !email || !password) {
+    showAlert('signup-error', 'All fields are required.', 'error');
+    return;
+  }
+  if (password.length < 8) {
+    showAlert('signup-error', 'Password must be at least 8 characters.', 'error');
+    return;
+  }
+
+  const btn = document.getElementById('signup-btn');
+  btn.disabled = true;
+  btn.textContent = 'Creating account…';
+
+  const attributes = [
+    new AmazonCognitoIdentity.CognitoUserAttribute({ Name: 'email', Value: email }),
+    new AmazonCognitoIdentity.CognitoUserAttribute({ Name: 'given_name', Value: first }),
+    new AmazonCognitoIdentity.CognitoUserAttribute({ Name: 'family_name', Value: last }),
+  ];
+
+  userPool.signUp(email, password, attributes, null, (err, result) => {
+    btn.disabled = false;
+    btn.textContent = 'Create Account';
+    if (err) {
+      showAlert('signup-error', err.message || 'Signup failed.', 'error');
+      return;
+    }
+    pendingVerifyEmail = email;
+    document.getElementById('verify-email-display').textContent = email;
+    showPanel('verify');
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════
+// EMAIL VERIFICATION
+// ═══════════════════════════════════════════════════════════════
+function doVerify() {
+  clearAlert('verify-error');
+  const code = document.getElementById('verify-code').value.trim();
+  if (!code) { showAlert('verify-error', 'Please enter the confirmation code.', 'error'); return; }
+
+  const cogUser = new AmazonCognitoIdentity.CognitoUser({
+    Username: pendingVerifyEmail,
+    Pool: userPool,
+  });
+
+  cogUser.confirmRegistration(code, true, (err) => {
+    if (err) { showAlert('verify-error', err.message || 'Invalid code.', 'error'); return; }
+    // Verification successful — show success on the auth panel
+    showPanel('auth');
+    showTab('login');
+    document.getElementById('login-email').value = pendingVerifyEmail;
+    showAlert('login-error', // repurpose as success
+      'Email verified! Your account is pending admin approval. You\'ll receive a welcome email once approved.',
+      'info'
+    );
+    document.querySelector('#login-error').classList.add('alert-info');
+  });
+}
+
+function doResendCode() {
+  const cogUser = new AmazonCognitoIdentity.CognitoUser({
+    Username: pendingVerifyEmail,
+    Pool: userPool,
+  });
+  cogUser.resendConfirmationCode((err) => {
+    if (err) { showAlert('verify-error', err.message, 'error'); return; }
+    showAlert('verify-error', 'Code resent — check your email.', 'success');
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════
+// FORGOT PASSWORD
+// ═══════════════════════════════════════════════════════════════
+function doForgotPassword() {
+  clearAlert('forgot-error');
+  clearAlert('forgot-success');
+  const email = document.getElementById('forgot-email').value.trim();
+  if (!email) { showAlert('forgot-error', 'Please enter your email.', 'error'); return; }
+
+  const cogUser = new AmazonCognitoIdentity.CognitoUser({ Username: email, Pool: userPool });
+  cogUser.forgotPassword({
+    onSuccess() {
+      document.getElementById('reset-code-section').style.display = 'block';
+      showAlert('forgot-success', 'Reset code sent — check your email.', 'success');
+    },
+    onFailure(err) { showAlert('forgot-error', err.message, 'error'); },
+  });
+}
+
+function doResetPassword() {
+  clearAlert('forgot-error');
+  const email   = document.getElementById('forgot-email').value.trim();
+  const code    = document.getElementById('forgot-code').value.trim();
+  const newPass = document.getElementById('forgot-newpw').value;
+
+  const cogUser = new AmazonCognitoIdentity.CognitoUser({ Username: email, Pool: userPool });
+  cogUser.confirmPassword(code, newPass, {
+    onSuccess() {
+      showPanel('auth');
+      showTab('login');
+      document.getElementById('login-email').value = email;
+      showAlert('login-error', 'Password reset successfully. Please log in.', 'success');
+    },
+    onFailure(err) { showAlert('forgot-error', err.message, 'error'); },
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════
+// PROFILE DASHBOARD
+// ═══════════════════════════════════════════════════════════════
+async function loadProfileAndShowDashboard(idTokenPayload) {
+  document.getElementById('nav-logout').style.display = 'inline';
+
+  // If API Gateway hasn't been set up yet, show the dashboard with a notice
+  if (API_BASE_URL.includes('XXXXXXX')) {
+    const name = (idTokenPayload && (idTokenPayload.given_name || idTokenPayload.email)) || 'Brother';
+    document.getElementById('dashboard-name').textContent = `Welcome, ${name}`;
+    document.getElementById('dashboard-welcome').textContent = 'Profile data will appear once API Gateway is connected.';
+    document.getElementById('p-email').value = idTokenPayload && idTokenPayload.email || '';
+    showPanel('profile');
+    return;
+  }
+
+  try {
+    const res = await fetch(`${API_BASE_URL}/profile`, {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
+
+    if (res.status === 404) {
+      // Profile not created yet — show a basic dashboard
+      showPanel('profile');
+      return;
+    }
+
+    const profile = await res.json();
+
+    // Welcome header
+    const name = [profile.firstName, profile.lastName].filter(Boolean).join(' ') ||
+      (idTokenPayload && (idTokenPayload.given_name || idTokenPayload.email)) || 'Brother';
+    document.getElementById('dashboard-name').textContent = `Welcome, ${name}`;
+    document.getElementById('dashboard-welcome').textContent =
+      profile.graduationYear ? `Class of ${profile.graduationYear}` : '';
+
+    // Pending banner
+    if (profile.status === 'pending') {
+      document.getElementById('pending-banner').style.display = 'flex';
+    }
+
+    // Populate form fields
+    document.getElementById('p-first').value   = profile.firstName || '';
+    document.getElementById('p-last').value    = profile.lastName  || '';
+    document.getElementById('p-email').value   = profile.email     || '';
+    document.getElementById('p-phone').value   = profile.phone     || '';
+    document.getElementById('p-address').value = profile.address   || '';
+    document.getElementById('p-grad-year').value = profile.graduationYear || '';
+    document.getElementById('p-init-year').value = profile.initiationYear || '';
+    document.getElementById('p-major').value   = profile.major     || '';
+    document.getElementById('p-about').value   = profile.aboutMe   || '';
+
+    showPanel('profile');
+  } catch (err) {
+    console.error('Failed to load profile:', err);
+    showPanel('profile');
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// SAVE PROFILE
+// ═══════════════════════════════════════════════════════════════
+async function saveProfile() {
+  clearAlert('profile-error');
+  clearAlert('profile-success');
+  const statusEl = document.getElementById('save-status');
+  statusEl.textContent = 'Saving…';
+  statusEl.className = 'save-status';
+
+  const payload = {
+    firstName:      document.getElementById('p-first').value.trim(),
+    lastName:       document.getElementById('p-last').value.trim(),
+    phone:          document.getElementById('p-phone').value.trim(),
+    address:        document.getElementById('p-address').value.trim(),
+    graduationYear: document.getElementById('p-grad-year').value.trim(),
+    initiationYear: document.getElementById('p-init-year').value.trim(),
+    major:          document.getElementById('p-major').value.trim(),
+    aboutMe:        document.getElementById('p-about').value.trim(),
+  };
+
+  try {
+    const res = await fetch(`${API_BASE_URL}/profile`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.error || `HTTP ${res.status}`);
+    }
+
+    statusEl.textContent = '✓ Saved successfully';
+    statusEl.className = 'save-status ok';
+    // Update dashboard name
+    const name = [payload.firstName, payload.lastName].filter(Boolean).join(' ');
+    if (name) document.getElementById('dashboard-name').textContent = `Welcome, ${name}`;
+    if (payload.graduationYear) document.getElementById('dashboard-welcome').textContent = `Class of ${payload.graduationYear}`;
+    setTimeout(() => { statusEl.textContent = ''; }, 4000);
+  } catch (err) {
+    statusEl.textContent = '';
+    showAlert('profile-error', err.message || 'Failed to save. Please try again.', 'error');
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// SIGN OUT
+// ═══════════════════════════════════════════════════════════════
+function signOut() {
+  if (currentUser) currentUser.signOut();
+  accessToken = '';
+  currentUser = null;
+  document.getElementById('nav-logout').style.display = 'none';
+  showPanel('auth');
+  showTab('login');
+}
+</script>
+</body>
+</html>

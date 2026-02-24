@@ -8,204 +8,345 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=Josefin+Sans:wght@300;400;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --garnet: #8B1A2E;
-      --garnet-dark: #5C0F1C;
-      --garnet-light: #B52340;
-      --gold: #C9A84C;
-      --gold-light: #E8C86A;
-      --gold-pale: #F5E9C8;
-      --cream: #FAF6EE;
-      --dark: #1A1009;
-      --mid: #3D2B1F;
-      --text: #2C1A10;
-      --text-light: #7A5C44;
-      --border: #D4B896;
+      --garnet: #8B1A2E; --garnet-dark: #5C0F1C; --garnet-light: #B52340;
+      --gold: #C9A84C; --gold-light: #E8C86A; --gold-pale: #F5E9C8;
+      --cream: #FAF6EE; --dark: #1A1009; --mid: #3D2B1F;
+      --text: #2C1A10; --text-light: #7A5C44; --border: #D4B896;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Libre Baskerville', Georgia, serif; background: var(--cream); color: var(--text); min-height: 100vh; }
 
     /* NAV */
-    nav { background: var(--garnet-dark); border-bottom: 3px solid var(--gold); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 64px; }
-    .nav-brand { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 800; color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 12px; }
-    .nav-crest { width: 36px; height: 36px; background: var(--gold); clip-path: polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; color: var(--garnet-dark); }
-    .nav-links { display: flex; gap: 4px; }
-    .nav-links a { font-family: 'Josefin Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.7); text-decoration: none; padding: 8px 14px; border-radius: 2px; transition: background 0.2s, color 0.2s; }
+    nav { background: var(--garnet-dark); border-bottom: 3px solid var(--gold); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 64px; flex-wrap: wrap; }
+    .nav-brand { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 800; color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+    .nav-crest { width: 34px; height: 34px; background: var(--gold); clip-path: polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: var(--garnet-dark); }
+    .nav-links { display: flex; gap: 2px; align-items: center; flex-wrap: wrap; }
+    .nav-links a { font-family: 'Josefin Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.65); text-decoration: none; padding: 7px 12px; border-radius: 2px; transition: background 0.2s, color 0.2s; }
     .nav-links a:hover, .nav-links a.active { background: rgba(201,168,76,0.12); color: var(--gold-light); }
-    .nav-logout { background: rgba(255,255,255,0.08) !important; color: rgba(255,255,255,0.5) !important; }
+    .nav-links a.logout { color: rgba(255,255,255,0.4); }
 
-    /* LAYOUT */
-    .page { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; }
-    .page-header { margin-bottom: 2.5rem; border-bottom: 2px solid var(--border); padding-bottom: 1.5rem; }
-    .page-eyebrow { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+    /* MAIN TABS */
+    .page { max-width: 1200px; margin: 0 auto; padding: 2.5rem 2rem; }
+    .page-header { margin-bottom: 2rem; }
+    .page-eyebrow { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
     .page-title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 800; color: var(--garnet-dark); }
-    .page-sub { font-size: 0.875rem; color: var(--text-light); margin-top: 0.5rem; line-height: 1.6; }
+    .main-tabs { display: flex; border-bottom: 2px solid var(--border); margin-bottom: 2rem; }
+    .main-tab { font-family: 'Josefin Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 12px 24px; border: none; background: none; cursor: pointer; color: var(--text-light); border-bottom: 3px solid transparent; margin-bottom: -2px; transition: color 0.2s, border-color 0.2s; }
+    .main-tab.active { color: var(--garnet); border-bottom-color: var(--garnet); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
 
-    /* STATUS MESSAGES */
-    .alert { padding: 1rem 1.5rem; border-left: 4px solid; margin-bottom: 1.5rem; font-size: 0.875rem; line-height: 1.6; border-radius: 0 2px 2px 0; }
-    .alert-info { background: #EEF2FF; border-color: #6366F1; color: #3730A3; }
+    /* ALERTS */
+    .alert { padding: 0.9rem 1.25rem; border-left: 4px solid; margin-bottom: 1.5rem; font-size: 0.875rem; line-height: 1.6; display: none; }
+    .alert.show { display: block; }
+    .alert-info { background: var(--gold-pale); border-color: var(--gold); color: var(--mid); }
     .alert-error { background: #FEF2F2; border-color: var(--garnet); color: var(--garnet-dark); }
     .alert-success { background: #F0FDF4; border-color: #16A34A; color: #14532D; }
     .alert-warn { background: #FFFBEB; border-color: var(--gold); color: var(--mid); }
 
-    /* TABLE */
-    .table-wrap { background: #fff; border: 1px solid var(--border); overflow: hidden; }
-    .table-toolbar { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-    .table-count { font-family: 'Josefin Sans', sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); }
-    .search-box { font-family: 'Josefin Sans', sans-serif; font-size: 12px; padding: 8px 14px; border: 1px solid var(--border); background: var(--cream); color: var(--text); outline: none; width: 220px; }
-    .search-box:focus { border-color: var(--garnet); }
-    table { width: 100%; border-collapse: collapse; }
-    thead { background: var(--garnet-dark); }
-    thead th { font-family: 'Josefin Sans', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); padding: 0.85rem 1.25rem; text-align: left; white-space: nowrap; }
-    tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
-    tbody tr:last-child { border-bottom: none; }
-    tbody tr:hover { background: var(--gold-pale); }
-    td { padding: 0.9rem 1.25rem; font-size: 0.875rem; vertical-align: middle; }
-    .td-email { font-weight: 600; color: var(--dark); }
-    .td-name { color: var(--text-light); font-style: italic; }
-    .td-date { font-family: 'Josefin Sans', sans-serif; font-size: 11px; color: var(--text-light); white-space: nowrap; }
-
-    /* ROLE BADGES */
-    .role-badge { display: inline-block; font-family: 'Josefin Sans', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 3px 8px; border-radius: 2px; }
-    .role-admin { background: var(--garnet-dark); color: var(--gold); }
-    .role-alumni { background: var(--gold-pale); color: var(--mid); }
-    .role-member { background: #E0F2FE; color: #0369A1; }
-    .role-none { background: #F3F4F6; color: #6B7280; }
-
-    /* ROLE EDITOR */
-    .role-editor { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-    .role-select { font-family: 'Josefin Sans', sans-serif; font-size: 11px; padding: 6px 10px; border: 1px solid var(--border); background: #fff; color: var(--text); cursor: pointer; outline: none; }
-    .role-select:focus { border-color: var(--garnet); }
-    .btn-save { font-family: 'Josefin Sans', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; background: var(--garnet); color: #fff; border: none; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
-    .btn-save:hover { background: var(--garnet-light); }
-    .btn-save:disabled { background: var(--border); cursor: not-allowed; }
-    .save-status { font-family: 'Josefin Sans', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.05em; }
-    .save-status.ok { color: #16A34A; }
-    .save-status.err { color: var(--garnet); }
-    .save-status.saving { color: var(--gold); }
-
     /* AUTH GATE */
-    #auth-gate { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; text-align: center; gap: 1.5rem; }
-    .auth-icon { font-size: 3rem; color: var(--garnet-dark); opacity: 0.2; }
+    #auth-gate { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 50vh; text-align: center; gap: 1.25rem; }
     .auth-msg { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--mid); }
-    .auth-sub { font-size: 0.875rem; color: var(--text-light); }
-    .btn-login { font-family: 'Josefin Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 14px 32px; background: var(--gold); color: var(--garnet-dark); border: none; cursor: pointer; }
+    .auth-sub { font-size: 0.875rem; color: var(--text-light); max-width: 400px; }
+    .btn-login { font-family: 'Josefin Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 12px 28px; background: var(--gold); color: var(--garnet-dark); border: none; cursor: pointer; }
     .btn-login:hover { background: var(--gold-light); }
 
-    /* SPINNER */
-    .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid var(--border); border-top-color: var(--garnet); border-radius: 50%; animation: spin 0.7s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    /* STATS ROW */
+    .stats-row { display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .stat-box { background: #fff; border: 1px solid var(--border); padding: 1.25rem 1.75rem; text-align: center; flex: 1; min-width: 120px; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 800; color: var(--garnet-dark); line-height: 1; }
+    .stat-label { font-family: 'Josefin Sans', sans-serif; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); margin-top: 4px; }
+
+    /* TABLE */
+    .table-wrap { background: #fff; border: 1px solid var(--border); overflow: hidden; overflow-x: auto; }
+    .table-toolbar { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; }
+    .toolbar-left { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
+    .filter-btn { font-family: 'Josefin Sans', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border: 1px solid var(--border); background: #fff; color: var(--text-light); cursor: pointer; transition: all 0.2s; }
+    .filter-btn.active, .filter-btn:hover { background: var(--garnet-dark); color: var(--gold); border-color: var(--garnet-dark); }
+    .search-box { font-family: 'Josefin Sans', sans-serif; font-size: 12px; padding: 7px 12px; border: 1px solid var(--border); background: var(--cream); color: var(--text); outline: none; width: 200px; }
+    .search-box:focus { border-color: var(--garnet); }
+    table { width: 100%; border-collapse: collapse; min-width: 700px; }
+    thead { background: var(--garnet-dark); }
+    thead th { font-family: 'Josefin Sans', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); padding: 0.8rem 1rem; text-align: left; white-space: nowrap; }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background 0.12s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--gold-pale); }
+    td { padding: 0.85rem 1rem; font-size: 0.85rem; vertical-align: middle; }
+    .td-name { font-weight: 600; color: var(--dark); }
+    .td-email { color: var(--text-light); font-size: 0.8rem; }
+    .td-meta { font-family: 'Josefin Sans', sans-serif; font-size: 10px; color: var(--text-light); white-space: nowrap; }
+
+    /* BADGES */
+    .badge { display: inline-block; font-family: 'Josefin Sans', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 8px; border-radius: 2px; white-space: nowrap; }
+    .badge-pending { background: #FEF3C7; color: #92400E; }
+    .badge-approved { background: #D1FAE5; color: #065F46; }
+    .badge-rejected { background: #FEE2E2; color: #991B1B; }
+    .badge-admin { background: var(--garnet-dark); color: var(--gold); }
+    .badge-alumni { background: var(--gold-pale); color: var(--mid); }
+    .badge-member { background: #E0F2FE; color: #0369A1; }
+    .badge-none { background: #F3F4F6; color: #6B7280; }
+
+    /* ACTION BUTTONS */
+    .action-group { display: flex; gap: 6px; flex-wrap: wrap; }
+    .btn-approve { font-family: 'Josefin Sans', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 12px; background: #065F46; color: #fff; border: none; cursor: pointer; white-space: nowrap; transition: opacity 0.2s; }
+    .btn-approve:hover { opacity: 0.85; }
+    .btn-reject { font-family: 'Josefin Sans', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 12px; background: var(--garnet); color: #fff; border: none; cursor: pointer; white-space: nowrap; transition: opacity 0.2s; }
+    .btn-reject:hover { opacity: 0.85; }
+    .btn-view { font-family: 'Josefin Sans', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 12px; background: transparent; color: var(--mid); border: 1px solid var(--border); cursor: pointer; white-space: nowrap; }
+    .btn-view:hover { border-color: var(--mid); }
+    .action-status { font-family: 'Josefin Sans', sans-serif; font-size: 10px; font-weight: 600; white-space: nowrap; }
+    .action-status.ok { color: #065F46; }
+    .action-status.err { color: var(--garnet); }
+    .action-status.saving { color: var(--gold); }
+
+    /* NETLIFY IDENTITY ROLE EDITOR */
+    .role-select { font-family: 'Josefin Sans', sans-serif; font-size: 11px; padding: 5px 8px; border: 1px solid var(--border); background: #fff; color: var(--text); cursor: pointer; outline: none; }
+    .role-select:focus { border-color: var(--garnet); }
+    .btn-save-role { font-family: 'Josefin Sans', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 12px; background: var(--garnet); color: #fff; border: none; cursor: pointer; }
+    .btn-save-role:hover { opacity: 0.85; }
+    .btn-save-role:disabled { background: var(--border); cursor: not-allowed; }
+
+    /* EMAIL COMPOSER */
+    .email-composer { background: #fff; border: 1px solid var(--border); padding: 2.5rem; margin-top: 2rem; }
+    .composer-title { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-label { display: block; font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); margin-bottom: 6px; }
+    .form-input { width: 100%; border: 1px solid var(--border); background: var(--cream); color: var(--text); padding: 10px 14px; font-family: 'Libre Baskerville', serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+    .form-input:focus { border-color: var(--garnet); background: #fff; }
+    textarea.form-input { min-height: 200px; resize: vertical; }
+    .send-bar { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+    .btn-send { font-family: 'Josefin Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 12px 32px; background: var(--garnet); color: #fff; border: none; cursor: pointer; transition: background 0.2s; }
+    .btn-send:hover { background: var(--garnet-light); }
+    .btn-send:disabled { background: var(--border); cursor: not-allowed; }
+    .send-note { font-family: 'Josefin Sans', sans-serif; font-size: 10px; color: var(--text-light); }
+
+    /* PROFILE MODAL */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(26,16,9,0.7); z-index: 500; display: none; align-items: center; justify-content: center; padding: 2rem; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: #fff; max-width: 600px; width: 100%; max-height: 85vh; overflow-y: auto; border-top: 4px solid var(--garnet); }
+    .modal-header { padding: 1.5rem 2rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .modal-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--garnet-dark); }
+    .modal-close { background: none; border: none; font-size: 1.25rem; cursor: pointer; color: var(--text-light); padding: 4px; }
+    .modal-body { padding: 2rem; }
+    .profile-field { display: flex; gap: 1rem; padding: 0.65rem 0; border-bottom: 1px solid var(--border); font-size: 0.875rem; }
+    .profile-field:last-child { border-bottom: none; }
+    .profile-field-label { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); min-width: 130px; flex-shrink: 0; padding-top: 2px; }
+    .profile-field-value { color: var(--text); line-height: 1.6; }
+
+    /* LOADING */
     .loading-row td { text-align: center; padding: 3rem; color: var(--text-light); font-family: 'Josefin Sans', sans-serif; font-size: 11px; letter-spacing: 0.2em; }
+    .spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid var(--border); border-top-color: var(--garnet); border-radius: 50%; animation: spin 0.7s linear infinite; vertical-align: middle; }
+    @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
 
 <nav>
-  <a href="/" class="nav-brand">
-    <div class="nav-crest">ΠΚΑ</div>
-    GOAA Admin
-  </a>
+  <a href="/" class="nav-brand"><div class="nav-crest">ΠΚΑ</div> GOAA Admin</a>
   <div class="nav-links">
     <a href="/admin/">CMS Editor</a>
-    <a href="/admin/users.html" class="active">User Management</a>
-    <a href="/" >View Site</a>
-    <a href="#" class="nav-logout" id="logout-btn">Log Out</a>
+    <a href="/admin/users.html" class="active">Users</a>
+    <a href="/alumni/">Alumni Portal</a>
+    <a href="/">View Site</a>
+    <a href="#" class="logout" id="logout-btn">Log Out</a>
   </div>
 </nav>
 
+<!-- PROFILE DETAIL MODAL -->
+<div class="modal-overlay" id="profile-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title" id="modal-name">Alumni Profile</span>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
 <div class="page">
 
-  <!-- AUTH GATE (shown when not logged in or not admin) -->
+  <!-- AUTH GATE -->
   <div id="auth-gate" style="display:none;">
-    <div class="auth-icon">🔒</div>
     <div class="auth-msg" id="auth-msg">Admin access required</div>
-    <div class="auth-sub" id="auth-sub">You must be logged in with an admin account to manage users.</div>
+    <div class="auth-sub" id="auth-sub">You must be logged in with an admin account.</div>
     <button class="btn-login" id="login-btn">Log In</button>
   </div>
 
-  <!-- MAIN CONTENT (shown when admin) -->
+  <!-- MAIN CONTENT -->
   <div id="main-content" style="display:none;">
     <div class="page-header">
       <div class="page-eyebrow">Administration</div>
       <h1 class="page-title">User Management</h1>
-      <p class="page-sub">Manage member accounts and their roles. Roles control what content members can access on the site.<br>
-        <strong>admin</strong> — can edit the CMS &amp; manage users &nbsp;|&nbsp;
-        <strong>alumni</strong> — verified alumni &nbsp;|&nbsp;
-        <strong>member</strong> — active chapter member
-      </p>
     </div>
 
-    <div id="flash-msg" style="display:none;"></div>
+    <div class="main-tabs">
+      <button class="main-tab active" onclick="switchTab('alumni')">Alumni Accounts</button>
+      <button class="main-tab" onclick="switchTab('site-users')">Site Admin Users</button>
+    </div>
 
-    <div class="table-wrap">
-      <div class="table-toolbar">
-        <span class="table-count" id="user-count">Loading users…</span>
-        <input type="text" class="search-box" id="search-box" placeholder="Search by name or email…">
+    <!-- ═══════════════════════════════════════════════════════
+         TAB 1: ALUMNI ACCOUNTS (Cognito + DynamoDB)
+    ═══════════════════════════════════════════════════════ -->
+    <div class="tab-panel active" id="tab-alumni">
+
+      <div class="alert alert-warn show" id="alumni-config-warn" style="display:none !important;">
+        <strong>Setup needed:</strong> Set <code>API_BASE_URL</code> and <code>COGNITO_*</code> in the
+        <code>&lt;script&gt;</code> section of this file with your AWS values.
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Email</th>
-            <th>Name</th>
-            <th>Current Role</th>
-            <th>Change Role</th>
-            <th>Joined</th>
-          </tr>
-        </thead>
-        <tbody id="users-tbody">
-          <tr class="loading-row"><td colspan="5"><span class="spinner"></span> &nbsp; Loading users…</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
 
-</div>
+      <div class="alert alert-error" id="alumni-error"></div>
+      <div class="alert alert-success" id="alumni-success"></div>
+
+      <!-- Stats -->
+      <div class="stats-row">
+        <div class="stat-box"><div class="stat-num" id="stat-total">—</div><div class="stat-label">Total</div></div>
+        <div class="stat-box"><div class="stat-num" id="stat-pending" style="color:var(--gold)">—</div><div class="stat-label">Pending</div></div>
+        <div class="stat-box"><div class="stat-num" id="stat-approved" style="color:#065F46">—</div><div class="stat-label">Approved</div></div>
+        <div class="stat-box"><div class="stat-num" id="stat-rejected" style="color:var(--garnet)">—</div><div class="stat-label">Rejected</div></div>
+      </div>
+
+      <!-- Filter + Search toolbar -->
+      <div class="table-wrap">
+        <div class="table-toolbar">
+          <div class="toolbar-left">
+            <button class="filter-btn active" onclick="setFilter('all', this)">All</button>
+            <button class="filter-btn" onclick="setFilter('pending', this)">Pending</button>
+            <button class="filter-btn" onclick="setFilter('approved', this)">Approved</button>
+            <button class="filter-btn" onclick="setFilter('rejected', this)">Rejected</button>
+          </div>
+          <input type="text" class="search-box" id="alumni-search" placeholder="Search name or email…">
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Class Year</th>
+              <th>Status</th>
+              <th>Joined</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="alumni-tbody">
+            <tr class="loading-row"><td colspan="6"><span class="spinner"></span> Loading alumni…</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Email Composer -->
+      <div class="email-composer">
+        <div class="composer-title">Send Email to Alumni</div>
+        <div class="alert alert-error" id="email-error"></div>
+        <div class="alert alert-success" id="email-success"></div>
+        <div class="form-group">
+          <label class="form-label">Send To</label>
+          <select class="form-input" id="email-to" style="cursor:pointer;">
+            <option value="approved">All Approved Alumni</option>
+            <option value="all">All Alumni (including pending)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Reply-To Email (optional)</label>
+          <input type="email" class="form-input" id="email-replyto" placeholder="admin@yourdomain.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Subject</label>
+          <input type="text" class="form-input" id="email-subject" placeholder="e.g. 2025 GOAA Golf Outing — Save the Date">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message Body (HTML supported)</label>
+          <textarea class="form-input" id="email-body" placeholder="Write your message here. You can use basic HTML tags for formatting."></textarea>
+        </div>
+        <div class="send-bar">
+          <button class="btn-send" id="send-btn" onclick="sendEmail()">Send Email</button>
+          <span class="send-note" id="send-note"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         TAB 2: NETLIFY IDENTITY SITE USERS
+    ═══════════════════════════════════════════════════════ -->
+    <div class="tab-panel" id="tab-site-users">
+      <p style="font-size:0.875rem;color:var(--text-light);margin-bottom:1.5rem;line-height:1.7;">
+        These are accounts in <strong>Netlify Identity</strong> that control access to the CMS editor
+        (<code>/admin/</code>). Assign the <strong>admin</strong> role to allow CMS editing.
+      </p>
+
+      <div class="alert alert-error" id="netlify-error"></div>
+      <div class="alert alert-success" id="netlify-success"></div>
+
+      <div class="table-wrap">
+        <div class="table-toolbar">
+          <span style="font-family:'Josefin Sans',sans-serif;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-light);" id="netlify-count">Loading…</span>
+          <input type="text" class="search-box" id="netlify-search" placeholder="Search email…">
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th>Current Role</th>
+              <th>Change Role</th>
+              <th>Joined</th>
+            </tr>
+          </thead>
+          <tbody id="netlify-tbody">
+            <tr class="loading-row"><td colspan="4"><span class="spinner"></span> Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- /#main-content -->
+</div><!-- /.page -->
 
 <script>
-const ROLES = ['admin', 'alumni', 'member'];
+// ═══════════════════════════════════════════════════════════════
+// CONFIGURATION — replace with your actual AWS values
+// ═══════════════════════════════════════════════════════════════
+const API_BASE_URL = 'https://XXXXXXXXXX.execute-api.us-east-1.amazonaws.com';
+// (Cognito values are only needed if you're also using the alumni portal auth here)
 
-let allUsers = [];
-let currentUser = null;
+// ═══════════════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════════════
+let currentNetlifyUser = null;
+let allAlumni = [];
+let currentFilter = 'all';
+let netlifyUsers = [];
 
-// ── NETLIFY IDENTITY ────────────────────────────────────────────
-function init() {
+// ═══════════════════════════════════════════════════════════════
+// NETLIFY IDENTITY AUTH GATE
+// ═══════════════════════════════════════════════════════════════
+function initAuth() {
   if (!window.netlifyIdentity) {
-    showAuthGate('Netlify Identity not available', 'This page requires Netlify Identity to be enabled on your site.');
+    showAuthGate('Netlify Identity not available', 'This page requires Netlify Identity.');
     return;
   }
-
   netlifyIdentity.on('init', user => {
-    if (user) {
-      handleUser(user);
-    } else {
-      showAuthGate('Admin access required', 'Please log in with an admin account to manage users.');
-    }
+    if (user) handleUser(user);
+    else showAuthGate('Admin access required', 'Log in with your admin account to manage users.');
   });
-
-  netlifyIdentity.on('login', user => {
-    netlifyIdentity.close();
-    handleUser(user);
-  });
-
+  netlifyIdentity.on('login', user => { netlifyIdentity.close(); handleUser(user); });
   netlifyIdentity.on('logout', () => {
-    currentUser = null;
-    showAuthGate('Logged out', 'Log back in to manage users.');
+    currentNetlifyUser = null;
+    showAuthGate('Logged out', 'Log back in to continue.');
   });
-
   netlifyIdentity.init();
 }
 
 function handleUser(user) {
-  currentUser = user;
+  currentNetlifyUser = user;
   const roles = (user.app_metadata && user.app_metadata.roles) || [];
   if (!roles.includes('admin')) {
-    showAuthGate(
-      'Admin role required',
-      `You are logged in as ${user.email}, but your account does not have the admin role. Contact your site administrator.`
-    );
+    showAuthGate('Admin role required',
+      `You're logged in as ${user.email} but don't have the admin role.`);
     return;
   }
-  showMainContent();
-  loadUsers();
+  document.getElementById('auth-gate').style.display = 'none';
+  document.getElementById('main-content').style.display = 'block';
+  loadAlumni();
+  loadNetlifyUsers();
 }
 
 function showAuthGate(msg, sub) {
@@ -215,146 +356,363 @@ function showAuthGate(msg, sub) {
   document.getElementById('auth-sub').textContent = sub;
 }
 
-function showMainContent() {
-  document.getElementById('auth-gate').style.display = 'none';
-  document.getElementById('main-content').style.display = 'block';
+// Show config notice if placeholder not replaced
+if (API_BASE_URL.includes('XXXXXXX')) {
+  document.getElementById('alumni-config-warn').style.removeProperty('display');
+  document.getElementById('alumni-config-warn').classList.add('show');
 }
 
-// ── LOAD USERS ──────────────────────────────────────────────────
-async function loadUsers() {
+// ═══════════════════════════════════════════════════════════════
+// MAIN TABS
+// ═══════════════════════════════════════════════════════════════
+function switchTab(tab) {
+  document.querySelectorAll('.main-tab').forEach((btn, i) => {
+    const tabs = ['alumni', 'site-users'];
+    btn.classList.toggle('active', tabs[i] === tab);
+  });
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// ALUMNI TAB — load from API Gateway / Lambda
+// ═══════════════════════════════════════════════════════════════
+async function loadAlumni() {
+  // We use the Netlify Identity token to authenticate the admin API call.
+  // The Lambda functions on API Gateway use a Cognito JWT authorizer —
+  // so this tab requires the admin to ALSO have a Cognito account in the alumni system,
+  // OR you can configure a separate admin API key.
+  // For now we attempt the call and gracefully handle auth errors.
+
+  const token = currentNetlifyUser && currentNetlifyUser.token && currentNetlifyUser.token.access_token;
+
   try {
-    const token = currentUser.token.access_token;
+    const res = await fetch(`${API_BASE_URL}/admin/alumni`, {
+      headers: { Authorization: `Bearer ${token || ''}` },
+    });
+
+    if (res.status === 403 || res.status === 401) {
+      showAlumniError('Authentication error: make sure your admin account has a matching Cognito user, or configure an API key in the Lambda function.');
+      document.getElementById('alumni-tbody').innerHTML =
+        '<tr class="loading-row"><td colspan="6" style="color:var(--text-light);">Not loaded — see error above.</td></tr>';
+      return;
+    }
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+    const data = await res.json();
+    allAlumni = data.alumni || [];
+    updateStats();
+    renderAlumni(filterAlumni(allAlumni, currentFilter));
+  } catch (err) {
+    showAlumniError('Could not load alumni data: ' + err.message);
+    document.getElementById('alumni-tbody').innerHTML =
+      '<tr class="loading-row"><td colspan="6" style="color:var(--text-light);">Failed to load.</td></tr>';
+  }
+}
+
+function updateStats() {
+  const counts = { total: allAlumni.length, pending: 0, approved: 0, rejected: 0 };
+  allAlumni.forEach(a => { if (counts[a.status] !== undefined) counts[a.status]++; });
+  document.getElementById('stat-total').textContent    = counts.total;
+  document.getElementById('stat-pending').textContent  = counts.pending;
+  document.getElementById('stat-approved').textContent = counts.approved;
+  document.getElementById('stat-rejected').textContent = counts.rejected;
+}
+
+function filterAlumni(list, status) {
+  const q = document.getElementById('alumni-search').value.toLowerCase().trim();
+  return list.filter(a => {
+    const matchStatus = status === 'all' || a.status === status;
+    const name = `${a.firstName || ''} ${a.lastName || ''}`.toLowerCase();
+    const matchSearch = !q || name.includes(q) || (a.email || '').toLowerCase().includes(q);
+    return matchStatus && matchSearch;
+  });
+}
+
+function setFilter(status, btn) {
+  currentFilter = status;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderAlumni(filterAlumni(allAlumni, currentFilter));
+}
+
+document.getElementById('alumni-search').addEventListener('input', () => {
+  renderAlumni(filterAlumni(allAlumni, currentFilter));
+});
+
+function renderAlumni(list) {
+  const tbody = document.getElementById('alumni-tbody');
+  if (!list.length) {
+    tbody.innerHTML = '<tr class="loading-row"><td colspan="6">No alumni found.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = list.map(a => {
+    const name = [a.firstName, a.lastName].filter(Boolean).join(' ') || '(No name)';
+    const joined = a.createdAt ? new Date(a.createdAt).toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' }) : '—';
+    const statusBadge = `<span class="badge badge-${a.status || 'none'}">${a.status || 'unknown'}</span>`;
+    let actions = '';
+    if (a.status === 'pending') {
+      actions = `
+        <div class="action-group">
+          <button class="btn-approve" onclick="updateStatus('${a.userId}', 'approve')">Approve</button>
+          <button class="btn-reject" onclick="updateStatus('${a.userId}', 'reject')">Reject</button>
+          <button class="btn-view" onclick="viewProfile('${a.userId}')">View</button>
+          <span class="action-status" id="as-${a.userId}"></span>
+        </div>`;
+    } else if (a.status === 'approved') {
+      actions = `
+        <div class="action-group">
+          <button class="btn-reject" onclick="updateStatus('${a.userId}', 'reject')">Revoke</button>
+          <button class="btn-view" onclick="viewProfile('${a.userId}')">View</button>
+          <span class="action-status" id="as-${a.userId}"></span>
+        </div>`;
+    } else {
+      actions = `
+        <div class="action-group">
+          <button class="btn-approve" onclick="updateStatus('${a.userId}', 'approve')">Re-approve</button>
+          <button class="btn-view" onclick="viewProfile('${a.userId}')">View</button>
+          <span class="action-status" id="as-${a.userId}"></span>
+        </div>`;
+    }
+    return `
+      <tr data-uid="${a.userId}">
+        <td class="td-name">${name}</td>
+        <td class="td-email">${a.email || '—'}</td>
+        <td class="td-meta">${a.graduationYear ? `'${String(a.graduationYear).slice(-2)}` : '—'}</td>
+        <td>${statusBadge}</td>
+        <td class="td-meta">${joined}</td>
+        <td>${actions}</td>
+      </tr>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// APPROVE / REJECT
+// ═══════════════════════════════════════════════════════════════
+async function updateStatus(userId, action) {
+  const statusEl = document.getElementById(`as-${userId}`);
+  if (statusEl) { statusEl.textContent = 'Saving…'; statusEl.className = 'action-status saving'; }
+
+  const token = currentNetlifyUser && currentNetlifyUser.token && currentNetlifyUser.token.access_token;
+
+  try {
+    const res = await fetch(`${API_BASE_URL}/admin/alumni/${userId}/status`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token || ''}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action }),
+    });
+    if (!res.ok) throw new Error((await res.json()).error || `HTTP ${res.status}`);
+
+    // Update local state
+    const alumni = allAlumni.find(a => a.userId === userId);
+    if (alumni) alumni.status = action === 'approve' ? 'approved' : 'rejected';
+
+    updateStats();
+    renderAlumni(filterAlumni(allAlumni, currentFilter));
+
+    const msg = action === 'approve' ? 'Approved — welcome email sent.' : 'Rejected — notification sent.';
+    showAlumniSuccess(msg);
+  } catch (err) {
+    if (statusEl) { statusEl.textContent = '✗ ' + err.message; statusEl.className = 'action-status err'; }
+    showAlumniError(err.message);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// VIEW PROFILE MODAL
+// ═══════════════════════════════════════════════════════════════
+function viewProfile(userId) {
+  const a = allAlumni.find(x => x.userId === userId);
+  if (!a) return;
+  const name = [a.firstName, a.lastName].filter(Boolean).join(' ') || 'Alumni Profile';
+  document.getElementById('modal-name').textContent = name;
+  const fields = [
+    ['Email', a.email],
+    ['Phone', a.phone],
+    ['Address', a.address],
+    ['Graduation Year', a.graduationYear],
+    ['Initiation Year', a.initiationYear],
+    ['Major', a.major],
+    ['About Me', a.aboutMe],
+    ['Status', a.status],
+    ['Joined', a.createdAt ? new Date(a.createdAt).toLocaleDateString() : '—'],
+  ].filter(([, v]) => v);
+  document.getElementById('modal-body').innerHTML = fields.map(([l, v]) =>
+    `<div class="profile-field"><span class="profile-field-label">${l}</span><span class="profile-field-value">${v}</span></div>`
+  ).join('') || '<p style="color:var(--text-light);font-size:0.875rem;">No additional profile data.</p>';
+  document.getElementById('profile-modal').classList.add('open');
+}
+
+function closeModal() { document.getElementById('profile-modal').classList.remove('open'); }
+document.getElementById('profile-modal').addEventListener('click', e => {
+  if (e.target === document.getElementById('profile-modal')) closeModal();
+});
+
+// ═══════════════════════════════════════════════════════════════
+// SEND EMAIL
+// ═══════════════════════════════════════════════════════════════
+async function sendEmail() {
+  document.getElementById('email-error').classList.remove('show');
+  document.getElementById('email-success').classList.remove('show');
+
+  const to      = document.getElementById('email-to').value;
+  const subject = document.getElementById('email-subject').value.trim();
+  const body    = document.getElementById('email-body').value.trim();
+  const replyTo = document.getElementById('email-replyto').value.trim();
+
+  if (!subject) { showEmailError('Subject is required.'); return; }
+  if (!body)    { showEmailError('Message body is required.'); return; }
+
+  const btn = document.getElementById('send-btn');
+  const note = document.getElementById('send-note');
+  btn.disabled = true;
+  note.textContent = 'Sending…';
+
+  const token = currentNetlifyUser && currentNetlifyUser.token && currentNetlifyUser.token.access_token;
+
+  try {
+    const res = await fetch(`${API_BASE_URL}/admin/email`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token || ''}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ to, subject, body, replyTo: replyTo || undefined }),
+    });
+    if (!res.ok) throw new Error((await res.json()).error || `HTTP ${res.status}`);
+    const result = await res.json();
+    note.textContent = '';
+    showEmailSuccess(`Email sent to ${result.sent} alumni successfully.`);
+    document.getElementById('email-subject').value = '';
+    document.getElementById('email-body').value = '';
+  } catch (err) {
+    note.textContent = '';
+    showEmailError(err.message);
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function showAlumniError(msg) {
+  const el = document.getElementById('alumni-error');
+  el.textContent = msg; el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 8000);
+}
+function showAlumniSuccess(msg) {
+  const el = document.getElementById('alumni-success');
+  el.textContent = msg; el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 5000);
+}
+function showEmailError(msg) {
+  const el = document.getElementById('email-error');
+  el.textContent = msg; el.classList.add('show');
+}
+function showEmailSuccess(msg) {
+  const el = document.getElementById('email-success');
+  el.textContent = msg; el.classList.add('show');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// NETLIFY IDENTITY USERS TAB
+// ═══════════════════════════════════════════════════════════════
+async function loadNetlifyUsers() {
+  const token = currentNetlifyUser && currentNetlifyUser.token && currentNetlifyUser.token.access_token;
+  try {
     const res = await fetch('/.netlify/functions/list-users', {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${token}` },
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
-    allUsers = data.users || [];
-    renderUsers(allUsers);
-    document.getElementById('user-count').textContent = `${allUsers.length} user${allUsers.length !== 1 ? 's' : ''}`;
+    netlifyUsers = data.users || [];
+    renderNetlifyUsers(netlifyUsers);
+    document.getElementById('netlify-count').textContent = `${netlifyUsers.length} user${netlifyUsers.length !== 1 ? 's' : ''}`;
   } catch (err) {
-    document.getElementById('users-tbody').innerHTML =
-      `<tr class="loading-row"><td colspan="5" style="color:var(--garnet);">Error loading users: ${err.message}</td></tr>`;
+    document.getElementById('netlify-tbody').innerHTML =
+      `<tr class="loading-row"><td colspan="4" style="color:var(--garnet);">Error: ${err.message}</td></tr>`;
   }
 }
 
-// ── RENDER TABLE ────────────────────────────────────────────────
-function renderUsers(users) {
-  const tbody = document.getElementById('users-tbody');
+document.getElementById('netlify-search').addEventListener('input', function () {
+  const q = this.value.toLowerCase();
+  renderNetlifyUsers(netlifyUsers.filter(u =>
+    (u.email || '').toLowerCase().includes(q)
+  ));
+});
+
+function renderNetlifyUsers(users) {
+  const tbody = document.getElementById('netlify-tbody');
   if (!users.length) {
-    tbody.innerHTML = '<tr class="loading-row"><td colspan="5">No users found.</td></tr>';
+    tbody.innerHTML = '<tr class="loading-row"><td colspan="4">No users found.</td></tr>';
     return;
   }
+  const ROLES = ['admin', 'alumni', 'member'];
   tbody.innerHTML = users.map(u => {
     const roles = (u.app_metadata && u.app_metadata.roles) || [];
     const primaryRole = roles[0] || '';
     const joined = u.created_at ? new Date(u.created_at).toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' }) : '—';
-    const fullName = u.user_metadata && (u.user_metadata.full_name || u.user_metadata.name) || '—';
-
-    const currentBadge = primaryRole
-      ? `<span class="role-badge role-${primaryRole}">${primaryRole}</span>`
-      : `<span class="role-badge role-none">no role</span>`;
-
+    const badge = primaryRole
+      ? `<span class="badge badge-${primaryRole}">${primaryRole}</span>`
+      : `<span class="badge badge-none">no role</span>`;
     const options = ['', ...ROLES].map(r =>
       `<option value="${r}" ${primaryRole === r ? 'selected' : ''}>${r || '(no role)'}</option>`
     ).join('');
-
     return `
       <tr data-uid="${u.id}">
-        <td class="td-email">${u.email}</td>
-        <td class="td-name">${fullName}</td>
-        <td>${currentBadge}</td>
+        <td class="td-name">${u.email}</td>
+        <td>${badge}</td>
         <td>
-          <div class="role-editor">
-            <select class="role-select" data-uid="${u.id}" data-email="${u.email}" onchange="onRoleChange(this)">
+          <div class="action-group">
+            <select class="role-select" data-uid="${u.id}" onchange="onRoleChange(this)">
               ${options}
             </select>
-            <button class="btn-save" data-uid="${u.id}" onclick="saveRole('${u.id}')" disabled>Save</button>
-            <span class="save-status" id="status-${u.id}"></span>
+            <button class="btn-save-role" data-uid="${u.id}" onclick="saveNetlifyRole('${u.id}')" disabled>Save</button>
+            <span class="action-status" id="nr-${u.id}"></span>
           </div>
         </td>
-        <td class="td-date">${joined}</td>
+        <td class="td-meta">${joined}</td>
       </tr>`;
   }).join('');
 }
 
 function onRoleChange(select) {
   const uid = select.dataset.uid;
-  const btn = document.querySelector(`button[data-uid="${uid}"]`);
-  btn.disabled = false;
+  document.querySelector(`button[data-uid="${uid}"].btn-save-role`).disabled = false;
 }
 
-// ── SAVE ROLE ───────────────────────────────────────────────────
-async function saveRole(userId) {
+async function saveNetlifyRole(userId) {
   const select = document.querySelector(`select[data-uid="${userId}"]`);
-  const btn = document.querySelector(`button[data-uid="${userId}"]`);
-  const statusEl = document.getElementById(`status-${userId}`);
+  const btn = document.querySelector(`button[data-uid="${userId}"].btn-save-role`);
+  const statusEl = document.getElementById(`nr-${userId}`);
   const newRole = select.value;
-  const newRoles = newRole ? [newRole] : [];
-
   btn.disabled = true;
-  statusEl.textContent = 'Saving…';
-  statusEl.className = 'save-status saving';
+  statusEl.textContent = 'Saving…'; statusEl.className = 'action-status saving';
 
+  const token = currentNetlifyUser && currentNetlifyUser.token && currentNetlifyUser.token.access_token;
   try {
-    const token = currentUser.token.access_token;
     const res = await fetch('/.netlify/functions/update-user-role', {
       method: 'POST',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ userId, newRoles })
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userId, newRoles: newRole ? [newRole] : [] }),
     });
+    if (!res.ok) throw new Error((await res.json()).error || `HTTP ${res.status}`);
 
-    if (!res.ok) {
-      const err = await res.json();
-      throw new Error(err.error || `HTTP ${res.status}`);
-    }
-
-    // Update the badge in the current role column
     const row = document.querySelector(`tr[data-uid="${userId}"]`);
-    const badgeCell = row.querySelector('td:nth-child(3)');
-    badgeCell.innerHTML = newRole
-      ? `<span class="role-badge role-${newRole}">${newRole}</span>`
-      : `<span class="role-badge role-none">no role</span>`;
+    row.querySelector('td:nth-child(2)').innerHTML = newRole
+      ? `<span class="badge badge-${newRole}">${newRole}</span>`
+      : `<span class="badge badge-none">no role</span>`;
 
-    // Update local data
-    const user = allUsers.find(u => u.id === userId);
-    if (user) {
-      user.app_metadata = user.app_metadata || {};
-      user.app_metadata.roles = newRoles;
-    }
-
-    statusEl.textContent = '✓ Saved';
-    statusEl.className = 'save-status ok';
+    statusEl.textContent = '✓ Saved'; statusEl.className = 'action-status ok';
     setTimeout(() => { statusEl.textContent = ''; }, 3000);
   } catch (err) {
-    statusEl.textContent = `✗ ${err.message}`;
-    statusEl.className = 'save-status err';
+    statusEl.textContent = '✗ ' + err.message; statusEl.className = 'action-status err';
     btn.disabled = false;
   }
 }
 
-// ── SEARCH ──────────────────────────────────────────────────────
-document.getElementById('search-box').addEventListener('input', function () {
-  const q = this.value.toLowerCase().trim();
-  const filtered = allUsers.filter(u =>
-    u.email.toLowerCase().includes(q) ||
-    ((u.user_metadata && (u.user_metadata.full_name || u.user_metadata.name)) || '').toLowerCase().includes(q)
-  );
-  renderUsers(filtered);
-  document.getElementById('user-count').textContent =
-    filtered.length === allUsers.length
-      ? `${allUsers.length} users`
-      : `${filtered.length} of ${allUsers.length} users`;
-});
-
-// ── LOGOUT ──────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════
+// LOGOUT
+// ═══════════════════════════════════════════════════════════════
 document.getElementById('login-btn').addEventListener('click', () => netlifyIdentity.open('login'));
 document.getElementById('logout-btn').addEventListener('click', e => { e.preventDefault(); netlifyIdentity.logout(); });
 
-init();
+initAuth();
 </script>
 </body>
 </html>

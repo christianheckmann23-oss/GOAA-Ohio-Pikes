@@ -10,3 +10,9 @@ frontend:
       - '**/*'
   cache:
     paths: []
+  # Rewrite rules: serve /alumni/ and /admin/ from their index.html files
+  customHeaders:
+    - pattern: '**/*'
+      headers:
+        - key: Cache-Control
+          value: 'public, max-age=0, must-revalidate'
