@@ -8,11 +8,5 @@
     "Demonstrated service to the chapter",
     "Personal essay on leadership philosophy"
   ],
-  "recipients": [
-    { "year": "2024", "name": "D. Harrington" },
-    { "year": "2023", "name": "A. Steele" },
-    { "year": "2022", "name": "B. Morrison" },
-    { "year": "2021", "name": "E. Lawson" },
-    { "year": "2020", "name": "P. Okafor" }
-  ]
+  "recipients": []
 }
