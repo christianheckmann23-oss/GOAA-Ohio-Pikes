@@ -7,362 +7,450 @@ backend:
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
+# Show the editorial workflow
+publish_mode: simple
+
+# ─────────────────────────────────────────────────────────────────
+# COLLECTIONS — ordered from most-frequently-edited to least
+# ─────────────────────────────────────────────────────────────────
 collections:
 
-  # ── SITE SETTINGS ──────────────────────────────────────────────
-  - name: "settings"
-    label: "⚙️ Site Settings"
-    files:
-      - name: "general"
-        label: "General Settings"
-        file: "_data/settings.json"
-        fields:
-          - { label: "Site Title", name: "site_title", widget: "string", default: "Gamma Omicron Alumni Association" }
-          - { label: "Tagline", name: "tagline", widget: "string", default: "Once a Pike, always a Pike." }
-          - { label: "Founded Year", name: "founded", widget: "string", default: "1930" }
-          - { label: "Refounded Year", name: "refounded", widget: "string", default: "1987" }
-          - { label: "Total Alumni Count", name: "alumni_count", widget: "string", default: "1,200+" }
-          - { label: "Smythe Trophy Count", name: "smythe_count", widget: "string", default: "7×" }
-          - { label: "Annual Dues Amount", name: "dues_amount", widget: "string", default: "$35" }
-          - { label: "Contact Email", name: "contact_email", widget: "string" }
-          - { label: "PayPal Donate Link", name: "paypal_link", widget: "string", required: false }
-          - { label: "Rush PIKE Button Link", name: "rush_link", widget: "string", required: false, hint: "URL for the Rush PIKE button on the Active Chapter section (e.g. https://instagram.com/pikesohio)" }
-          - { label: "Footer Description", name: "footer_blurb", widget: "text", required: false, hint: "Short blurb shown in the footer below the chapter name" }
+  # ═══════════════════════════════════════════════════════════════
+  # SECTION 1 — HOMEPAGE & LIVE UPDATES
+  # These affect the homepage and are edited most often
+  # ═══════════════════════════════════════════════════════════════
 
-  # ── NEWS POSTS ─────────────────────────────────────────────────
   - name: "news"
-    label: "📰 News Posts"
+    label: "📰 Chapter News"
+    description: "News posts shown on the News page (/news.html) and as a 3-post preview on the homepage. Add newest posts at the top of the list. Each post shows a title, date, category tag, and short excerpt."
     files:
       - name: "all_posts"
         label: "All News Posts"
         file: "_data/news.json"
+        preview_path: /news.html
         fields:
-          - label: "Posts"
+          - label: "News Posts"
             name: "posts"
             widget: "list"
-            summary: "{{fields.title}} — {{fields.date}}"
+            label_singular: "News Post"
+            summary: "{{fields.date}} — {{fields.title}}"
+            minimize_collapsed: true
             fields:
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Date", name: "date", widget: "string", hint: "e.g. March 2025" }
-              - label: "Category"
+              - { label: "Headline", name: "title", widget: "string", hint: "The news headline shown on the card and in the news grid." }
+              - { label: "Date", name: "date", widget: "string", hint: "Display date — e.g. 'March 2025' or 'Spring 2025'" }
+              - label: "Category Tag"
                 name: "category"
                 widget: "select"
-                options: ["Active Chapter", "Alumni Spotlight", "Scholarships", "Events", "In Memoriam", "General"]
-              - { label: "Excerpt (short summary)", name: "excerpt", widget: "text", hint: "2–3 sentences shown on the homepage" }
-              - { label: "Published", name: "published", widget: "boolean", default: true }
+                hint: "Category label shown on the news card badge."
+                options:
+                  - { label: "Active Chapter", value: "Active Chapter" }
+                  - { label: "Alumni Spotlight", value: "Alumni Spotlight" }
+                  - { label: "Scholarships", value: "Scholarships" }
+                  - { label: "Events", value: "Events" }
+                  - { label: "In Memoriam", value: "In Memoriam" }
+                  - { label: "General", value: "General" }
+              - { label: "Excerpt", name: "excerpt", widget: "text", hint: "2–3 sentence summary shown on the news card. Keep it concise — visitors see this before clicking." }
+              - { label: "Visible on Site", name: "published", widget: "boolean", default: true, hint: "Uncheck to hide this post without deleting it." }
 
-  # ── EVENTS ─────────────────────────────────────────────────────
   - name: "events"
-    label: "📅 Events"
+    label: "📅 Events & Calendar"
+    description: "All events that appear on the Full Calendar page (/calendar.html) and as upcoming previews on the homepage. Adding an event here automatically places it on the calendar with a red date marker. Clicking that date on the calendar shows a popup with all the details you enter here."
     files:
       - name: "all_events"
         label: "All Events"
         file: "_data/events.json"
+        preview_path: /calendar.html
         fields:
           - label: "Events"
             name: "events"
             widget: "list"
-            summary: "{{fields.title}} — {{fields.month_short}} {{fields.day}}, {{fields.year}}"
+            label_singular: "Event"
+            summary: "{{fields.month_short}} {{fields.day}}, {{fields.year}} — {{fields.title}}"
+            minimize_collapsed: true
             fields:
-              - { label: "Event Name", name: "title", widget: "string" }
-              - { label: "Display Month (e.g. Sep)", name: "month_short", widget: "string" }
-              - { label: "Display Day (e.g. 27)", name: "day", widget: "string" }
-              - { label: "Display Year", name: "year", widget: "string" }
-              - { label: "Location", name: "location", widget: "string" }
-              - { label: "Time", name: "time", widget: "string", required: false, hint: "e.g. Shotgun Start 9:00 AM" }
-              - { label: "Cost / Notes", name: "notes", widget: "string", required: false, hint: "e.g. $85/player or All Classes Welcome" }
-              - { label: "RSVP Link", name: "rsvp_link", widget: "string", required: false }
-              - { label: "Show on Site", name: "published", widget: "boolean", default: true }
+              - { label: "Event Name", name: "title", widget: "string", hint: "Full event title — e.g. 'Annual GOAA Golf Outing'" }
+              - { label: "Month (3-letter abbreviation)", name: "month_short", widget: "string", hint: "Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, or Dec" }
+              - { label: "Day of Month", name: "day", widget: "string", hint: "Just the number — e.g. 17" }
+              - { label: "Year", name: "year", widget: "string", hint: "4-digit year — e.g. 2026" }
+              - { label: "Location", name: "location", widget: "string", hint: "Full address or venue name — e.g. 'Athens Country Club, Athens OH'" }
+              - { label: "Time", name: "time", widget: "string", required: false, hint: "e.g. 'Shotgun Start 9:00 AM' or '7:00 PM'. Leave blank if no specific time." }
+              - { label: "Notes / Cost", name: "notes", widget: "string", required: false, hint: "Extra info shown in the event popup — e.g. '$85/player' or 'All Classes Welcome'" }
+              - { label: "RSVP Link", name: "rsvp_link", widget: "string", required: false, hint: "URL for the RSVP button on the event — e.g. a Google Form or Eventbrite link. Leave blank for no button." }
+              - { label: "Show on Calendar", name: "published", widget: "boolean", default: true, hint: "Uncheck to hide this event from the calendar without deleting it." }
 
-  # ── SCHOLARSHIPS ───────────────────────────────────────────────
+  # ═══════════════════════════════════════════════════════════════
+  # SECTION 2 — ACTIVE CHAPTER
+  # Content for the Chapter page and composite photo
+  # ═══════════════════════════════════════════════════════════════
+
+  - name: "active_chapter_photo"
+    label: "📸 Chapter Composite Photo"
+    description: "The official chapter composite photo shown on the Active Chapter page (/active-chapter.html). Upload the new photo here each year to update it across the entire site. The photo is displayed in a framed presentation with your caption and year."
+    files:
+      - name: "composite"
+        label: "Upload / Change Composite Photo"
+        file: "_data/active_chapter_photo.json"
+        preview_path: /active-chapter.html
+        fields:
+          - { label: "Composite Photo", name: "photo_url", widget: "image", hint: "Upload the current year's chapter composite photo. Best results with high-resolution JPG or PNG (2500px+ wide)." }
+          - { label: "Year Label", name: "year_label", widget: "string", default: "2025–2026", hint: "Shown above the photo — e.g. '2025–2026'" }
+          - { label: "Caption / Subtitle", name: "caption", widget: "string", default: "Pi Kappa Alpha – Gamma Omicron Chapter · Ohio University", required: false, hint: "Subtitle shown on the page below the year." }
+          - { label: "Photographer Credit", name: "photographer", widget: "string", required: false, hint: "e.g. 'Vantire Imaging' — shown in small text beside the photo." }
+
+  - name: "exec_board"
+    label: "🏛️ Executive Board"
+    description: "The current year's executive board shown on the Chapter page (/chapter.html). Update at the start of each academic year. Names can be linked to email addresses or social profiles."
+    files:
+      - name: "current"
+        label: "Current Executive Board"
+        file: "_data/exec_board.json"
+        preview_path: /chapter.html
+        fields:
+          - { label: "Academic Year", name: "year", widget: "string", hint: "Shown as the board title — e.g. '2025–2026'" }
+          - label: "Officers"
+            name: "officers"
+            widget: "list"
+            label_singular: "Officer"
+            summary: "{{fields.position}} — {{fields.name}}"
+            fields:
+              - { label: "Position / Title", name: "position", widget: "string", hint: "e.g. 'President (SMC)', 'VP Membership', 'Treasurer'" }
+              - { label: "Brother's Name", name: "name", widget: "string" }
+              - { label: "Email Address", name: "email", widget: "string", required: false, hint: "If entered, the name becomes a clickable email link — e.g. jsmith@ohio.edu" }
+              - { label: "Social / Profile Link", name: "link", widget: "string", required: false, hint: "Only used if no email is set — e.g. https://instagram.com/username" }
+
+  - name: "chapter_content"
+    label: "📝 Chapter Page — Text Content"
+    description: "The descriptive text on the Active Chapter page (/chapter.html) — the mission quote, body paragraphs, and Smythe banner text. The executive board is managed separately above."
+    files:
+      - name: "content"
+        label: "Chapter Page Text"
+        file: "_data/chapter.json"
+        preview_path: /chapter.html
+        fields:
+          - { label: "Mission Quote", name: "mission_quote", widget: "text", hint: "Italic quote shown at the top of the chapter section — do NOT include quotation marks, they are added automatically." }
+          - { label: "Body Paragraph 1", name: "paragraph1", widget: "text", required: false }
+          - { label: "Body Paragraph 2", name: "paragraph2", widget: "text", required: false }
+          - { label: "Body Paragraph 3", name: "paragraph3", widget: "text", required: false }
+          - { label: "Smythe Banner Text", name: "smythe_label", widget: "string", default: "Smythe Trophy Recipients — Chapter Excellence Award", hint: "Small label below the Smythe trophy count." }
+          - { label: "Years of Brotherhood (stat)", name: "years_of_brotherhood", widget: "string", default: "96", hint: "The number shown on the homepage hero stats bar." }
+
+  # ═══════════════════════════════════════════════════════════════
+  # SECTION 3 — RECOGNITION
+  # Scholarships and Awards pages
+  # ═══════════════════════════════════════════════════════════════
+
   - name: "scholarships"
     label: "🎓 Scholarships"
+    description: "Content for the two scholarship award cards on the Scholarships page (/scholarships.html). Each scholarship has its own detailed page linked from the card."
     files:
       - name: "sutherin"
         label: "William Sutherin Scholarship"
         file: "_data/scholarship_sutherin.json"
+        preview_path: /scholarships.html
         fields:
-          - { label: "Scholarship Name", name: "name", widget: "string" }
-          - { label: "Honor Line", name: "honor", widget: "string", hint: "e.g. Honoring Brother William Sutherin, Class of 1963" }
-          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Scholarship Name", name: "name", widget: "string", hint: "Full official name shown as the card headline." }
+          - { label: "Honor Line", name: "honor", widget: "string", hint: "Subtitle in gold text — e.g. 'Honoring Brother William Sutherin, Class of 1963'" }
+          - { label: "Description", name: "description", widget: "text", hint: "1–2 paragraph description of the scholarship and its purpose." }
           - label: "Eligibility Criteria"
             name: "criteria"
             widget: "list"
-            field: { label: "Criterion", name: "item", widget: "string" }
+            label_singular: "Criterion"
+            field: { label: "Criterion", name: "item", widget: "string", hint: "One eligibility requirement per item — e.g. 'Minimum 3.0 GPA'" }
           - label: "Recent Recipients"
             name: "recipients"
             widget: "list"
+            label_singular: "Recipient"
             summary: "{{fields.year}} · {{fields.name}}"
             fields:
-              - { label: "Year", name: "year", widget: "string" }
+              - { label: "Year Awarded", name: "year", widget: "string" }
               - { label: "Recipient Name", name: "name", widget: "string" }
       - name: "banfield"
-        label: "Martha Banfield Scholarship"
+        label: "Martha Banfield Memorial Scholarship"
         file: "_data/scholarship_banfield.json"
+        preview_path: /scholarships.html
         fields:
           - { label: "Scholarship Name", name: "name", widget: "string" }
-          - { label: "Honor Line", name: "honor", widget: "string" }
+          - { label: "Honor Line", name: "honor", widget: "string", hint: "Subtitle in gold text — e.g. 'In Memory of Martha Banfield'" }
           - { label: "Description", name: "description", widget: "text" }
           - label: "Eligibility Criteria"
             name: "criteria"
             widget: "list"
+            label_singular: "Criterion"
             field: { label: "Criterion", name: "item", widget: "string" }
           - label: "Recent Recipients"
             name: "recipients"
             widget: "list"
+            label_singular: "Recipient"
             summary: "{{fields.year}} · {{fields.name}}"
             fields:
-              - { label: "Year", name: "year", widget: "string" }
+              - { label: "Year Awarded", name: "year", widget: "string" }
               - { label: "Recipient Name", name: "name", widget: "string" }
 
-  # ── AWARDS ─────────────────────────────────────────────────────
   - name: "awards"
-    label: "🏆 Awards"
+    label: "🏆 Alumni Awards"
+    description: "The awards displayed on the Awards page (/awards.html). Each award appears as a dark card with an icon. Add an Apply Now link if the award accepts nominations via a form or email."
     files:
       - name: "all_awards"
-        label: "All Awards"
+        label: "All Alumni Awards"
         file: "_data/awards.json"
+        preview_path: /awards.html
         fields:
           - label: "Awards"
             name: "awards"
             widget: "list"
+            label_singular: "Award"
             summary: "{{fields.name}}"
             fields:
               - { label: "Award Name", name: "name", widget: "string" }
-              - { label: "Icon (symbol)", name: "icon", widget: "string", default: "✦", hint: "A single character symbol e.g. ✦ ◈ ◆ ★" }
-              - { label: "Description", name: "description", widget: "text" }
-              - { label: "Most Recent Recipient", name: "recent_recipient", widget: "string", required: false }
+              - { label: "Icon Symbol", name: "icon", widget: "string", default: "✦", hint: "A single decorative character shown above the award name — e.g. ✦ ◈ ◆ ★ ◇" }
+              - { label: "Description", name: "description", widget: "text", hint: "1–2 sentences describing this award and who it honors." }
+              - { label: "Most Recent Recipient", name: "recent_recipient", widget: "string", required: false, hint: "Shown in gold text below the description — e.g. 'John Smith, Class of 2019'" }
               - label: "All Past Recipients"
                 name: "recipients"
                 widget: "list"
+                label_singular: "Recipient"
                 required: false
                 summary: "{{fields.year}} · {{fields.name}}"
                 fields:
                   - { label: "Year", name: "year", widget: "string" }
                   - { label: "Name", name: "name", widget: "string" }
-              - { label: "\"Apply Now\" Button Link", name: "apply_link", widget: "string", required: false, hint: "URL for the Apply Now button (e.g. a Google Form, nomination form, or email link like mailto:ohiopikes@gmail.com)" }
-              - { label: "Sort Order", name: "order", widget: "number", default: 1 }
+              - { label: "Apply / Nominate Link", name: "apply_link", widget: "string", required: false, hint: "URL for an 'Apply Now' button — e.g. a Google Form or mailto:ohiopikes@gmail.com. Leave blank for no button." }
+              - { label: "Display Order", name: "order", widget: "number", default: 1, hint: "Lower numbers appear first. Use 1, 2, 3 to control the order of award cards." }
 
-  # ── EXECUTIVE BOARD ────────────────────────────────────────────
-  - name: "exec_board"
-    label: "🏛️ Executive Board"
-    files:
-      - name: "current"
-        label: "Current Executive Board"
-        file: "_data/exec_board.json"
-        fields:
-          - { label: "Academic Year", name: "year", widget: "string", hint: "e.g. 2024–2025" }
-          - label: "Officers"
-            name: "officers"
-            widget: "list"
-            summary: "{{fields.position}}: {{fields.name}}"
-            fields:
-              - { label: "Position", name: "position", widget: "string", hint: "e.g. President (SMC)" }
-              - { label: "Brother's Name", name: "name", widget: "string" }
-              - { label: "Email Address (optional)", name: "email", widget: "string", required: false, hint: "e.g. jsmith@ohio.edu — name will become a clickable mailto link" }
-              - { label: "Profile / Social Link (optional)", name: "link", widget: "string", required: false, hint: "e.g. https://instagram.com/username — used if no email is set" }
+  # ═══════════════════════════════════════════════════════════════
+  # SECTION 4 — ALUMNI NETWORK
+  # Advisory board, about section, missing alumni
+  # ═══════════════════════════════════════════════════════════════
 
-  # ── ADVISORY BOARD ─────────────────────────────────────────────
   - name: "advisory_board"
-    label: "👥 Advisory Board"
+    label: "👥 Advisory Board Members"
+    description: "The alumni who serve on the Advisory Board, shown on the Advisory page (/advisory.html) as portrait cards with initials. Each member shows their name, class year, and optional role."
     files:
       - name: "members"
         label: "Advisory Board Members"
         file: "_data/advisory_board.json"
+        preview_path: /advisory.html
         fields:
           - label: "Members"
             name: "members"
             widget: "list"
+            label_singular: "Member"
             summary: "{{fields.name}} '{{fields.class_year}}"
             fields:
               - { label: "Full Name", name: "name", widget: "string" }
-              - { label: "Class Year", name: "class_year", widget: "string", hint: "e.g. 1989" }
-              - { label: "Role / Title", name: "role", widget: "string", required: false, hint: "e.g. Chair" }
+              - { label: "Class Year", name: "class_year", widget: "string", hint: "4-digit graduation year — e.g. 1989" }
+              - { label: "Role / Title", name: "role", widget: "string", required: false, hint: "Optional — e.g. 'Chair', 'Secretary'. Leave blank for member only." }
 
-  # ── CHAPTER PRESIDENTS ─────────────────────────────────────────
+  - name: "advisory_content"
+    label: "📄 Advisory Page — Text Content"
+    description: "The descriptive paragraph at the top of the Advisory page and the 'Missing Alumni' call-to-action banner at the bottom."
+    files:
+      - name: "content"
+        label: "Advisory Page Text"
+        file: "_data/advisory_content.json"
+        preview_path: /advisory.html
+        fields:
+          - { label: "Page Description", name: "description", widget: "text", hint: "The intro paragraph shown above the advisory board member grid." }
+          - { label: "Missing Alumni — Eyebrow Label", name: "missing_eyebrow", widget: "string", default: "We're Looking For You", hint: "Small gold uppercase text above the 'Missing Alumni' banner title." }
+          - { label: "Missing Alumni — Banner Title", name: "missing_title", widget: "string", default: "Missing Alumni" }
+          - { label: "Missing Alumni — Description", name: "missing_desc", widget: "text", hint: "Supports HTML — e.g. include an email link like: <a href='mailto:you@example.com'>you@example.com</a>" }
+
+  - name: "missing_alumni"
+    label: "🔍 Missing Alumni List"
+    description: "The list of brothers we've lost contact with, shown on /missing-alumni.html. Organized by decade. Add or remove names as contact is made or lost."
+    files:
+      - name: "list"
+        label: "Missing Alumni by Decade"
+        file: "_data/missing_alumni.json"
+        preview_path: /missing-alumni.html
+        fields:
+          - label: "Decades"
+            name: "decades"
+            widget: "list"
+            label_singular: "Decade"
+            summary: "{{fields.decade}}"
+            fields:
+              - { label: "Decade", name: "decade", widget: "string", hint: "e.g. '1960s', '1970s'" }
+              - label: "Names"
+                name: "names"
+                widget: "list"
+                label_singular: "Name"
+                field: { label: "Brother's Name", name: "item", widget: "string" }
+
+  - name: "about"
+    label: "📖 About Page — Content"
+    description: "The text content on the Alumni Association page (/about.html) — the intro paragraphs, pull quote, and the 'What Your Dues Support' card bullets."
+    files:
+      - name: "content"
+        label: "Alumni Association Page Text"
+        file: "_data/about.json"
+        preview_path: /about.html
+        fields:
+          - { label: "Eyebrow Label", name: "eyebrow", widget: "string", default: "Alumni Association", hint: "Small gold text above the section title — e.g. 'Alumni Association'" }
+          - { label: "Title Line 1", name: "title_line1", widget: "string", default: "Gamma Omicron" }
+          - { label: "Title Line 2 (shown in italics)", name: "title_line2", widget: "string", default: "Alumni Association" }
+          - { label: "Paragraph 1", name: "paragraph1", widget: "text", required: false }
+          - { label: "Pull Quote (shown in large italic garnet text)", name: "pull_quote", widget: "text", required: false, hint: "Do NOT include quotation marks — they are added automatically. e.g. Once a Pike, Always a Pike." }
+          - { label: "Paragraph 2", name: "paragraph2", widget: "text", required: false }
+          - { label: "Paragraph 3", name: "paragraph3", widget: "text", required: false }
+          - { label: "Dues Card Title", name: "dues_card_title", widget: "string", default: "What Your Dues Support" }
+          - label: "Dues Card — Bullet Points"
+            name: "dues_card_items"
+            widget: "list"
+            label_singular: "Bullet Point"
+            field: { label: "Bullet Point", name: "item", widget: "string", hint: "One item per bullet — e.g. 'Annual alumni newsletter & communications'" }
+
+  # ═══════════════════════════════════════════════════════════════
+  # SECTION 5 — HISTORY & HERITAGE
+  # Chapter history and presidents list
+  # ═══════════════════════════════════════════════════════════════
+
+  - name: "history"
+    label: "🏛️ Chapter History — Timeline"
+    description: "The timeline and chapter houses shown on the History page (/history.html). The timeline is displayed as a vertical gold-dotted line with milestones. Add or update entries as new historical milestones are documented."
+    files:
+      - name: "content"
+        label: "History Timeline & Chapter Houses"
+        file: "_data/history.json"
+        preview_path: /history.html
+        fields:
+          - { label: "Section Eyebrow Label", name: "eyebrow", widget: "string", default: "Since 1930", hint: "Small gold text above 'Our History' title — e.g. 'Since 1930'" }
+          - label: "Timeline Milestones"
+            name: "timeline"
+            widget: "list"
+            label_singular: "Milestone"
+            summary: "{{fields.year}} — {{fields.title}}"
+            fields:
+              - { label: "Year / Era", name: "year", widget: "string", hint: "e.g. '1930', '1960s', 'Spring 1987'" }
+              - { label: "Milestone Title", name: "title", widget: "string" }
+              - { label: "Details", name: "body", widget: "text", hint: "1–3 sentences describing this milestone." }
+          - label: "Chapter Houses"
+            name: "houses"
+            widget: "list"
+            label_singular: "House"
+            summary: "{{fields.address}} ({{fields.years}})"
+            fields:
+              - { label: "Address", name: "address", widget: "string", hint: "e.g. '12 N College St., Athens OH'" }
+              - { label: "Years Occupied", name: "years", widget: "string", hint: "e.g. '1962–1987'" }
+
   - name: "presidents"
-    label: "📋 Chapter Presidents"
+    label: "📋 Chapter Presidents List"
+    description: "The complete list of chapter presidents from 1930 to present, shown on /presidents.html. The 8 most recent are also previewed on the History page. Add new entries at the bottom; the site displays them sorted by year (newest first)."
     files:
       - name: "all"
         label: "All Chapter Presidents (1930–Present)"
         file: "_data/presidents.json"
+        preview_path: /presidents.html
         fields:
           - label: "Presidents"
             name: "presidents"
             widget: "list"
+            label_singular: "President"
             summary: "{{fields.year}} — {{fields.name}}"
             fields:
-              - { label: "Year", name: "year", widget: "string" }
-              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Year(s) Served", name: "year", widget: "string", hint: "e.g. '2024–2025' or '2025'" }
+              - { label: "Brother's Name", name: "name", widget: "string" }
 
-  # ── MISSING ALUMNI ─────────────────────────────────────────────
-  - name: "missing_alumni"
-    label: "🔍 Missing Alumni"
-    files:
-      - name: "list"
-        label: "Missing Alumni List"
-        file: "_data/missing_alumni.json"
-        fields:
-          - label: "Missing Alumni (by Decade)"
-            name: "decades"
-            widget: "list"
-            summary: "{{fields.decade}}"
-            fields:
-              - { label: "Decade", name: "decade", widget: "string", hint: "e.g. 1960s" }
-              - label: "Names"
-                name: "names"
-                widget: "list"
-                field: { label: "Name", name: "item", widget: "string" }
+  # ═══════════════════════════════════════════════════════════════
+  # SECTION 6 — GIVING & SUPPORT
+  # Donate page content
+  # ═══════════════════════════════════════════════════════════════
 
-  # ── ABOUT SECTION ──────────────────────────────────────────────
-  - name: "about"
-    label: "📖 About Section"
-    files:
-      - name: "content"
-        label: "About Section Text"
-        file: "_data/about.json"
-        fields:
-          - { label: "Eyebrow Label", name: "eyebrow", widget: "string", default: "Alumni Association" }
-          - { label: "Title Line 1", name: "title_line1", widget: "string", default: "Gamma Omicron" }
-          - { label: "Title Line 2 (italic)", name: "title_line2", widget: "string", default: "Alumni Association" }
-          - { label: "Paragraph 1", name: "paragraph1", widget: "text" }
-          - { label: "Pull Quote", name: "pull_quote", widget: "text" }
-          - { label: "Paragraph 2", name: "paragraph2", widget: "text" }
-          - { label: "Paragraph 3", name: "paragraph3", widget: "text" }
-          - { label: "Dues Card Title", name: "dues_card_title", widget: "string", default: "What Your Dues Support" }
-          - label: "Dues Card Bullet Points"
-            name: "dues_card_items"
-            widget: "list"
-            field: { label: "Bullet Point", name: "item", widget: "string" }
-
-  # ── HISTORY SECTION ─────────────────────────────────────────────
-  - name: "history"
-    label: "🏛️ History Section"
-    files:
-      - name: "content"
-        label: "History Timeline & Houses"
-        file: "_data/history.json"
-        fields:
-          - { label: "Section Eyebrow", name: "eyebrow", widget: "string", default: "Since 1921" }
-          - label: "Timeline Items"
-            name: "timeline"
-            widget: "list"
-            summary: "{{fields.year}} — {{fields.title}}"
-            fields:
-              - { label: "Year / Era", name: "year", widget: "string" }
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Body Text", name: "body", widget: "text" }
-          - label: "Chapter Houses"
-            name: "houses"
-            widget: "list"
-            summary: "{{fields.address}} ({{fields.years}})"
-            fields:
-              - { label: "Address", name: "address", widget: "string" }
-              - { label: "Years", name: "years", widget: "string" }
-
-  # ── ACTIVE CHAPTER SECTION ──────────────────────────────────────
-  - name: "chapter_content"
-    label: "🏠 Active Chapter Section"
-    files:
-      - name: "content"
-        label: "Active Chapter Text"
-        file: "_data/chapter.json"
-        fields:
-          - { label: "Mission Quote", name: "mission_quote", widget: "text" }
-          - { label: "Paragraph 1", name: "paragraph1", widget: "text" }
-          - { label: "Paragraph 2", name: "paragraph2", widget: "text" }
-          - { label: "Paragraph 3", name: "paragraph3", widget: "text" }
-          - { label: "Smythe Banner Label", name: "smythe_label", widget: "string", default: "Smythe Trophy Recipients — Chapter Excellence Award" }
-          - { label: "Years of Brotherhood", name: "years_of_brotherhood", widget: "string", default: "94" }
-
-  # ── DONATE SECTION ──────────────────────────────────────────────
   - name: "donate_content"
-    label: "💝 Donate Section"
+    label: "💝 Donate Page — Content"
+    description: "Text and amounts shown on the Donate page (/donate.html). Includes the Historical Society project list, funding status, and Alumni Association donation options."
     files:
       - name: "content"
-        label: "Donate Section Text"
+        label: "Donate Page Text & Amounts"
         file: "_data/donate.json"
+        preview_path: /donate.html
         fields:
-          - { label: "Intro Paragraph", name: "intro_text", widget: "text" }
+          - { label: "Page Intro Paragraph", name: "intro_text", widget: "text", hint: "Opening paragraph shown above both donation cards." }
 
-          - label: "Historical Society Card"
-            name: "hist_title"
-            widget: "string"
-            default: "Preserving Our History"
-          - { label: "Historical Society Body Text", name: "hist_intro", widget: "text" }
-          - { label: "Historical Society Chapter Note (bold line)", name: "hist_note", widget: "string", default: "Gamma Omicron (Ohio) Chapter's individual project total:" }
-          - label: "Historical Society Projects"
+          - label: "─── HISTORICAL SOCIETY CARD ───"
+            name: "hist_section_divider"
+            widget: "hidden"
+            required: false
+          - { label: "Historical Society — Card Title", name: "hist_title", widget: "string", default: "Preserving Our History" }
+          - { label: "Historical Society — Body Text", name: "hist_intro", widget: "text" }
+          - { label: "Historical Society — Chapter Note (bold line)", name: "hist_note", widget: "string", default: "Gamma Omicron (Ohio) Chapter's individual project total:" }
+          - label: "Historical Society — Projects"
             name: "hist_projects"
             widget: "list"
+            label_singular: "Project"
             summary: "{{fields.name}}"
             fields:
               - { label: "Project Name", name: "name", widget: "string" }
-              - { label: "Amount (e.g. $5,500)", name: "amount", widget: "string" }
-              - { label: "Already Funded?", name: "funded", widget: "boolean", default: false }
-          - { label: "Historical Society Total Needed", name: "hist_total", widget: "string", default: "$11,275" }
-          - { label: "Historical Society Donate Link", name: "hist_link", widget: "string", required: false }
+              - { label: "Amount", name: "amount", widget: "string", hint: "e.g. '$5,500'" }
+              - { label: "Already Funded?", name: "funded", widget: "boolean", default: false, hint: "Check this if the project has been fully funded — it will show in green." }
+          - { label: "Historical Society — Total Needed", name: "hist_total", widget: "string", default: "$11,275" }
+          - { label: "Historical Society — Donate Button Link", name: "hist_link", widget: "string", required: false, hint: "URL for the 'Donate to Historical Society' button." }
 
-          - label: "Alumni Association Card"
-            name: "card_desc"
-            widget: "text"
-            hint: "Description text shown above the donation options list"
-          - label: "Donation Options"
+          - { label: "Alumni Association — Card Description", name: "card_desc", widget: "text", hint: "Description paragraph in the Alumni Association donation card." }
+          - label: "Alumni Association — Donation Options"
             name: "options"
             widget: "list"
+            label_singular: "Option"
             summary: "{{fields.name}}"
             fields:
-              - { label: "Option Name", name: "name", widget: "string" }
-              - { label: "Description", name: "desc", widget: "string" }
-              - { label: "Badge / Amount", name: "badge", widget: "string" }
+              - { label: "Option Name", name: "name", widget: "string", hint: "e.g. 'Annual Dues', 'Scholarship Gift'" }
+              - { label: "Description", name: "desc", widget: "string", hint: "Short description shown below the name." }
+              - { label: "Badge / Amount Label", name: "badge", widget: "string", hint: "Gold badge shown on the right — e.g. '$35/year', 'Any Amount'" }
 
-  # ── ADVISORY SECTION TEXT ───────────────────────────────────────
-  - name: "advisory_content"
-    label: "👥 Advisory Section Text"
+  # ═══════════════════════════════════════════════════════════════
+  # SECTION 7 — SITE SETTINGS
+  # Global settings affecting multiple pages
+  # ═══════════════════════════════════════════════════════════════
+
+  - name: "settings"
+    label: "⚙️ Site-Wide Settings"
+    description: "Global settings that affect multiple pages — stat numbers on the homepage hero, tagline, dues amount, donate link, and footer text. Change the 'Years of Brotherhood' stat here or in the Chapter Page content."
     files:
-      - name: "content"
-        label: "Advisory Section Text"
-        file: "_data/advisory_content.json"
+      - name: "general"
+        label: "Global Site Settings"
+        file: "_data/settings.json"
         fields:
-          - { label: "Section Description", name: "description", widget: "text" }
-          - { label: "Missing Alumni Eyebrow", name: "missing_eyebrow", widget: "string", default: "We're Looking For You" }
-          - { label: "Missing Alumni Title", name: "missing_title", widget: "string", default: "Missing Alumni" }
-          - { label: "Missing Alumni Description", name: "missing_desc", widget: "text", hint: "Supports HTML links, e.g. <a href='mailto:you@email.com'>you@email.com</a>" }
+          - { label: "Site Title", name: "site_title", widget: "string", default: "Gamma Omicron Alumni Association", hint: "Used in browser tab titles." }
+          - { label: "Hero Tagline", name: "tagline", widget: "string", default: "Once a Pike, always a Pike.", hint: "Italic subtitle shown in the homepage hero section." }
+          - { label: "Founded Year (hero badge)", name: "founded", widget: "string", default: "1930", hint: "Shows as 'Est. [year]' in the hero badge." }
+          - { label: "Refounded Year (hero badge)", name: "refounded", widget: "string", default: "2019" }
+          - { label: "Total Alumni Count (hero stat)", name: "alumni_count", widget: "string", default: "1,200+", hint: "Large gold number on the homepage hero — e.g. '1,200+'" }
+          - { label: "Smythe Trophy Count (hero stat)", name: "smythe_count", widget: "string", default: "7×", hint: "e.g. '7×' — shown on homepage hero and Chapter page." }
+          - { label: "Annual Dues Amount", name: "dues_amount", widget: "string", default: "$35", hint: "Shown on the 'Pay Annual Dues' button on the About page." }
+          - { label: "Contact Email", name: "contact_email", widget: "string", required: false }
+          - { label: "PayPal / Donate Button Link", name: "paypal_link", widget: "string", required: false, hint: "URL for all 'Donate' and 'Pay Dues' buttons site-wide. Leave blank to use the default PIKE Foundation link." }
+          - { label: "Rush PIKE Button Link", name: "rush_link", widget: "string", required: false, hint: "URL for the 'Rush PIKE' button on the Chapter page — e.g. https://instagram.com/pikesohio" }
+          - { label: "Footer Description Text", name: "footer_blurb", widget: "text", required: false, hint: "Short paragraph shown in the footer under the chapter name." }
 
-  # ── HOUSING CORPORATION ────────────────────────────────────────
+  # ═══════════════════════════════════════════════════════════════
+  # SECTION 8 — LESS FREQUENT EDITS
+  # Housing and business listings
+  # ═══════════════════════════════════════════════════════════════
+
   - name: "housing"
     label: "🏠 Housing Corporation Donors"
+    description: "Donor recognition tiers for the housing corporation. Each giving society level has a name and list of donor names."
     files:
       - name: "donors"
-        label: "Donor Recognition"
+        label: "Housing Corporation Donor Recognition"
         file: "_data/housing_donors.json"
         fields:
           - label: "Giving Societies"
             name: "societies"
             widget: "list"
+            label_singular: "Giving Society"
             summary: "{{fields.level}}"
             fields:
-              - { label: "Level Name", name: "level", widget: "string", hint: "e.g. Garnet and Gold Society" }
+              - { label: "Society Level Name", name: "level", widget: "string", hint: "e.g. 'Garnet & Gold Society', 'Founders Circle'" }
               - label: "Donors"
                 name: "donors"
                 widget: "list"
+                label_singular: "Donor"
                 field: { label: "Donor Name", name: "item", widget: "string" }
 
-  # ── ACTIVE CHAPTER COMPOSITE PHOTO ────────────────────────────
-  - name: "active_chapter_photo"
-    label: "📸 Active Chapter Photo"
-    files:
-      - name: "composite"
-        label: "Chapter Composite Photo"
-        file: "_data/active_chapter_photo.json"
-        fields:
-          - { label: "Composite Photo", name: "photo_url", widget: "image", hint: "Upload the current year's chapter composite photo. Recommended: high-resolution JPG or PNG." }
-          - { label: "Year Label (e.g. 2025–2026)", name: "year_label", widget: "string", default: "2025–2026" }
-          - { label: "Caption / Subtitle", name: "caption", widget: "string", default: "Pi Kappa Alpha – Gamma Omicron Chapter · Ohio University", required: false }
-          - { label: "Photographer Credit", name: "photographer", widget: "string", required: false, hint: "e.g. Vantire Imaging" }
-
-  # ── PIKE BUSINESSES / CAREERS ──────────────────────────────────
   - name: "businesses"
     label: "💼 Pike Businesses & Careers"
+    description: "Alumni-owned businesses and job postings listed in the Pike Businesses section."
     files:
       - name: "listings"
         label: "Business & Job Listings"
@@ -371,16 +459,18 @@ collections:
           - label: "Alumni Businesses"
             name: "businesses"
             widget: "list"
-            summary: "{{fields.business_name}}"
+            label_singular: "Business"
+            summary: "{{fields.business_name}} — {{fields.owner}}"
             fields:
               - { label: "Business Name", name: "business_name", widget: "string" }
-              - { label: "Owner (Brother)", name: "owner", widget: "string" }
+              - { label: "Owner (Brother's Name)", name: "owner", widget: "string" }
               - { label: "Class Year", name: "class_year", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
               - { label: "Website / Contact", name: "contact", widget: "string", required: false }
           - label: "Job Opportunities"
             name: "jobs"
             widget: "list"
+            label_singular: "Job Posting"
             required: false
             summary: "{{fields.title}} at {{fields.company}}"
             fields:
