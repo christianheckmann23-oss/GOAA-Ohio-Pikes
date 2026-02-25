@@ -31,7 +31,11 @@
   .donate-option-name { font-family: 'Playfair Display',serif; font-size: .95rem; font-weight: 600; color: #fff; }
   .donate-option-desc { font-size: .75rem; color: rgba(255,255,255,.5); margin-top: 3px; }
   .donate-option-badge { font-family: 'Josefin Sans',sans-serif; font-size: 9px; letter-spacing: .15em; text-transform: uppercase; background: var(--gold); color: var(--garnet-dark); padding: 4px 10px; font-weight: 700; flex-shrink: 0; }
-  @media (max-width: 900px) { .donate-sections { grid-template-columns: 1fr; } }
+  @media (max-width: 900px) { .donate-sections { grid-template-columns: 1fr; gap: 1.5rem; } }
+  @media (max-width: 600px) {
+    .donate-section-card { padding: 1.75rem; }
+    .donate-option { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+  }
 </style>
 </head>
 <body>

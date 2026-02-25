@@ -84,9 +84,21 @@
   footer { background: var(--dark); border-top: 3px solid var(--garnet); padding: 2.5rem 2rem; text-align: center; }
   footer p { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
 
+  @media (max-width: 768px) {
+    .page-hero { padding: 84px 1.25rem 50px; }
+    .callout { padding: 2rem 1.25rem; }
+    .main-section { padding: 3rem 1.25rem; }
+    .submit-panel { padding: 2.5rem 1.25rem; margin-top: 2.5rem; }
+    nav { padding: 0 1.25rem; }
+  }
   @media (max-width: 640px) {
     .callout-inner { grid-template-columns: 1fr; }
     .decade-grid { grid-template-columns: 1fr; }
+    .nav-title span { display: none; }
+    .page-hero { padding: 76px 1rem 40px; }
+    .main-section { padding: 2.5rem 1rem; }
+    .submit-panel { padding: 2rem 1rem; }
+    .submit-title { font-size: 1.4rem; }
   }
 </style>
 </head>

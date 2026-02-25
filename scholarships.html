@@ -21,7 +21,11 @@
   .scholarship-recipients-title { font-family: 'Josefin Sans',sans-serif; font-size: 9px; letter-spacing: .3em; text-transform: uppercase; color: var(--mid); margin-bottom: .75rem; }
   .scholarship-recipients-list { display: flex; flex-wrap: wrap; gap: 8px; }
   .recipient-chip { background: #fff; color: var(--mid); padding: 3px 10px; font-family: 'Josefin Sans',sans-serif; font-size: 11px; }
-  @media (max-width: 900px) { .scholarship-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 900px) { .scholarship-grid { grid-template-columns: 1fr; gap: 2rem; } }
+  @media (max-width: 600px) {
+    .scholarship-card { padding: 2rem; }
+    .scholarship-name { font-size: 1.3rem; }
+  }
 </style>
 </head>
 <body>

@@ -159,14 +159,36 @@ footer { background: var(--dark); color: rgba(255,255,255,.5); padding: 4rem 0 2
 @media (max-width: 1100px) {
   .nav-links { display: none; }
   .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--garnet-dark); border-top: 1px solid rgba(201,168,76,.3); max-height: calc(100vh - 64px); overflow-y: auto; }
-  .nav-links.open a { height: auto; line-height: 1; padding: 14px 20px; border-bottom: 1px solid rgba(201,168,76,.1); margin-bottom: 0; border-left: none; }
+  .nav-links.open a { height: auto; line-height: 1; padding: 16px 20px; border-bottom: 1px solid rgba(201,168,76,.1); margin-bottom: 0; border-left: none; font-size: 12px; }
   .hamburger { display: flex; }
   .news-grid { grid-template-columns: 1fr 1fr; }
   .footer-inner { grid-template-columns: 1fr 1fr; }
   .event-row { grid-template-columns: 80px 1fr; }
   .event-rsvp { display: none; }
 }
+@media (max-width: 768px) {
+  section { padding: 3.5rem 0; }
+  .section-inner { padding: 0 1.25rem; }
+  .section-header { margin-bottom: 2.5rem; }
+  .page-wrap { padding: 2.5rem 1.25rem 4rem; }
+  .page-header { padding: 80px 1.25rem 2rem; min-height: 25vh; }
+  .news-card { padding: 1.75rem; }
+  .event-row { padding: 1.25rem 1rem; gap: 1rem; }
+  .footer-inner { gap: 2rem; }
+}
 @media (max-width: 600px) {
   .news-grid { grid-template-columns: 1fr; }
-  .footer-inner { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr; gap: 1.75rem; }
+  section { padding: 2.5rem 0; }
+  .section-inner { padding: 0 1rem; }
+  .section-header { margin-bottom: 1.75rem; }
+  .page-wrap { padding: 2rem 1rem 3rem; }
+  .page-header { padding: 72px 1rem 1.75rem; }
+  .event-row { grid-template-columns: 60px 1fr; gap: 0.875rem; padding: 1rem; }
+  .event-day { font-size: 2rem; }
+  .event-info-title { font-size: 1.05rem; }
+  .event-info-meta { font-size: 10px; }
+  .news-card { padding: 1.5rem; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+  .nav-title span { display: none; }
 }
