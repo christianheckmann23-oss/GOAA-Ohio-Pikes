@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Active Chapter – Pi Kappa Alpha Gamma Omicron</title>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --garnet: #8B1A2E;
+    --garnet-dark: #5C0F1C;
+    --garnet-light: #B52340;
+    --gold: #C9A84C;
+    --gold-light: #E8C86A;
+    --gold-pale: #F5E9C8;
+    --cream: #FAF6EE;
+    --dark: #1A1009;
+    --mid: #3D2B1F;
+    --text: #2C1A10;
+    --text-light: #7A5C44;
+    --border: #D4B896;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Libre Baskerville', Georgia, serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--garnet-dark); border-bottom: 3px solid var(--gold); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 64px; }
+  .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-crest { width: 40px; height: 40px; background: var(--gold); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 800; color: var(--garnet-dark); flex-shrink: 0; }
+  .nav-title { font-family: 'Josefin Sans', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.15em; color: var(--gold-light); text-transform: uppercase; line-height: 1.3; }
+  .nav-title span { display: block; font-weight: 300; font-size: 10px; letter-spacing: 0.25em; color: var(--gold); opacity: 0.8; }
+  .nav-back { font-family: 'Josefin Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.7); text-decoration: none; display: flex; align-items: center; gap: 8px; padding: 8px 16px; border: 1px solid rgba(201,168,76,0.3); transition: color 0.2s, border-color 0.2s; }
+  .nav-back:hover { color: var(--gold-light); border-color: var(--gold); }
+  .nav-back::before { content: '←'; font-size: 14px; }
+
+  /* PAGE HEADER */
+  .page-header {
+    min-height: 38vh;
+    background: linear-gradient(180deg, rgba(92,15,28,0.95) 0%, rgba(26,16,9,0.88) 100%),
+                repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(201,168,76,0.03) 40px, rgba(201,168,76,0.03) 41px);
+    background-color: var(--garnet-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 100px 2rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-header::before {
+    content: 'ΠΚΑ';
+    position: absolute;
+    font-family: 'Playfair Display', serif;
+    font-size: 35vw;
+    font-weight: 800;
+    color: rgba(201,168,76,0.04);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  .header-eyebrow {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .header-title em { color: var(--gold); font-style: italic; }
+  .header-sub {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-style: italic;
+    color: rgba(255,255,255,0.6);
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+  .header-rule {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(to right, var(--garnet-light), var(--gold));
+    margin: 1.25rem auto 0;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.7s forwards;
+  }
+
+  /* MAIN CONTENT */
+  .page-content { max-width: 1320px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+
+  /* COMPOSITE SECTION */
+  .composite-section { margin-bottom: 3rem; }
+  .composite-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .composite-year-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .year-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--garnet-dark);
+    line-height: 1;
+  }
+  .year-divider { width: 1px; height: 28px; background: var(--border); }
+  .chapter-subtitle {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    line-height: 1.5;
+  }
+  .composite-photo-credit {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    opacity: 0.7;
+  }
+
+  /* Photo frame */
+  .composite-frame {
+    background: var(--garnet-dark);
+    padding: 16px;
+    box-shadow: 0 20px 80px rgba(92,15,28,0.35), 0 4px 20px rgba(0,0,0,0.2);
+    position: relative;
+  }
+  .composite-frame::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgba(201,168,76,0.3);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .composite-frame::after {
+    content: '';
+    position: absolute;
+    inset: 9px;
+    border: 1px solid rgba(201,168,76,0.15);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .composite-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 85vh;
+    object-fit: contain;
+    background: var(--dark);
+  }
+
+  /* LOADING STATE */
+  .photo-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    background: var(--garnet-dark);
+    color: rgba(255,255,255,0.3);
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+
+  /* DOWNLOAD / ACTIONS */
+  .composite-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .btn-primary { background: var(--gold); color: var(--garnet-dark); padding: 14px 32px; font-family: 'Josefin Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s, transform 0.2s; display: inline-block; }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline { background: transparent; color: var(--garnet-dark); padding: 14px 32px; font-family: 'Josefin Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--border); cursor: pointer; transition: border-color 0.2s, color 0.2s, transform 0.2s; display: inline-block; }
+  .btn-outline:hover { border-color: var(--garnet); color: var(--garnet); transform: translateY(-2px); }
+
+  /* INFO STRIP */
+  .info-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 3rem;
+  }
+  .info-tile {
+    background: var(--garnet-dark);
+    padding: 2rem 2rem;
+    text-align: center;
+  }
+  .info-tile-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .info-tile-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* BACK BANNER */
+  .back-banner {
+    background: linear-gradient(135deg, var(--garnet-dark), var(--garnet));
+    padding: 3rem 2rem;
+    text-align: center;
+    border-top: 3px solid var(--gold);
+  }
+  .back-banner-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  .back-banner-sub {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 1.75rem;
+  }
+
+  /* FOOTER */
+  footer { background: var(--dark); color: rgba(255,255,255,0.5); padding: 3rem 0 2rem; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .footer-brand-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 800; color: var(--gold); margin-bottom: 0.25rem; margin-top: 0.75rem; }
+  .footer-brand-sub { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+  .footer-bottom { max-width: 1200px; margin: 0 auto; padding: 1.5rem 2rem 0; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.25); flex-wrap: wrap; gap: 0.5rem; }
+  .admin-btn { background: transparent; color: rgba(255,255,255,0.25); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: color 0.2s, border-color 0.2s; text-decoration: none; display: inline-block; }
+  .admin-btn:hover { color: var(--gold); border-color: var(--gold); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* MOBILE */
+  @media (max-width: 700px) {
+    .composite-frame { padding: 8px; }
+    .info-strip { grid-template-columns: 1fr; }
+    .composite-meta { flex-direction: column; align-items: flex-start; }
+    .composite-actions { flex-direction: column; }
+    .composite-actions a, .composite-actions button { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-brand">
+    <div class="nav-crest">ΠΚΑ</div>
+    <div class="nav-title">Gamma Omicron <span>Pi Kappa Alpha · Ohio University</span></div>
+  </a>
+  <a href="/#chapter" class="nav-back">Back to Home</a>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="header-eyebrow">Gamma Omicron Chapter · Ohio University</div>
+  <h1 class="header-title">Active <em>Chapter</em></h1>
+  <p class="header-sub" id="header-year-sub">2025–2026 Composite</p>
+  <div class="header-rule"></div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="page-content">
+
+  <div class="composite-section">
+    <div class="composite-meta">
+      <div class="composite-year-badge">
+        <div class="year-label" id="meta-year">2025–2026</div>
+        <div class="year-divider"></div>
+        <div class="chapter-subtitle">Pi Kappa Alpha<br>Gamma Omicron Chapter</div>
+      </div>
+      <div class="composite-photo-credit" id="meta-credit"></div>
+    </div>
+
+    <div class="composite-frame" id="composite-frame">
+      <div class="photo-loading" id="photo-loading">Loading Composite…</div>
+      <img
+        id="composite-img"
+        class="composite-img"
+        src=""
+        alt="Pi Kappa Alpha Gamma Omicron Chapter Composite"
+        style="display:none;"
+        onload="this.style.display='block'; document.getElementById('photo-loading').style.display='none';"
+        onerror="document.getElementById('photo-loading').innerHTML='Photo unavailable';"
+      >
+    </div>
+
+    <div class="composite-actions">
+      <a id="download-btn" href="#" download="chapter-composite.png" class="btn-primary">Download Photo</a>
+      <a href="/#chapter" class="btn-outline">← Back to Chapter Info</a>
+    </div>
+  </div>
+
+  <!-- INFO STRIP -->
+  <div class="info-strip">
+    <div class="info-tile">
+      <div class="info-tile-num" id="strip-alumni">1,200+</div>
+      <div class="info-tile-label">Total Alumni</div>
+    </div>
+    <div class="info-tile">
+      <div class="info-tile-num" id="strip-smythe">7×</div>
+      <div class="info-tile-label">Smythe Trophy</div>
+    </div>
+    <div class="info-tile">
+      <div class="info-tile-num">1930</div>
+      <div class="info-tile-label">Year Founded</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- BACK BANNER -->
+<div class="back-banner">
+  <div class="back-banner-title">Support the Brotherhood</div>
+  <div class="back-banner-sub">Alumni Association · Gamma Omicron Chapter</div>
+  <a href="/#donate" class="btn-primary" style="margin-right:1rem;">Donate</a>
+  <a href="/#about" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.3);">Learn More</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div style="font-size:2rem;color:rgba(255,255,255,0.12);">ΠΚΑ</div>
+      <div class="footer-brand-name">Gamma Omicron</div>
+      <div class="footer-brand-sub">Pi Kappa Alpha · Ohio University</div>
+    </div>
+    <div style="display:flex;gap:3rem;flex-wrap:wrap;">
+      <div>
+        <div style="font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;">Navigate</div>
+        <ul style="list-style:none;">
+          <li style="margin-bottom:0.5rem;"><a href="/" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;">Home</a></li>
+          <li style="margin-bottom:0.5rem;"><a href="/#about" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;">Alumni Association</a></li>
+          <li style="margin-bottom:0.5rem;"><a href="/#events" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;">Events</a></li>
+          <li style="margin-bottom:0.5rem;"><a href="/#scholarships" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;">Scholarships</a></li>
+          <li style="margin-bottom:0.5rem;"><a href="/#donate" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;">Donate</a></li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;">Chapter</div>
+        <ul style="list-style:none;">
+          <li style="margin-bottom:0.5rem;"><a href="/#chapter" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;">Active Chapter</a></li>
+          <li style="margin-bottom:0.5rem;"><a href="/#advisory" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;">Advisory Board</a></li>
+          <li style="margin-bottom:0.5rem;"><a href="/missing-alumni.html" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;">Missing Alumni</a></li>
+          <li style="margin-bottom:0.5rem;"><a href="https://mypike.pikes.org/" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;">myPIKE</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Pi Kappa Alpha &ndash; Gamma Omicron Alumni Association. All rights reserved.</span>
+    <button class="admin-btn" onclick="handleAdminLogin()">Admin</button>
+  </div>
+</footer>
+
+<script>
+async function fetchJSON(path) {
+  try {
+    const r = await fetch(path);
+    if (!r.ok) return null;
+    return await r.json();
+  } catch { return null; }
+}
+
+async function loadPhoto() {
+  const data = await fetchJSON('/_data/active_chapter_photo.json');
+  if (!data || !data.photo_url) {
+    document.getElementById('photo-loading').textContent = 'No composite photo uploaded yet.';
+    return;
+  }
+
+  const img = document.getElementById('composite-img');
+  img.src = data.photo_url;
+  img.alt = `Pi Kappa Alpha Gamma Omicron ${data.year_label || ''} Chapter Composite`;
+
+  const dlBtn = document.getElementById('download-btn');
+  dlBtn.href = data.photo_url;
+  dlBtn.download = `pika-gamma-omicron-composite-${(data.year_label || '').replace('–','-')}.png`;
+
+  if (data.year_label) {
+    document.getElementById('meta-year').textContent = data.year_label;
+    document.getElementById('header-year-sub').textContent = data.year_label + ' Composite';
+  }
+  if (data.photographer) {
+    document.getElementById('meta-credit').textContent = 'Photography: ' + data.photographer;
+  }
+}
+
+async function loadSettings() {
+  const s = await fetchJSON('/_data/settings.json');
+  if (!s) return;
+  if (s.alumni_count) document.getElementById('strip-alumni').textContent = s.alumni_count;
+  if (s.smythe_count) document.getElementById('strip-smythe').textContent = s.smythe_count;
+}
+
+function handleAdminLogin() {
+  if (!window.netlifyIdentity) return;
+  const user = window.netlifyIdentity.currentUser();
+  if (user) {
+    document.location.href = '/admin/';
+  } else {
+    window.netlifyIdentity.open('login');
+    window.netlifyIdentity.once('login', () => { document.location.href = '/admin/'; });
+  }
+}
+
+(async () => {
+  await Promise.all([loadPhoto(), loadSettings()]);
+})();
+</script>
+</body>
+</html>

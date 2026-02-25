@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full Calendar – Pi Kappa Alpha Gamma Omicron</title>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --garnet: #8B1A2E;
+    --garnet-dark: #5C0F1C;
+    --garnet-light: #B52340;
+    --gold: #C9A84C;
+    --gold-light: #E8C86A;
+    --gold-pale: #F5E9C8;
+    --cream: #FAF6EE;
+    --dark: #1A1009;
+    --mid: #3D2B1F;
+    --text: #2C1A10;
+    --text-light: #7A5C44;
+    --border: #D4B896;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Libre Baskerville', Georgia, serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+
+  /* ── NAV ─────────────────────────────────────────────────────── */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--garnet-dark); border-bottom: 3px solid var(--gold); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 64px; }
+  .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-crest { width: 40px; height: 40px; background: var(--gold); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 800; color: var(--garnet-dark); flex-shrink: 0; }
+  .nav-title { font-family: 'Josefin Sans', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.15em; color: var(--gold-light); text-transform: uppercase; line-height: 1.3; }
+  .nav-title span { display: block; font-weight: 300; font-size: 10px; letter-spacing: 0.25em; color: var(--gold); opacity: 0.8; }
+  .nav-back { font-family: 'Josefin Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.7); text-decoration: none; display: flex; align-items: center; gap: 8px; padding: 8px 16px; border: 1px solid rgba(201,168,76,0.3); transition: color 0.2s, border-color 0.2s; white-space: nowrap; }
+  .nav-back:hover { color: var(--gold-light); border-color: var(--gold); }
+  .nav-back::before { content: '←'; font-size: 14px; }
+
+  /* ── PAGE HEADER ─────────────────────────────────────────────── */
+  .page-header { min-height: 28vh; background: linear-gradient(180deg, rgba(92,15,28,0.95) 0%, rgba(26,16,9,0.88) 100%), repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(201,168,76,0.03) 40px, rgba(201,168,76,0.03) 41px); background-color: var(--garnet-dark); display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; padding: 90px 2rem 2.5rem; position: relative; overflow: hidden; }
+  .page-header::before { content: 'ΠΚΑ'; position: absolute; font-family: 'Playfair Display', serif; font-size: 35vw; font-weight: 800; color: rgba(201,168,76,0.04); top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
+  .header-eyebrow { font-family: 'Josefin Sans', sans-serif; font-size: 11px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+  .header-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.8rem); font-weight: 800; color: #fff; line-height: 1; letter-spacing: -0.02em; margin-bottom: 0.5rem; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
+  .header-title em { color: var(--gold); font-style: italic; }
+  .header-rule { width: 60px; height: 2px; background: linear-gradient(to right, var(--garnet-light), var(--gold)); margin: 1rem auto 0; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; }
+
+  /* ── MAIN LAYOUT ─────────────────────────────────────────────── */
+  .page-wrap { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem 6rem; }
+
+  /* ── CALENDAR HEADER (month nav) ─────────────────────────────── */
+  .cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; gap: 1rem; flex-wrap: wrap; }
+  .cal-month-title { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; color: var(--garnet-dark); }
+  .cal-month-title span { color: var(--text-light); font-weight: 400; font-size: 0.7em; margin-left: 8px; }
+  .cal-nav { display: flex; gap: 2px; }
+  .cal-nav-btn { background: var(--garnet-dark); color: var(--gold); border: none; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; transition: background 0.2s; font-family: serif; }
+  .cal-nav-btn:hover { background: var(--garnet); }
+  .cal-today-btn { background: transparent; border: 1px solid var(--border); color: var(--text-light); padding: 0 18px; height: 42px; font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; transition: border-color 0.2s, color 0.2s; }
+  .cal-today-btn:hover { border-color: var(--garnet); color: var(--garnet); }
+
+  /* Legend */
+  .cal-legend { display: flex; align-items: center; gap: 8px; font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); }
+  .legend-dot { width: 14px; height: 14px; background: var(--garnet); flex-shrink: 0; }
+
+  /* ── GRID ────────────────────────────────────────────────────── */
+  .cal-grid { border: 1px solid var(--border); background: var(--border); display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; }
+
+  /* Day-of-week header row */
+  .cal-dow { background: var(--garnet-dark); padding: 10px 0; text-align: center; font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+
+  /* Individual day cells */
+  .cal-day { background: #fff; min-height: 90px; padding: 8px 10px; position: relative; transition: background 0.15s; }
+  .cal-day.other-month { background: #f7f3ed; }
+  .cal-day.other-month .day-num { color: var(--border); }
+  .cal-day.today { background: var(--gold-pale); }
+  .cal-day.today .day-num { color: var(--garnet-dark); font-weight: 800; }
+  .cal-day.has-event { cursor: pointer; }
+  .cal-day.has-event:hover { background: #fdf5e6; }
+  .cal-day.has-event.today:hover { background: #f5e5b0; }
+
+  .day-num { font-family: 'Josefin Sans', sans-serif; font-size: 13px; font-weight: 600; color: var(--text-light); display: block; margin-bottom: 6px; }
+
+  /* Event pill/badge on calendar cell */
+  .cal-event-badge {
+    display: block;
+    background: var(--garnet);
+    color: #fff;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 3px 7px 3px 6px;
+    margin-bottom: 3px;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-left: 3px solid var(--gold);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .cal-event-badge:hover { background: var(--garnet-light); }
+
+  /* ── EVENT SIDEBAR / UPCOMING STRIP ─────────────────────────── */
+  .upcoming-strip { margin-top: 3rem; }
+  .strip-title { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 12px; }
+  .strip-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .events-list { display: flex; flex-direction: column; gap: 1px; }
+  .event-row { background: #fff; display: grid; grid-template-columns: 100px 1fr auto; align-items: center; gap: 2rem; padding: 2rem 2.5rem; border-left: 4px solid transparent; transition: border-color 0.2s, box-shadow 0.2s; cursor: pointer; }
+  .event-row:hover { border-left-color: var(--garnet); box-shadow: 4px 0 20px rgba(139,26,46,0.08); }
+  .event-date-block { text-align: center; }
+  .event-month { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--garnet); font-weight: 700; }
+  .event-day { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 800; color: var(--garnet-dark); line-height: 1; }
+  .event-year-label { font-family: 'Josefin Sans', sans-serif; font-size: 10px; color: var(--text-light); }
+  .event-info-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 600; color: var(--dark); margin-bottom: 0.35rem; }
+  .event-info-meta { font-family: 'Josefin Sans', sans-serif; font-size: 11px; letter-spacing: 0.1em; color: var(--text-light); }
+  .event-info-meta span::before { content: ' · '; }
+  .event-info-meta span:first-child::before { content: ''; }
+  .event-rsvp { background: var(--garnet); color: #fff; padding: 10px 22px; font-family: 'Josefin Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border: none; cursor: pointer; white-space: nowrap; text-decoration: none; display: inline-block; transition: background 0.2s; }
+  .event-rsvp:hover { background: var(--garnet-light); }
+  .no-events { text-align: center; padding: 3rem; background: #fff; font-family: 'Josefin Sans', sans-serif; font-size: 11px; letter-spacing: 0.2em; color: var(--text-light); text-transform: uppercase; }
+
+  /* ── MODAL ───────────────────────────────────────────────────── */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(26,16,9,0.75);
+    z-index: 2000;
+    display: flex; align-items: center; justify-content: center;
+    padding: 1.5rem;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.2s;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal-box {
+    background: var(--cream);
+    max-width: 560px;
+    width: 100%;
+    border-top: 5px solid var(--garnet);
+    box-shadow: 0 24px 80px rgba(26,16,9,0.4);
+    transform: translateY(20px);
+    transition: transform 0.25s;
+    position: relative;
+  }
+  .modal-overlay.open .modal-box { transform: translateY(0); }
+  .modal-header { background: var(--garnet-dark); padding: 1.75rem 2rem 1.5rem; position: relative; }
+  .modal-eyebrow { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+  .modal-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 800; color: #fff; line-height: 1.2; margin-bottom: 0; }
+  .modal-close {
+    position: absolute; top: 1rem; right: 1rem;
+    background: rgba(255,255,255,0.1); border: none; color: rgba(255,255,255,0.7);
+    width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+    font-size: 18px; cursor: pointer; transition: background 0.2s, color 0.2s;
+    font-family: sans-serif; line-height: 1;
+  }
+  .modal-close:hover { background: rgba(255,255,255,0.2); color: #fff; }
+  .modal-date-bar { background: var(--garnet); display: flex; align-items: center; gap: 1.5rem; padding: 1rem 2rem; }
+  .modal-date-big { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 800; color: #fff; line-height: 1; }
+  .modal-date-info { display: flex; flex-direction: column; gap: 2px; }
+  .modal-month-year { font-family: 'Josefin Sans', sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.8); }
+  .modal-day-name { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); }
+  .modal-body { padding: 1.75rem 2rem 2rem; }
+  .modal-detail-row { display: flex; align-items: flex-start; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid var(--border); }
+  .modal-detail-row:last-child { border-bottom: none; }
+  .modal-detail-icon { width: 28px; height: 28px; background: var(--gold-pale); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--garnet-dark); font-size: 13px; margin-top: 1px; }
+  .modal-detail-label { font-family: 'Josefin Sans', sans-serif; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); margin-bottom: 2px; }
+  .modal-detail-value { font-family: 'Libre Baskerville', serif; font-size: 0.9rem; color: var(--text); line-height: 1.5; }
+  .modal-footer { padding: 0 2rem 2rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .btn-primary { background: var(--gold); color: var(--garnet-dark); padding: 12px 28px; font-family: 'Josefin Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s; display: inline-block; }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-ghost { background: transparent; color: var(--text-light); padding: 12px 28px; font-family: 'Josefin Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--border); cursor: pointer; transition: border-color 0.2s, color 0.2s; display: inline-block; }
+  .btn-ghost:hover { border-color: var(--garnet); color: var(--garnet); }
+
+  /* Multiple events in one day modal */
+  .multi-event-list { display: flex; flex-direction: column; gap: 2px; }
+  .multi-event-item { background: #fff; padding: 1rem 1.25rem; border-left: 4px solid var(--garnet); cursor: pointer; transition: background 0.15s; }
+  .multi-event-item:hover { background: var(--gold-pale); }
+  .multi-event-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600; color: var(--garnet-dark); margin-bottom: 0.25rem; }
+  .multi-event-meta { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.1em; color: var(--text-light); }
+
+  /* ── FOOTER ──────────────────────────────────────────────────── */
+  footer { background: var(--dark); color: rgba(255,255,255,0.5); padding: 3rem 0 2rem; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .footer-brand-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 800; color: var(--gold); margin-bottom: 0.25rem; margin-top: 0.75rem; }
+  .footer-brand-sub { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+  .footer-bottom { max-width: 1200px; margin: 0 auto; padding: 1.5rem 2rem 0; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.25); flex-wrap: wrap; gap: 0.5rem; }
+  .admin-btn { background: transparent; color: rgba(255,255,255,0.25); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: color 0.2s, border-color 0.2s; text-decoration: none; display: inline-block; }
+  .admin-btn:hover { color: var(--gold); border-color: var(--gold); }
+
+  /* ── ANIMATIONS ──────────────────────────────────────────────── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ── MOBILE ──────────────────────────────────────────────────── */
+  @media (max-width: 700px) {
+    .cal-day { min-height: 60px; padding: 5px 6px; }
+    .cal-event-badge { font-size: 9px; padding: 2px 4px; }
+    .event-row { grid-template-columns: 70px 1fr; gap: 1rem; padding: 1.25rem 1rem; }
+    .event-rsvp { display: none; }
+    .modal-box { max-height: 90vh; overflow-y: auto; }
+    .modal-date-big { font-size: 2rem; }
+    .footer-inner { flex-direction: column; }
+    .cal-header { flex-direction: column; align-items: flex-start; }
+  }
+  @media (max-width: 480px) {
+    .cal-dow { font-size: 9px; padding: 8px 0; letter-spacing: 0.05em; }
+    .day-num { font-size: 11px; }
+    .cal-event-badge { display: none; }
+    .cal-day.has-event::after { content: ''; display: block; width: 8px; height: 8px; background: var(--garnet); border-radius: 0; margin-top: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-brand">
+    <div class="nav-crest">ΠΚΑ</div>
+    <div class="nav-title">Gamma Omicron <span>Pi Kappa Alpha · Ohio University</span></div>
+  </a>
+  <a href="/#events" class="nav-back">Back to Home</a>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="header-eyebrow">Gamma Omicron Alumni Association</div>
+  <h1 class="header-title">Events <em>Calendar</em></h1>
+  <div class="header-rule"></div>
+</div>
+
+<!-- MAIN -->
+<div class="page-wrap">
+
+  <!-- Calendar nav bar -->
+  <div class="cal-header">
+    <div>
+      <div class="cal-month-title" id="cal-month-title">Loading…</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+      <div class="cal-legend">
+        <div class="legend-dot"></div>
+        <span>Event</span>
+      </div>
+      <button class="cal-today-btn" onclick="goToToday()">Today</button>
+      <div class="cal-nav">
+        <button class="cal-nav-btn" onclick="changeMonth(-1)" title="Previous month">&#8249;</button>
+        <button class="cal-nav-btn" onclick="changeMonth(1)" title="Next month">&#8250;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calendar grid -->
+  <div class="cal-grid" id="cal-grid">
+    <!-- Day-of-week headers -->
+    <div class="cal-dow">Sun</div>
+    <div class="cal-dow">Mon</div>
+    <div class="cal-dow">Tue</div>
+    <div class="cal-dow">Wed</div>
+    <div class="cal-dow">Thu</div>
+    <div class="cal-dow">Fri</div>
+    <div class="cal-dow">Sat</div>
+    <!-- Days injected by JS -->
+  </div>
+
+  <!-- Upcoming events list -->
+  <div class="upcoming-strip">
+    <div class="strip-title">All Events This Month & Upcoming</div>
+    <div class="events-list" id="upcoming-list">
+      <div class="no-events">Loading events…</div>
+    </div>
+  </div>
+
+</div><!-- /page-wrap -->
+
+<!-- EVENT MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
+  <div class="modal-box" id="modal-box">
+    <div class="modal-header">
+      <div class="modal-eyebrow" id="modal-eyebrow">GOAA Event</div>
+      <div class="modal-title" id="modal-title"></div>
+      <button class="modal-close" onclick="closeModal()" title="Close">&times;</button>
+    </div>
+    <div class="modal-date-bar">
+      <div class="modal-date-big" id="modal-date-big"></div>
+      <div class="modal-date-info">
+        <div class="modal-month-year" id="modal-month-year"></div>
+        <div class="modal-day-name" id="modal-day-name"></div>
+      </div>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-footer" id="modal-footer"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div style="font-size:2rem;color:rgba(255,255,255,0.12);">ΠΚΑ</div>
+      <div class="footer-brand-name">Gamma Omicron</div>
+      <div class="footer-brand-sub">Pi Kappa Alpha · Ohio University</div>
+    </div>
+    <div style="display:flex;gap:3rem;flex-wrap:wrap;">
+      <div>
+        <div style="font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;">Navigate</div>
+        <ul style="list-style:none;">
+          <li style="margin-bottom:0.5rem;"><a href="/" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;">Home</a></li>
+          <li style="margin-bottom:0.5rem;"><a href="/#about" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;">Alumni Association</a></li>
+          <li style="margin-bottom:0.5rem;"><a href="/#events" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;">Upcoming Events</a></li>
+          <li style="margin-bottom:0.5rem;"><a href="/#scholarships" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;">Scholarships</a></li>
+          <li style="margin-bottom:0.5rem;"><a href="/#donate" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;">Donate</a></li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;">Chapter</div>
+        <ul style="list-style:none;">
+          <li style="margin-bottom:0.5rem;"><a href="/active-chapter.html" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;">Active Chapter</a></li>
+          <li style="margin-bottom:0.5rem;"><a href="/#advisory" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;">Advisory Board</a></li>
+          <li style="margin-bottom:0.5rem;"><a href="/missing-alumni.html" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;">Missing Alumni</a></li>
+          <li style="margin-bottom:0.5rem;"><a href="https://mypike.pikes.org/" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;">myPIKE</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Pi Kappa Alpha &ndash; Gamma Omicron Alumni Association. All rights reserved.</span>
+    <button class="admin-btn" onclick="handleAdminLogin()">Admin</button>
+  </div>
+</footer>
+
+<script>
+// ── DATA ─────────────────────────────────────────────────────────
+const MONTH_NAMES   = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const MONTH_SHORT   = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const DAY_NAMES     = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const MONTH_MAP     = { Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11 };
+
+let allEvents  = [];
+let currentYear, currentMonth; // 0-based month
+
+// ── FETCH ─────────────────────────────────────────────────────────
+async function fetchJSON(path) {
+  try {
+    const r = await fetch(path);
+    if (!r.ok) return null;
+    return await r.json();
+  } catch { return null; }
+}
+
+// ── PARSE EVENT DATE ──────────────────────────────────────────────
+// Returns a Date object (midnight local) from event fields
+function parseEventDate(ev) {
+  const mo = MONTH_MAP[ev.month_short];
+  const d  = parseInt(ev.day, 10);
+  const y  = parseInt(ev.year, 10);
+  if (isNaN(mo) || isNaN(d) || isNaN(y)) return null;
+  return new Date(y, mo, d);
+}
+
+// ── BUILD CALENDAR ────────────────────────────────────────────────
+function buildCalendar(year, month) {
+  currentYear  = year;
+  currentMonth = month;
+
+  document.getElementById('cal-month-title').innerHTML =
+    MONTH_NAMES[month] + ' <span>' + year + '</span>';
+
+  // Remove old day cells (keep the 7 DOW headers = first 7 children)
+  const grid = document.getElementById('cal-grid');
+  while (grid.children.length > 7) grid.removeChild(grid.lastChild);
+
+  const today     = new Date();
+  const firstDay  = new Date(year, month, 1).getDay(); // 0=Sun
+  const daysInMo  = new Date(year, month + 1, 0).getDate();
+  const prevDays  = new Date(year, month, 0).getDate();
+
+  // Build a lookup: "YYYY-MM-DD" → [events]
+  const evMap = {};
+  allEvents.forEach(ev => {
+    const dt = parseEventDate(ev);
+    if (!dt) return;
+    const key = dt.getFullYear() + '-' + String(dt.getMonth()).padStart(2,'0') + '-' + String(dt.getDate()).padStart(2,'0');
+    if (!evMap[key]) evMap[key] = [];
+    evMap[key].push(ev);
+  });
+
+  // Total cells to fill (always show 6 rows so the grid doesn't jump)
+  const totalCells = 42;
+
+  for (let i = 0; i < totalCells; i++) {
+    const cell = document.createElement('div');
+    cell.className = 'cal-day';
+
+    let cellDate, isOther = false;
+    if (i < firstDay) {
+      // Previous month
+      cellDate = new Date(year, month - 1, prevDays - firstDay + 1 + i);
+      isOther  = true;
+    } else if (i >= firstDay + daysInMo) {
+      // Next month
+      cellDate = new Date(year, month + 1, i - firstDay - daysInMo + 1);
+      isOther  = true;
+    } else {
+      cellDate = new Date(year, month, i - firstDay + 1);
+    }
+
+    if (isOther) cell.classList.add('other-month');
+
+    const isToday = (
+      cellDate.getFullYear() === today.getFullYear() &&
+      cellDate.getMonth()    === today.getMonth()    &&
+      cellDate.getDate()     === today.getDate()
+    );
+    if (isToday) cell.classList.add('today');
+
+    const key = cellDate.getFullYear() + '-' + String(cellDate.getMonth()).padStart(2,'0') + '-' + String(cellDate.getDate()).padStart(2,'0');
+    const dayEvents = evMap[key] || [];
+
+    const numSpan = document.createElement('span');
+    numSpan.className = 'day-num';
+    numSpan.textContent = cellDate.getDate();
+    cell.appendChild(numSpan);
+
+    if (dayEvents.length > 0) {
+      cell.classList.add('has-event');
+      dayEvents.forEach(ev => {
+        const badge = document.createElement('span');
+        badge.className = 'cal-event-badge';
+        badge.textContent = ev.title;
+        badge.addEventListener('click', (e) => {
+          e.stopPropagation();
+          openModal(dayEvents, cellDate);
+        });
+        cell.appendChild(badge);
+      });
+      cell.addEventListener('click', () => openModal(dayEvents, cellDate));
+    }
+
+    grid.appendChild(cell);
+  }
+
+  buildUpcomingList(year, month);
+}
+
+// ── UPCOMING LIST (current month onward) ─────────────────────────
+function buildUpcomingList(year, month) {
+  const container = document.getElementById('upcoming-list');
+
+  // Show events from this displayed month forward, sorted ascending
+  const cutoff = new Date(year, month, 1);
+  const sorted = allEvents
+    .map(ev => ({ ev, dt: parseEventDate(ev) }))
+    .filter(({ dt }) => dt && dt >= cutoff)
+    .sort((a, b) => a.dt - b.dt);
+
+  if (!sorted.length) {
+    container.innerHTML = '<div class="no-events">No upcoming events scheduled.</div>';
+    return;
+  }
+
+  container.innerHTML = sorted.map(({ ev, dt }) => `
+    <div class="event-row" onclick="openModal([${JSON.stringify(ev).replace(/"/g,'&quot;')}], new Date(${dt.getFullYear()},${dt.getMonth()},${dt.getDate()}))">
+      <div class="event-date-block">
+        <div class="event-month">${ev.month_short}</div>
+        <div class="event-day">${ev.day}</div>
+        <div class="event-year-label">${ev.year}</div>
+      </div>
+      <div class="event-info">
+        <div class="event-info-title">${ev.title}</div>
+        <div class="event-info-meta">
+          <span>${ev.location || ''}</span>
+          ${ev.time  ? `<span>${ev.time}</span>`  : ''}
+          ${ev.notes ? `<span>${ev.notes}</span>` : ''}
+        </div>
+      </div>
+      ${ev.rsvp_link ? `<a href="${ev.rsvp_link}" class="event-rsvp" onclick="event.stopPropagation()">RSVP Now</a>` : ''}
+    </div>`).join('');
+}
+
+// ── MONTH NAVIGATION ──────────────────────────────────────────────
+function changeMonth(delta) {
+  let m = currentMonth + delta;
+  let y = currentYear;
+  if (m > 11) { m = 0;  y++; }
+  if (m < 0)  { m = 11; y--; }
+  buildCalendar(y, m);
+}
+
+function goToToday() {
+  const now = new Date();
+  buildCalendar(now.getFullYear(), now.getMonth());
+}
+
+// ── MODAL ─────────────────────────────────────────────────────────
+function openModal(events, date) {
+  const overlay = document.getElementById('modal-overlay');
+
+  // If multiple events on the same date, build a selection view first
+  if (events.length > 1) {
+    document.getElementById('modal-eyebrow').textContent = MONTH_NAMES[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
+    document.getElementById('modal-title').textContent   = events.length + ' Events This Day';
+    document.getElementById('modal-date-big').textContent   = date.getDate();
+    document.getElementById('modal-month-year').textContent = MONTH_NAMES[date.getMonth()] + ' ' + date.getFullYear();
+    document.getElementById('modal-day-name').textContent   = DAY_NAMES[date.getDay()];
+
+    document.getElementById('modal-body').innerHTML = `
+      <p style="font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-light);margin-bottom:1rem;">Select an event to view details</p>
+      <div class="multi-event-list">
+        ${events.map((ev, i) => `
+          <div class="multi-event-item" onclick="showSingleEvent(${i}, ${JSON.stringify(events).replace(/"/g,'&quot;')}, new Date(${date.getFullYear()},${date.getMonth()},${date.getDate()}))">
+            <div class="multi-event-title">${ev.title}</div>
+            <div class="multi-event-meta">${ev.time || ''}${ev.time && ev.location ? ' · ' : ''}${ev.location || ''}</div>
+          </div>`).join('')}
+      </div>`;
+    document.getElementById('modal-footer').innerHTML = `<button class="btn-ghost" onclick="closeModal()">Close</button>`;
+  } else {
+    fillModalSingle(events[0], date);
+  }
+
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function showSingleEvent(idx, events, date) {
+  fillModalSingle(events[idx], date);
+}
+
+function fillModalSingle(ev, date) {
+  document.getElementById('modal-eyebrow').textContent    = 'GOAA Event';
+  document.getElementById('modal-title').textContent      = ev.title;
+  document.getElementById('modal-date-big').textContent   = ev.day;
+  document.getElementById('modal-month-year').textContent = MONTH_NAMES[MONTH_MAP[ev.month_short]] + ' ' + ev.year;
+  document.getElementById('modal-day-name').textContent   = DAY_NAMES[date.getDay()];
+
+  let bodyHTML = '';
+  if (ev.location) {
+    bodyHTML += `<div class="modal-detail-row">
+      <div class="modal-detail-icon">📍</div>
+      <div><div class="modal-detail-label">Location</div><div class="modal-detail-value">${ev.location}</div></div>
+    </div>`;
+  }
+  if (ev.time) {
+    bodyHTML += `<div class="modal-detail-row">
+      <div class="modal-detail-icon">🕐</div>
+      <div><div class="modal-detail-label">Time</div><div class="modal-detail-value">${ev.time}</div></div>
+    </div>`;
+  }
+  if (ev.notes) {
+    bodyHTML += `<div class="modal-detail-row">
+      <div class="modal-detail-icon">📝</div>
+      <div><div class="modal-detail-label">Notes</div><div class="modal-detail-value">${ev.notes}</div></div>
+    </div>`;
+  }
+  if (!bodyHTML) {
+    bodyHTML = '<p style="color:var(--text-light);font-size:0.9rem;">No additional details available.</p>';
+  }
+  document.getElementById('modal-body').innerHTML = bodyHTML;
+
+  let footerHTML = '';
+  if (ev.rsvp_link) {
+    footerHTML += `<a href="${ev.rsvp_link}" target="_blank" rel="noopener noreferrer" class="btn-primary">RSVP Now</a>`;
+  }
+  footerHTML += `<button class="btn-ghost" onclick="closeModal()">Close</button>`;
+  document.getElementById('modal-footer').innerHTML = footerHTML;
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+
+// Close on Escape key
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ── ADMIN ─────────────────────────────────────────────────────────
+function handleAdminLogin() {
+  if (!window.netlifyIdentity) return;
+  const user = window.netlifyIdentity.currentUser();
+  if (user) {
+    document.location.href = '/admin/';
+  } else {
+    window.netlifyIdentity.open('login');
+    window.netlifyIdentity.once('login', () => { document.location.href = '/admin/'; });
+  }
+}
+
+// ── INIT ──────────────────────────────────────────────────────────
+(async () => {
+  const data = await fetchJSON('/_data/events.json');
+  allEvents  = (data && data.events)
+    ? data.events.filter(e => e.published !== false)
+    : [];
+
+  // Start on current month (or jump to first event month if no events this month)
+  const now = new Date();
+  buildCalendar(now.getFullYear(), now.getMonth());
+})();
+</script>
+</body>
+</html>

@@ -347,6 +347,19 @@ collections:
                 widget: "list"
                 field: { label: "Donor Name", name: "item", widget: "string" }
 
+  # ── ACTIVE CHAPTER COMPOSITE PHOTO ────────────────────────────
+  - name: "active_chapter_photo"
+    label: "📸 Active Chapter Photo"
+    files:
+      - name: "composite"
+        label: "Chapter Composite Photo"
+        file: "_data/active_chapter_photo.json"
+        fields:
+          - { label: "Composite Photo", name: "photo_url", widget: "image", hint: "Upload the current year's chapter composite photo. Recommended: high-resolution JPG or PNG." }
+          - { label: "Year Label (e.g. 2025–2026)", name: "year_label", widget: "string", default: "2025–2026" }
+          - { label: "Caption / Subtitle", name: "caption", widget: "string", default: "Pi Kappa Alpha – Gamma Omicron Chapter · Ohio University", required: false }
+          - { label: "Photographer Credit", name: "photographer", widget: "string", required: false, hint: "e.g. Vantire Imaging" }
+
   # ── PIKE BUSINESSES / CAREERS ──────────────────────────────────
   - name: "businesses"
     label: "💼 Pike Businesses & Careers"
