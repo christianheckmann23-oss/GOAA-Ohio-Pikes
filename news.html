@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter News – Pi Kappa Alpha Gamma Omicron</title>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<link rel="stylesheet" href="/site.css">
+<style>
+  .news-full-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+  .news-filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
+  .filter-btn { background: transparent; border: 1px solid var(--border); color: var(--text-light); padding: 7px 16px; font-family: 'Josefin Sans',sans-serif; font-size: 10px; letter-spacing: .15em; text-transform: uppercase; cursor: pointer; transition: all .2s; }
+  .filter-btn:hover, .filter-btn.active { background: var(--garnet-dark); color: var(--gold); border-color: var(--garnet-dark); }
+  @media (max-width: 900px) { .news-full-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .news-full-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav id="main-nav">
+  <a href="/" class="nav-brand">
+    <div class="nav-crest">ΠΚΑ</div>
+    <div class="nav-title">Gamma Omicron <span>Pi Kappa Alpha · Ohio University</span></div>
+  </a>
+  <div class="hamburger" onclick="document.getElementById('nav-links').classList.toggle('open')"><span></span><span></span><span></span></div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/about.html">Association</a></li>
+    <li><a href="/news.html">News</a></li>
+    <li><a href="/calendar.html">Events</a></li>
+    <li><a href="/history.html">History</a></li>
+    <li><a href="/scholarships.html">Scholarships</a></li>
+    <li><a href="/awards.html">Awards</a></li>
+    <li><a href="/chapter.html">Chapter</a></li>
+    <li><a href="/donate.html">Donate</a></li>
+    <li><a href="/advisory.html">Advisory</a></li>
+    <li><a href="https://mypike.pikes.org/" class="nav-login" target="_blank" rel="noopener noreferrer">myPIKE</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="header-eyebrow">Gamma Omicron Alumni Association</div>
+  <h1 class="header-title">Chapter <em>News</em></h1>
+  <p class="header-sub">Updates from the brotherhood</p>
+  <div class="header-rule"></div>
+</div>
+
+<section style="background:#F2EBE0;">
+  <div class="section-inner">
+    <div class="news-filter-bar" id="filter-bar"></div>
+    <div class="news-full-grid" id="news-grid"><div class="loading">Loading news…</div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div><div style="font-size:2.5rem;color:rgba(255,255,255,.15);">ΠΚΑ</div><div class="footer-brand-name">Gamma Omicron</div><div class="footer-brand-sub">Pi Kappa Alpha · Ohio University</div></div>
+    <div><div class="footer-col-title">Navigate</div><ul class="footer-links"><li><a href="/about.html">Association</a></li><li><a href="/news.html">News</a></li><li><a href="/calendar.html">Events</a></li><li><a href="/history.html">History</a></li><li><a href="/scholarships.html">Scholarships</a></li><li><a href="/awards.html">Awards</a></li></ul></div>
+    <div><div class="footer-col-title">Chapter</div><ul class="footer-links"><li><a href="/chapter.html">Active Chapter</a></li><li><a href="/active-chapter.html">Composite Photo</a></li><li><a href="/advisory.html">Advisory Board</a></li><li><a href="/missing-alumni.html">Missing Alumni</a></li></ul></div>
+    <div><div class="footer-col-title">Give</div><ul class="footer-links"><li><a href="/donate.html">Donate</a></li><li><a href="https://fdog23.funraise.org/team/gamma-omicron-ohio" target="_blank" rel="noopener noreferrer">Historical Society</a></li><li><a href="https://mypike.pikes.org/" target="_blank" rel="noopener noreferrer">myPIKE</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Pi Kappa Alpha &ndash; Gamma Omicron Alumni Association. All rights reserved.</span>
+    <button class="admin-btn" onclick="handleAdminLogin()">Admin</button>
+  </div>
+</footer>
+
+<script src="/site.js"></script>
+<script>
+const DEMO_NEWS = [
+  { date:'March 2025', title:'Active Chapter Wins OU Entrepreneurship Challenge', excerpt:'Brothers from the active chapter took first place in the annual OU entrepreneurship competition, showcasing a sustainability-focused startup concept.', category:'Active Chapter', published:true },
+  { date:'January 2025', title:'2025 Scholarship Recipients Announced', excerpt:'The GOAA is proud to announce this year\'s recipients of the William Sutherin and Martha Banfield Memorial Scholarships.', category:'Scholarships', published:true },
+  { date:'November 2024', title:'Brother Michael Hess \'92 Named to OU Board of Trustees', excerpt:'Alumni are proud to share that Brother Michael Hess has been appointed to the Ohio University Board of Trustees.', category:'Alumni Spotlight', published:true },
+  { date:'October 2024', title:'Annual Golf Outing Raises Record $8,400 for Scholarship Fund', excerpt:'The 2024 GOAA Golf Outing at Athens Country Club brought together 72 alumni and raised a record amount for the scholarship endowment.', category:'Events', published:true },
+  { date:'August 2024', title:'Active Chapter Earns GPA Award from National Headquarters', excerpt:'Gamma Omicron was recognized by Pi Kappa Alpha International for its chapter GPA, ranking in the top 10% of all chapters nationally.', category:'Active Chapter', published:true },
+  { date:'May 2024', title:'In Memoriam: Brother Dave Ritchey \'68', excerpt:'It is with heavy hearts that we share the passing of Brother Dave Ritchey, Class of 1968, for whom our alumni service award is named.', category:'In Memoriam', published:true },
+];
+
+const CATEGORIES = ['All','Active Chapter','Alumni Spotlight','Scholarships','Events','In Memoriam','General'];
+let allPosts = [];
+let activeFilter = 'All';
+
+function renderFilterBar() {
+  const bar = document.getElementById('filter-bar');
+  bar.innerHTML = CATEGORIES.map(c => `
+    <button class="filter-btn${c === activeFilter ? ' active' : ''}" onclick="setFilter('${c}')">${c}</button>
+  `).join('');
+}
+
+function setFilter(cat) {
+  activeFilter = cat;
+  renderFilterBar();
+  renderNews();
+}
+
+function renderNews() {
+  const grid = document.getElementById('news-grid');
+  const filtered = activeFilter === 'All' ? allPosts : allPosts.filter(p => p.category === activeFilter);
+  if (!filtered.length) { grid.innerHTML = '<div class="loading">No posts in this category.</div>'; return; }
+  grid.innerHTML = filtered.map(n => `
+    <div class="news-card reveal">
+      <div class="news-card-date">${n.date}</div>
+      <h3 class="news-card-title">${n.title}</h3>
+      <p class="news-card-excerpt">${n.excerpt}</p>
+      <span class="news-card-tag">${n.category}</span>
+    </div>`).join('');
+  grid.querySelectorAll('.reveal').forEach(el => {
+    new IntersectionObserver(([e]) => { if (e.isIntersecting) el.classList.add('visible'); }, {threshold:.08}).observe(el);
+  });
+}
+
+async function loadNews() {
+  const data = await fetchJSON('/_data/news.json');
+  allPosts = (data && data.posts && data.posts.length) ? data.posts.filter(p => p.published !== false) : DEMO_NEWS;
+  renderFilterBar();
+  renderNews();
+}
+
+loadNews();
+</script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter History – Pi Kappa Alpha Gamma Omicron</title>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<link rel="stylesheet" href="/site.css">
+<style>
+  #history-main { background: var(--garnet-dark); color: #fff; }
+  .history-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+  .timeline { position: relative; padding-left: 3rem; }
+  .timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom,var(--gold),rgba(201,168,76,.1)); }
+  .timeline-item { position: relative; margin-bottom: 3rem; }
+  .timeline-dot { position: absolute; left: -2.65rem; top: 6px; width: 12px; height: 12px; background: var(--gold); border: 3px solid var(--garnet-dark); border-radius: 50%; }
+  .timeline-year { font-family: 'Josefin Sans',sans-serif; font-size: 11px; letter-spacing: .25em; text-transform: uppercase; color: var(--gold); margin-bottom: .5rem; }
+  .timeline-title { font-family: 'Playfair Display',serif; font-size: 1.3rem; font-weight: 600; color: #fff; margin-bottom: .5rem; }
+  .timeline-body { font-size: .9rem; line-height: 1.8; color: rgba(255,255,255,.6); }
+  .history-table { background: rgba(255,255,255,.05); border: 1px solid rgba(201,168,76,.2); padding: 2rem; margin-bottom: 2rem; }
+  .history-table-title { font-family: 'Josefin Sans',sans-serif; font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  .house-row { display: flex; justify-content: space-between; align-items: baseline; padding: .75rem 0; border-bottom: 1px solid rgba(201,168,76,.1); font-size: .9rem; color: rgba(255,255,255,.75); }
+  .house-row:last-child { border-bottom: none; }
+  .house-addr { font-style: italic; }
+  .house-years { font-family: 'Josefin Sans',sans-serif; font-size: 10px; color: var(--gold); letter-spacing: .1em; }
+  @media (max-width: 900px) { .history-grid { grid-template-columns: 1fr; gap: 3rem; } }
+</style>
+</head>
+<body>
+<nav id="main-nav">
+  <a href="/" class="nav-brand">
+    <div class="nav-crest">ΠΚΑ</div>
+    <div class="nav-title">Gamma Omicron <span>Pi Kappa Alpha · Ohio University</span></div>
+  </a>
+  <div class="hamburger" onclick="document.getElementById('nav-links').classList.toggle('open')"><span></span><span></span><span></span></div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/about.html">Association</a></li>
+    <li><a href="/news.html">News</a></li>
+    <li><a href="/calendar.html">Events</a></li>
+    <li><a href="/history.html">History</a></li>
+    <li><a href="/scholarships.html">Scholarships</a></li>
+    <li><a href="/awards.html">Awards</a></li>
+    <li><a href="/chapter.html">Chapter</a></li>
+    <li><a href="/donate.html">Donate</a></li>
+    <li><a href="/advisory.html">Advisory</a></li>
+    <li><a href="https://mypike.pikes.org/" class="nav-login" target="_blank" rel="noopener noreferrer">myPIKE</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="header-eyebrow" id="history-eyebrow">Since 1930</div>
+  <h1 class="header-title">Our <em>History</em></h1>
+  <p class="header-sub">96 years of brotherhood at Ohio University</p>
+  <div class="header-rule"></div>
+</div>
+
+<section id="history-main">
+  <div class="section-inner">
+    <div class="history-grid">
+      <div class="timeline reveal" id="history-timeline"><div class="loading" style="color:rgba(255,255,255,.4);">Loading…</div></div>
+      <div>
+        <div class="history-table reveal">
+          <div class="history-table-title">Chapter Houses</div>
+          <div id="history-houses"><div class="loading" style="color:rgba(255,255,255,.4);">Loading…</div></div>
+        </div>
+        <div class="history-table reveal">
+          <div class="history-table-title">Recent Chapter Presidents</div>
+          <div id="presidents-list"><div class="loading" style="color:rgba(255,255,255,.4);">Loading…</div></div>
+          <div style="text-align:center;margin-top:1.25rem;">
+            <a href="/presidents.html" class="btn-outline-light" style="font-size:10px;padding:10px 20px;">Full Presidents List (1930–Present)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div><div style="font-size:2.5rem;color:rgba(255,255,255,.15);">ΠΚΑ</div><div class="footer-brand-name">Gamma Omicron</div><div class="footer-brand-sub">Pi Kappa Alpha · Ohio University</div></div>
+    <div><div class="footer-col-title">Navigate</div><ul class="footer-links"><li><a href="/about.html">Association</a></li><li><a href="/news.html">News</a></li><li><a href="/calendar.html">Events</a></li><li><a href="/history.html">History</a></li><li><a href="/scholarships.html">Scholarships</a></li><li><a href="/awards.html">Awards</a></li></ul></div>
+    <div><div class="footer-col-title">Chapter</div><ul class="footer-links"><li><a href="/chapter.html">Active Chapter</a></li><li><a href="/active-chapter.html">Composite Photo</a></li><li><a href="/advisory.html">Advisory Board</a></li><li><a href="/missing-alumni.html">Missing Alumni</a></li></ul></div>
+    <div><div class="footer-col-title">Give</div><ul class="footer-links"><li><a href="/donate.html">Donate</a></li><li><a href="https://fdog23.funraise.org/team/gamma-omicron-ohio" target="_blank" rel="noopener noreferrer">Historical Society</a></li><li><a href="https://mypike.pikes.org/" target="_blank" rel="noopener noreferrer">myPIKE</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Pi Kappa Alpha &ndash; Gamma Omicron Alumni Association. All rights reserved.</span>
+    <button class="admin-btn" onclick="handleAdminLogin()">Admin</button>
+  </div>
+</footer>
+
+<script src="/site.js"></script>
+<script>
+async function loadHistory() {
+  const d = await fetchJSON('/_data/history.json');
+  if (d) {
+    if (d.eyebrow) document.getElementById('history-eyebrow').textContent = d.eyebrow;
+    if (d.timeline && d.timeline.length) {
+      document.getElementById('history-timeline').innerHTML = d.timeline.map(item => `
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">${item.year}</div>
+          <h3 class="timeline-title">${item.title}</h3>
+          <p class="timeline-body">${item.body}</p>
+        </div>`).join('');
+    }
+    if (d.houses && d.houses.length) {
+      document.getElementById('history-houses').innerHTML = d.houses.map(h => `
+        <div class="house-row"><span class="house-addr">${h.address}</span><span class="house-years">${h.years}</span></div>`).join('');
+    }
+  }
+  const p = await fetchJSON('/_data/presidents.json');
+  if (p && p.presidents && p.presidents.length) {
+    const withDates = p.presidents.filter(x => x.year);
+    document.getElementById('presidents-list').innerHTML = withDates.slice(0,8).map(x => `
+      <div class="house-row"><span>${x.name}</span><span class="house-years">${x.year}</span></div>`).join('');
+  }
+  document.querySelectorAll('.reveal').forEach(el => {
+    new IntersectionObserver(([e]) => { if (e.isIntersecting) el.classList.add('visible'); }, {threshold:.08}).observe(el);
+  });
+}
+loadHistory();
+</script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scholarships – Pi Kappa Alpha Gamma Omicron</title>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<link rel="stylesheet" href="/site.css">
+<style>
+  .scholarship-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .scholarship-card { background: #fff; padding: 3rem; border-top: 4px solid var(--garnet); position: relative; }
+  .scholarship-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right,var(--gold),transparent); }
+  .scholarship-name { font-family: 'Playfair Display',serif; font-size: 1.5rem; font-weight: 800; color: var(--garnet-dark); line-height: 1.2; margin-bottom: .5rem; }
+  .scholarship-honor { font-family: 'Josefin Sans',sans-serif; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  .scholarship-body { font-size: .9rem; line-height: 1.8; color: var(--text-light); margin-bottom: 1.5rem; }
+  .scholarship-criteria { list-style: none; margin-bottom: 2rem; }
+  .scholarship-criteria li { font-size: .875rem; line-height: 1.6; color: var(--mid); padding: .5rem 0; border-bottom: 1px solid var(--border); display: flex; gap: 10px; }
+  .scholarship-criteria li:last-child { border-bottom: none; }
+  .scholarship-criteria li::before { content: '—'; color: var(--gold); flex-shrink: 0; }
+  .scholarship-recipients { background: var(--gold-pale); padding: 1.25rem 1.5rem; margin-top: 1.5rem; }
+  .scholarship-recipients-title { font-family: 'Josefin Sans',sans-serif; font-size: 9px; letter-spacing: .3em; text-transform: uppercase; color: var(--mid); margin-bottom: .75rem; }
+  .scholarship-recipients-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .recipient-chip { background: #fff; color: var(--mid); padding: 3px 10px; font-family: 'Josefin Sans',sans-serif; font-size: 11px; }
+  @media (max-width: 900px) { .scholarship-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav id="main-nav">
+  <a href="/" class="nav-brand">
+    <div class="nav-crest">ΠΚΑ</div>
+    <div class="nav-title">Gamma Omicron <span>Pi Kappa Alpha · Ohio University</span></div>
+  </a>
+  <div class="hamburger" onclick="document.getElementById('nav-links').classList.toggle('open')"><span></span><span></span><span></span></div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/about.html">Association</a></li>
+    <li><a href="/news.html">News</a></li>
+    <li><a href="/calendar.html">Events</a></li>
+    <li><a href="/history.html">History</a></li>
+    <li><a href="/scholarships.html">Scholarships</a></li>
+    <li><a href="/awards.html">Awards</a></li>
+    <li><a href="/chapter.html">Chapter</a></li>
+    <li><a href="/donate.html">Donate</a></li>
+    <li><a href="/advisory.html">Advisory</a></li>
+    <li><a href="https://mypike.pikes.org/" class="nav-login" target="_blank" rel="noopener noreferrer">myPIKE</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="header-eyebrow">Academic Excellence</div>
+  <h1 class="header-title">Our <em>Scholarships</em></h1>
+  <p class="header-sub">Honoring brothers who led the way in scholarship</p>
+  <div class="header-rule"></div>
+</div>
+
+<section style="background:#F2EBE0;">
+  <div class="section-inner">
+    <div class="scholarship-grid" id="scholarships-grid"><div class="loading">Loading scholarships…</div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div><div style="font-size:2.5rem;color:rgba(255,255,255,.15);">ΠΚΑ</div><div class="footer-brand-name">Gamma Omicron</div><div class="footer-brand-sub">Pi Kappa Alpha · Ohio University</div></div>
+    <div><div class="footer-col-title">Navigate</div><ul class="footer-links"><li><a href="/about.html">Association</a></li><li><a href="/news.html">News</a></li><li><a href="/calendar.html">Events</a></li><li><a href="/history.html">History</a></li><li><a href="/scholarships.html">Scholarships</a></li><li><a href="/awards.html">Awards</a></li></ul></div>
+    <div><div class="footer-col-title">Chapter</div><ul class="footer-links"><li><a href="/chapter.html">Active Chapter</a></li><li><a href="/active-chapter.html">Composite Photo</a></li><li><a href="/advisory.html">Advisory Board</a></li><li><a href="/missing-alumni.html">Missing Alumni</a></li></ul></div>
+    <div><div class="footer-col-title">Give</div><ul class="footer-links"><li><a href="/donate.html">Donate</a></li><li><a href="https://fdog23.funraise.org/team/gamma-omicron-ohio" target="_blank" rel="noopener noreferrer">Historical Society</a></li><li><a href="https://mypike.pikes.org/" target="_blank" rel="noopener noreferrer">myPIKE</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Pi Kappa Alpha &ndash; Gamma Omicron Alumni Association. All rights reserved.</span>
+    <button class="admin-btn" onclick="handleAdminLogin()">Admin</button>
+  </div>
+</footer>
+
+<script src="/site.js"></script>
+<script>
+function renderScholarship(s, pageUrl) {
+  if (!s) return '';
+  return `<div class="scholarship-card reveal">
+    <div class="scholarship-name">${s.name}</div>
+    <div class="scholarship-honor">${s.honor || ''}</div>
+    <p class="scholarship-body">${s.description || ''}</p>
+    <ul class="scholarship-criteria">${(s.criteria||[]).map(c=>`<li>${c}</li>`).join('')}</ul>
+    ${s.recipients && s.recipients.length ? `
+      <div class="scholarship-recipients">
+        <div class="scholarship-recipients-title">Recent Recipients</div>
+        <div class="scholarship-recipients-list">${s.recipients.slice(0,3).map(r=>`<span class="recipient-chip">${r.year} · ${r.name}</span>`).join('')}</div>
+      </div>` : ''}
+    <div style="margin-top:1.5rem;"><a href="${pageUrl}" class="btn-primary">View All Recipients</a></div>
+  </div>`;
+}
+
+async function loadScholarships() {
+  const grid = document.getElementById('scholarships-grid');
+  const [s1, s2] = await Promise.all([fetchJSON('/_data/scholarship_sutherin.json'), fetchJSON('/_data/scholarship_banfield.json')]);
+  grid.innerHTML = renderScholarship(s1, '/scholarship-sutherin.html') + renderScholarship(s2, '/scholarship-banfield.html');
+  grid.querySelectorAll('.reveal').forEach(el => {
+    new IntersectionObserver(([e]) => { if (e.isIntersecting) el.classList.add('visible'); }, {threshold:.08}).observe(el);
+  });
+}
+loadScholarships();
+</script>
+</body>
+</html>

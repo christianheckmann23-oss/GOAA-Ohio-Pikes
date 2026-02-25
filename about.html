@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alumni Association – Pi Kappa Alpha Gamma Omicron</title>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<link rel="stylesheet" href="/site.css">
+<style>
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .about-text p { font-size: 1.05rem; line-height: 1.9; color: var(--mid); margin-bottom: 1.25rem; }
+  .about-pull { font-family: 'Playfair Display',serif; font-size: 1.6rem; font-style: italic; color: var(--garnet); border-left: 4px solid var(--gold); padding-left: 1.5rem; margin: 2rem 0; line-height: 1.4; }
+  .about-card { background: var(--garnet-dark); color: #fff; padding: 3rem; position: relative; overflow: hidden; }
+  .about-card::before { content: ''; position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(circle at top right,rgba(201,168,76,.15),transparent 70%); }
+  .about-card-title { font-family: 'Josefin Sans',sans-serif; font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; }
+  .about-card-items { list-style: none; }
+  .about-card-items li { padding: 1rem 0; border-bottom: 1px solid rgba(201,168,76,.15); font-size: .95rem; display: flex; align-items: flex-start; gap: 12px; line-height: 1.6; }
+  .about-card-items li:last-child { border-bottom: none; }
+  .about-card-items li::before { content: '◆'; color: var(--gold); font-size: 8px; margin-top: 6px; flex-shrink: 0; }
+  @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav id="main-nav">
+  <a href="/" class="nav-brand">
+    <div class="nav-crest">ΠΚΑ</div>
+    <div class="nav-title">Gamma Omicron <span>Pi Kappa Alpha · Ohio University</span></div>
+  </a>
+  <div class="hamburger" onclick="document.getElementById('nav-links').classList.toggle('open')"><span></span><span></span><span></span></div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/about.html">Association</a></li>
+    <li><a href="/news.html">News</a></li>
+    <li><a href="/calendar.html">Events</a></li>
+    <li><a href="/history.html">History</a></li>
+    <li><a href="/scholarships.html">Scholarships</a></li>
+    <li><a href="/awards.html">Awards</a></li>
+    <li><a href="/chapter.html">Chapter</a></li>
+    <li><a href="/donate.html">Donate</a></li>
+    <li><a href="/advisory.html">Advisory</a></li>
+    <li><a href="https://mypike.pikes.org/" class="nav-login" target="_blank" rel="noopener noreferrer">myPIKE</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="header-eyebrow">Pi Kappa Alpha · Ohio University</div>
+  <h1 class="header-title">Alumni <em>Association</em></h1>
+  <div class="header-rule"></div>
+</div>
+
+<section style="background:var(--cream);">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text reveal" id="about-text">
+        <p>The Gamma Omicron Alumni Association connects the brotherhood across all generations — from our founding class of 1930 through today's active chapter at Ohio University.</p>
+        <div class="about-pull">"Once a Pike, Always a Pike."</div>
+        <p>Your membership in GOAA keeps the chapter resourced, recognized, and rooted in the traditions that make Gamma Omicron one of the most storied chapters in Pi Kappa Alpha.</p>
+        <div style="margin-top:2rem;"><a href="/donate.html" class="btn-primary">Donate to GOAA</a></div>
+      </div>
+      <div class="reveal">
+        <div class="about-card">
+          <div class="about-card-title" id="dues-card-title">What Your Dues Support</div>
+          <ul class="about-card-items" id="dues-card-items">
+            <li>Annual alumni newsletter & communications</li>
+            <li>Homecoming & golf outing events</li>
+            <li>Sutherin & Banfield scholarship endowments</li>
+            <li>Active chapter programming support</li>
+            <li>Chapter house maintenance fund</li>
+          </ul>
+          <div style="margin-top:2rem;"><a id="about-dues-btn" href="https://pikes.org/foundation/guide-to-giving/" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size:11px;">Pay $35 Annual Dues</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div style="font-size:2.5rem;color:rgba(255,255,255,.15);">ΠΚΑ</div>
+      <div class="footer-brand-name">Gamma Omicron</div>
+      <div class="footer-brand-sub">Pi Kappa Alpha · Ohio University</div>
+    </div>
+    <div><div class="footer-col-title">Navigate</div><ul class="footer-links"><li><a href="/about.html">Association</a></li><li><a href="/news.html">News</a></li><li><a href="/calendar.html">Events</a></li><li><a href="/history.html">History</a></li><li><a href="/scholarships.html">Scholarships</a></li><li><a href="/awards.html">Awards</a></li></ul></div>
+    <div><div class="footer-col-title">Chapter</div><ul class="footer-links"><li><a href="/chapter.html">Active Chapter</a></li><li><a href="/active-chapter.html">Composite Photo</a></li><li><a href="/advisory.html">Advisory Board</a></li><li><a href="/missing-alumni.html">Missing Alumni</a></li></ul></div>
+    <div><div class="footer-col-title">Give</div><ul class="footer-links"><li><a href="/donate.html">Donate</a></li><li><a href="https://fdog23.funraise.org/team/gamma-omicron-ohio" target="_blank" rel="noopener noreferrer">Historical Society</a></li><li><a href="https://mypike.pikes.org/" target="_blank" rel="noopener noreferrer">myPIKE</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Pi Kappa Alpha &ndash; Gamma Omicron Alumni Association. All rights reserved.</span>
+    <button class="admin-btn" onclick="handleAdminLogin()">Admin</button>
+  </div>
+</footer>
+
+<script src="/site.js"></script>
+<script>
+async function loadAbout() {
+  const s = await fetchJSON('/_data/settings.json');
+  if (s) {
+    if (s.dues_amount) { const b = document.getElementById('about-dues-btn'); if(b) b.textContent = 'Pay ' + s.dues_amount + ' Annual Dues'; }
+    if (s.paypal_link && s.paypal_link !== 'TBD') { const b = document.getElementById('about-dues-btn'); if(b) b.href = s.paypal_link; }
+  }
+  const d = await fetchJSON('/_data/about.json');
+  if (!d) return;
+  const donateUrl = (s && s.paypal_link && s.paypal_link !== 'TBD') ? s.paypal_link : 'https://pikes.org/foundation/guide-to-giving/';
+  if (d.paragraph1 || d.pull_quote || d.paragraph2 || d.paragraph3) {
+    document.getElementById('about-text').innerHTML = `
+      ${d.paragraph1 ? `<p>${d.paragraph1}</p>` : ''}
+      ${d.pull_quote ? `<div class="about-pull">"${d.pull_quote}"</div>` : ''}
+      ${d.paragraph2 ? `<p>${d.paragraph2}</p>` : ''}
+      ${d.paragraph3 ? `<p>${d.paragraph3}</p>` : ''}
+      <div style="margin-top:2rem;"><a href="${donateUrl}" target="_blank" rel="noopener noreferrer" class="btn-primary">Donate to GOAA</a></div>`;
+  }
+  if (d.dues_card_title) document.getElementById('dues-card-title').textContent = d.dues_card_title;
+  if (d.dues_card_items && d.dues_card_items.length) document.getElementById('dues-card-items').innerHTML = d.dues_card_items.map(i=>`<li>${i}</li>`).join('');
+}
+loadAbout();
+</script>
+</body>
+</html>

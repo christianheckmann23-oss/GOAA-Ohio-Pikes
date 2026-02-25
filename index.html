@@ -5,254 +5,48 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pi Kappa Alpha – Gamma Omicron Alumni Association</title>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
 <style>
-  :root {
-    --garnet: #8B1A2E;
-    --garnet-dark: #5C0F1C;
-    --garnet-light: #B52340;
-    --gold: #C9A84C;
-    --gold-light: #E8C86A;
-    --gold-pale: #F5E9C8;
-    --cream: #FAF6EE;
-    --dark: #1A1009;
-    --mid: #3D2B1F;
-    --text: #2C1A10;
-    --text-light: #7A5C44;
-    --border: #D4B896;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Libre Baskerville', Georgia, serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
-
-  /* NAV */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--garnet-dark); border-bottom: 3px solid var(--gold); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 64px; }
-  .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-  .nav-crest { width: 40px; height: 40px; background: var(--gold); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 800; color: var(--garnet-dark); flex-shrink: 0; }
-  .nav-title { font-family: 'Josefin Sans', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.15em; color: var(--gold-light); text-transform: uppercase; line-height: 1.3; }
-  .nav-title span { display: block; font-weight: 300; font-size: 10px; letter-spacing: 0.25em; color: var(--gold); opacity: 0.8; }
-  .nav-links { display: flex; gap: 0; list-style: none; align-items: center; }
-  .nav-links a { display: block; padding: 0 13px; height: 64px; line-height: 64px; font-family: 'Josefin Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.75); text-decoration: none; transition: color 0.2s, background 0.2s; border-bottom: 3px solid transparent; margin-bottom: -3px; }
-  .nav-links a:hover, .nav-links a.active { color: var(--gold-light); background: rgba(201,168,76,0.08); border-bottom-color: var(--gold); }
-  .nav-login { background: var(--gold) !important; color: var(--garnet-dark) !important; padding: 8px 18px !important; height: auto !important; line-height: 1 !important; border-radius: 2px; margin-left: 8px; font-weight: 700 !important; margin-bottom: 0 !important; border-bottom: none !important; }
-  .nav-login:hover { background: var(--gold-light) !important; }
-  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
-  .hamburger span { display: block; width: 24px; height: 2px; background: var(--gold); }
-
-  /* HERO */
-  #home { min-height: 100vh; background: linear-gradient(180deg, rgba(92,15,28,0.92) 0%, rgba(26,16,9,0.85) 100%), repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(201,168,76,0.03) 40px, rgba(201,168,76,0.03) 41px); background-color: var(--garnet-dark); display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; padding: 100px 2rem 4rem; position: relative; overflow: hidden; }
-  #home::before { content: 'ΠΚΑ'; position: absolute; font-family: 'Playfair Display', serif; font-size: 40vw; font-weight: 800; color: rgba(201,168,76,0.04); top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
-  .hero-badge { font-family: 'Josefin Sans', sans-serif; font-size: 11px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
-  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 7rem); font-weight: 800; color: #fff; line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 1rem; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
+  /* ── HERO ─────────────────────────────────────────────────────── */
+  #home { min-height: 100vh; background: linear-gradient(180deg,rgba(92,15,28,.92) 0%,rgba(26,16,9,.85) 100%), repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(201,168,76,.03) 40px,rgba(201,168,76,.03) 41px); background-color: var(--garnet-dark); display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; padding: 100px 2rem 4rem; position: relative; overflow: hidden; }
+  #home::before { content: 'ΠΚΑ'; position: absolute; font-family: 'Playfair Display',serif; font-size: 40vw; font-weight: 800; color: rgba(201,168,76,.04); top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; }
+  .hero-badge { font-family: 'Josefin Sans',sans-serif; font-size: 11px; letter-spacing: .35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; opacity: 0; animation: fadeUp .8s .2s forwards; }
+  .hero-title { font-family: 'Playfair Display',serif; font-size: clamp(3rem,8vw,7rem); font-weight: 800; color: #fff; line-height: .95; letter-spacing: -.02em; margin-bottom: 1rem; opacity: 0; animation: fadeUp .8s .4s forwards; }
   .hero-title em { color: var(--gold); font-style: italic; }
-  .hero-sub { font-family: 'Playfair Display', serif; font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-style: italic; color: rgba(255,255,255,0.65); margin-bottom: 2.5rem; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; }
-  .hero-stats { display: flex; gap: 3rem; margin-bottom: 3rem; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
+  .hero-sub { font-family: 'Playfair Display',serif; font-size: clamp(1.1rem,2.5vw,1.5rem); font-style: italic; color: rgba(255,255,255,.65); margin-bottom: 2.5rem; opacity: 0; animation: fadeUp .8s .6s forwards; }
+  .hero-stats { display: flex; gap: 3rem; margin-bottom: 3rem; opacity: 0; animation: fadeUp .8s .8s forwards; }
   .hero-stat { text-align: center; }
-  .hero-stat-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 800; color: var(--gold); line-height: 1; }
-  .hero-stat-label { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 4px; }
-  .hero-divider { width: 1px; background: rgba(201,168,76,0.3); height: 50px; align-self: center; }
-  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; opacity: 0; animation: fadeUp 0.8s 1s forwards; }
+  .hero-stat-num { font-family: 'Playfair Display',serif; font-size: 2.5rem; font-weight: 800; color: var(--gold); line-height: 1; }
+  .hero-stat-label { font-family: 'Josefin Sans',sans-serif; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-top: 4px; }
+  .hero-divider { width: 1px; background: rgba(201,168,76,.3); height: 50px; align-self: center; }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; opacity: 0; animation: fadeUp .8s 1s forwards; }
   .scroll-hint { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; animation: fadeIn 1s 1.5s forwards; }
-  .scroll-hint span { font-family: 'Josefin Sans', sans-serif; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
-  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(201,168,76,0.6), transparent); animation: scrollPulse 2s infinite; }
+  .scroll-hint span { font-family: 'Josefin Sans',sans-serif; font-size: 9px; letter-spacing: .3em; text-transform: uppercase; color: rgba(255,255,255,.4); }
+  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom,rgba(201,168,76,.6),transparent); animation: scrollPulse 2s infinite; }
 
-  /* BUTTONS */
-  .btn-primary { background: var(--gold); color: var(--garnet-dark); padding: 14px 32px; font-family: 'Josefin Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s, transform 0.2s; display: inline-block; }
-  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
-  .btn-outline { background: transparent; color: var(--garnet-dark); padding: 14px 32px; font-family: 'Josefin Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--border); cursor: pointer; transition: border-color 0.2s, color 0.2s, transform 0.2s; display: inline-block; }
-  .btn-outline:hover { border-color: var(--garnet); color: var(--garnet); transform: translateY(-2px); }
-  .btn-outline-light { background: transparent; color: #fff; padding: 14px 32px; font-family: 'Josefin Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; border: 1px solid rgba(255,255,255,0.3); cursor: pointer; transition: border-color 0.2s, color 0.2s, transform 0.2s; display: inline-block; }
-  .btn-outline-light:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+  /* ── EXPLORE CARDS ────────────────────────────────────────────── */
+  #explore { background: var(--garnet-dark); padding: 5rem 0; }
+  #explore .section-title { color: #fff; }
+  #explore .section-title em { color: var(--gold); }
+  .home-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+  .home-card { background: rgba(255,255,255,.05); padding: 2.5rem 2rem; text-decoration: none; display: flex; flex-direction: column; border-top: 3px solid transparent; transition: background .2s, border-color .2s; }
+  .home-card:hover { background: rgba(201,168,76,.1); border-top-color: var(--gold); }
+  .home-card-icon { font-family: 'Playfair Display',serif; font-size: 1.6rem; color: var(--gold); margin-bottom: 1rem; }
+  .home-card-title { font-family: 'Playfair Display',serif; font-size: 1.3rem; font-weight: 800; color: #fff; margin-bottom: .5rem; }
+  .home-card-body { font-size: .85rem; color: rgba(255,255,255,.5); line-height: 1.75; margin-bottom: 1.5rem; flex: 1; }
+  .home-card-cta { font-family: 'Josefin Sans',sans-serif; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
 
-  /* SECTIONS */
-  section { padding: 6rem 0; }
-  .section-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-  .section-header { text-align: center; margin-bottom: 4rem; }
-  .section-eyebrow { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; display: block; }
-  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: var(--garnet-dark); line-height: 1.1; }
-  .section-title em { color: var(--garnet); font-style: italic; }
-  .section-rule { width: 60px; height: 2px; background: linear-gradient(to right, var(--garnet), var(--gold)); margin: 1.5rem auto 0; }
-
-  /* ABOUT */
-  #about { background: var(--cream); }
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-  .about-text p { font-size: 1.05rem; line-height: 1.9; color: var(--mid); margin-bottom: 1.25rem; }
-  .about-pull { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-style: italic; color: var(--garnet); border-left: 4px solid var(--gold); padding-left: 1.5rem; margin: 2rem 0; line-height: 1.4; }
-  .about-card { background: var(--garnet-dark); color: #fff; padding: 3rem; position: relative; overflow: hidden; }
-  .about-card::before { content: ''; position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(circle at top right, rgba(201,168,76,0.15), transparent 70%); }
-  .about-card-title { font-family: 'Josefin Sans', sans-serif; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; }
-  .about-card-items { list-style: none; }
-  .about-card-items li { padding: 1rem 0; border-bottom: 1px solid rgba(201,168,76,0.15); font-size: 0.95rem; display: flex; align-items: flex-start; gap: 12px; line-height: 1.6; }
-  .about-card-items li:last-child { border-bottom: none; }
-  .about-card-items li::before { content: '◆'; color: var(--gold); font-size: 8px; margin-top: 6px; flex-shrink: 0; }
-
-  /* NEWS */
-  #news { background: #F2EBE0; }
-  .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
-  .news-card { background: #fff; padding: 2.5rem; transition: transform 0.2s; cursor: pointer; }
-  .news-card:hover { transform: translateY(-4px); z-index: 1; box-shadow: 0 12px 40px rgba(139,26,46,0.15); }
-  .news-card-date { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
-  .news-card-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 600; color: var(--garnet-dark); line-height: 1.3; margin-bottom: 0.75rem; }
-  .news-card-excerpt { font-size: 0.875rem; line-height: 1.7; color: var(--text-light); }
-  .news-card-tag { display: inline-block; margin-top: 1.25rem; font-family: 'Josefin Sans', sans-serif; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; background: var(--gold-pale); color: var(--mid); padding: 4px 10px; }
-
-  /* EVENTS */
-  #events { background: var(--cream); }
-  .events-list { display: flex; flex-direction: column; gap: 1px; }
-  .event-row { background: #fff; display: grid; grid-template-columns: 100px 1fr auto; align-items: center; gap: 2rem; padding: 2rem 2.5rem; border-left: 4px solid transparent; transition: border-color 0.2s, box-shadow 0.2s; }
-  .event-row:hover { border-left-color: var(--garnet); box-shadow: 4px 0 20px rgba(139,26,46,0.08); }
-  .event-date-block { text-align: center; }
-  .event-month { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--garnet); font-weight: 700; }
-  .event-day { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 800; color: var(--garnet-dark); line-height: 1; }
-  .event-year-label { font-family: 'Josefin Sans', sans-serif; font-size: 10px; color: var(--text-light); }
-  .event-info-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 600; color: var(--dark); margin-bottom: 0.35rem; }
-  .event-info-meta { font-family: 'Josefin Sans', sans-serif; font-size: 11px; letter-spacing: 0.1em; color: var(--text-light); }
-  .event-info-meta span::before { content: ' · '; }
-  .event-info-meta span:first-child::before { content: ''; }
-  .event-rsvp { background: var(--garnet); color: #fff; padding: 10px 22px; font-family: 'Josefin Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border: none; cursor: pointer; white-space: nowrap; text-decoration: none; display: inline-block; transition: background 0.2s; }
-  .event-rsvp:hover { background: var(--garnet-light); }
-
-  /* HISTORY */
-  #history { background: var(--garnet-dark); color: #fff; }
-  .timeline { position: relative; padding-left: 3rem; }
-  .timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,0.1)); }
-  .timeline-item { position: relative; margin-bottom: 3rem; }
-  .timeline-dot { position: absolute; left: -2.65rem; top: 6px; width: 12px; height: 12px; background: var(--gold); border: 3px solid var(--garnet-dark); border-radius: 50%; }
-  .timeline-year { font-family: 'Josefin Sans', sans-serif; font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
-  .timeline-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; color: #fff; margin-bottom: 0.5rem; }
-  .timeline-body { font-size: 0.9rem; line-height: 1.8; color: rgba(255,255,255,0.6); }
-  .history-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
-  .history-table { background: rgba(255,255,255,0.05); border: 1px solid rgba(201,168,76,0.2); padding: 2rem; }
-  .history-table-title { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
-  .house-row { display: flex; justify-content: space-between; align-items: baseline; padding: 0.75rem 0; border-bottom: 1px solid rgba(201,168,76,0.1); font-size: 0.9rem; color: rgba(255,255,255,0.75); }
-  .house-row:last-child { border-bottom: none; }
-  .house-addr { font-style: italic; }
-  .house-years { font-family: 'Josefin Sans', sans-serif; font-size: 10px; color: var(--gold); letter-spacing: 0.1em; }
-
-  /* SCHOLARSHIPS */
-  #scholarships { background: #F2EBE0; }
-  .scholarship-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-  .scholarship-card { background: #fff; padding: 3rem; border-top: 4px solid var(--garnet); position: relative; }
-  .scholarship-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--gold), transparent); }
-  .scholarship-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 800; color: var(--garnet-dark); line-height: 1.2; margin-bottom: 0.5rem; }
-  .scholarship-honor { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
-  .scholarship-body { font-size: 0.9rem; line-height: 1.8; color: var(--text-light); margin-bottom: 1.5rem; }
-  .scholarship-criteria { list-style: none; margin-bottom: 2rem; }
-  .scholarship-criteria li { font-size: 0.875rem; line-height: 1.6; color: var(--mid); padding: 0.5rem 0; border-bottom: 1px solid var(--border); display: flex; gap: 10px; }
-  .scholarship-criteria li:last-child { border-bottom: none; }
-  .scholarship-criteria li::before { content: '—'; color: var(--gold); flex-shrink: 0; }
-  .scholarship-recipients { background: var(--gold-pale); padding: 1.25rem 1.5rem; margin-top: 1.5rem; }
-  .scholarship-recipients-title { font-family: 'Josefin Sans', sans-serif; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid); margin-bottom: 0.75rem; }
-  .scholarship-recipients-list { display: flex; flex-wrap: wrap; gap: 8px; }
-  .recipient-chip { background: #fff; color: var(--mid); padding: 3px 10px; font-family: 'Josefin Sans', sans-serif; font-size: 11px; }
-
-  /* AWARDS */
-  #awards { background: var(--cream); }
-  .awards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
-  .award-card { background: var(--garnet-dark); padding: 2.5rem 2rem; transition: background 0.2s; cursor: pointer; }
-  .award-card:hover { background: var(--garnet); }
-  .award-icon { font-size: 1.5rem; margin-bottom: 1rem; color: var(--gold); font-family: 'Playfair Display', serif; font-weight: 800; }
-  .award-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; color: #fff; margin-bottom: 0.5rem; line-height: 1.3; }
-  .award-desc { font-size: 0.825rem; line-height: 1.7; color: rgba(255,255,255,0.55); margin-bottom: 1.25rem; }
-  .award-recent { font-family: 'Josefin Sans', sans-serif; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); opacity: 0.7; }
-
-  /* CHAPTER */
-  #chapter { background: var(--cream); }
-  .chapter-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 4rem; align-items: start; }
-  .chapter-mission { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-style: italic; color: var(--garnet); border-left: 3px solid var(--gold); padding: 1rem 0 1rem 1.5rem; margin-bottom: 2rem; line-height: 1.5; }
-  .chapter-text p { font-size: 0.95rem; line-height: 1.9; color: var(--mid); margin-bottom: 1rem; }
-  .exec-board { background: var(--garnet-dark); padding: 2.5rem; color: #fff; }
-  .exec-board-title { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; }
-  .exec-row { display: flex; justify-content: space-between; padding: 0.9rem 0; border-bottom: 1px solid rgba(201,168,76,0.1); font-size: 0.875rem; }
-  .exec-row:last-child { border-bottom: none; }
-  .exec-position { color: rgba(255,255,255,0.5); font-style: italic; }
-  .exec-name { color: #fff; font-weight: 700; }
-  .exec-name a { color: var(--gold-light); text-decoration: none; border-bottom: 1px solid rgba(232,200,106,0.3); transition: border-color 0.2s, color 0.2s; }
-  .exec-name a:hover { color: var(--gold); border-bottom-color: var(--gold); }
-  .smythe-banner { background: linear-gradient(135deg, var(--gold), var(--gold-light)); padding: 2rem; text-align: center; margin-top: 2rem; }
-  .smythe-count { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 800; color: var(--garnet-dark); line-height: 1; }
-  .smythe-label { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); margin-top: 4px; }
-
-  /* DONATE */
-  #donate { background: var(--garnet); color: #fff; }
-  .donate-sections { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
-  .donate-section-card { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 2.5rem; display: flex; flex-direction: column; }
-  .donate-section-card:hover { border-color: rgba(201,168,76,0.4); }
-  .donate-section-eyebrow { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
-  .donate-section-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 1rem; line-height: 1.35; }
-  .donate-section-text { font-size: 0.875rem; line-height: 1.8; color: rgba(255,255,255,0.65); margin-bottom: 1.5rem; }
-  .donate-section-text strong { color: #fff; font-weight: 600; }
-  .donate-project-list { list-style: none; padding: 0; margin: 0 0 1.5rem 0; }
-  .donate-project-list li { display: flex; justify-content: space-between; align-items: baseline; padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; color: rgba(255,255,255,0.7); }
-  .donate-project-list li:last-child { border-bottom: none; }
-  .donate-project-cost { font-family: 'Josefin Sans', sans-serif; font-weight: 700; color: var(--gold); flex-shrink: 0; margin-left: 1rem; }
-  .donate-project-funded { font-family: 'Josefin Sans', sans-serif; font-weight: 700; color: #6fcf97; flex-shrink: 0; margin-left: 1rem; }
-  .donate-project-total { display: flex; justify-content: space-between; align-items: baseline; padding: 0.85rem 0; margin-bottom: 1.5rem; border-top: 2px solid var(--gold); font-size: 0.9rem; font-weight: 700; color: #fff; }
-  .donate-project-total span { font-family: 'Josefin Sans', sans-serif; color: var(--gold); font-size: 1rem; }
-  .donate-section-card .btn-primary { margin-top: auto; text-align: center; display: block; }
-  .donate-options { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; }
-  .donate-option { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 1.25rem; display: flex; justify-content: space-between; align-items: center; }
-  .donate-option-name { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 600; color: #fff; }
-  .donate-option-desc { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 3px; }
-  .donate-option-badge { font-family: 'Josefin Sans', sans-serif; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; background: var(--gold); color: var(--garnet-dark); padding: 4px 10px; font-weight: 700; flex-shrink: 0; }
-
-  /* ADVISORY */
-  #advisory { background: #F2EBE0; }
-  .board-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
-  .board-member { background: #fff; padding: 2rem 1.5rem; text-align: center; transition: background 0.2s; }
-  .board-member:hover { background: var(--gold-pale); }
-  .board-initials { width: 56px; height: 56px; background: var(--garnet-dark); color: var(--gold); font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
-  .board-name { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 600; color: var(--dark); margin-bottom: 0.25rem; }
-  .board-class { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); }
-
-  /* FOOTER */
-  footer { background: var(--dark); color: rgba(255,255,255,0.5); padding: 4rem 0 2rem; }
-  .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
-  .footer-brand-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 800; color: var(--gold); margin-bottom: 0.5rem; margin-top: 1rem; }
-  .footer-brand-sub { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 1rem; }
-  .footer-brand-p { font-size: 0.825rem; line-height: 1.7; }
-  .footer-col-title { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; }
-  .footer-links { list-style: none; }
-  .footer-links li { margin-bottom: 0.6rem; }
-  .footer-links a { text-decoration: none; color: rgba(255,255,255,0.45); font-size: 0.85rem; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--gold); }
-  .footer-bottom { max-width: 1200px; margin: 0 auto; padding: 2rem 2rem 0; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.25); flex-wrap: wrap; gap: 0.5rem; }
-  .admin-btn { background: transparent; color: rgba(255,255,255,0.25); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: color 0.2s, border-color 0.2s; text-decoration: none; display: inline-block; }
-  .admin-btn:hover { color: var(--gold); border-color: var(--gold); }
-
-  /* LOADING */
-  .loading { text-align: center; padding: 3rem; font-family: 'Josefin Sans', sans-serif; font-size: 11px; letter-spacing: 0.2em; color: var(--text-light); }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes fadeIn { to { opacity: 1; } }
-  @keyframes scrollPulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
-
-  /* MOBILE */
-  @media (max-width: 900px) {
-    .nav-links { display: none; }
-    .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--garnet-dark); border-top: 1px solid rgba(201,168,76,0.3); }
-    .nav-links.open a { height: auto; line-height: 1; padding: 14px 20px; border-bottom: 1px solid rgba(201,168,76,0.1); margin-bottom: 0; }
-    .hamburger { display: flex; }
-    .about-grid, .scholarship-grid, .donate-sections, .chapter-grid, .history-grid { grid-template-columns: 1fr; }
-    .news-grid, .awards-grid, .board-grid { grid-template-columns: 1fr 1fr; }
-    .footer-inner { grid-template-columns: 1fr 1fr; }
-    .event-row { grid-template-columns: 80px 1fr; }
-    .event-rsvp { display: none; }
-  }
-  @media (max-width: 600px) {
-    .news-grid, .awards-grid { grid-template-columns: 1fr; }
-    .board-grid { grid-template-columns: 1fr 1fr; }
-    .hero-stats { flex-wrap: wrap; justify-content: center; gap: 1.5rem; }
-    .footer-inner { grid-template-columns: 1fr; }
-    .form-row { grid-template-columns: 1fr; }
-  }
+  /* ── PREVIEW SECTION ──────────────────────────────────────────── */
+  .preview-footer { text-align: center; margin-top: 2.5rem; }
+  #news-preview { background: #F2EBE0; }
+  #events-preview { background: var(--cream); }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav id="main-nav">
-  <a href="#home" class="nav-brand">
+  <a href="/" class="nav-brand">
     <div class="nav-crest">ΠΚΑ</div>
     <div class="nav-title">Gamma Omicron <span>Pi Kappa Alpha · Ohio University</span></div>
   </a>
@@ -260,20 +54,20 @@
     <span></span><span></span><span></span>
   </div>
   <ul class="nav-links" id="nav-links">
-    <li><a href="#about">Association</a></li>
-    <li><a href="#news">News</a></li>
-    <li><a href="#events">Events</a></li>
-    <li><a href="#history">History</a></li>
-    <li><a href="#scholarships">Scholarships</a></li>
-    <li><a href="#awards">Awards</a></li>
-    <li><a href="#chapter">Chapter</a></li>
-    <li><a href="#donate">Donate</a></li>
-    <li><a href="#advisory">Advisory</a></li>
+    <li><a href="/about.html">Association</a></li>
+    <li><a href="/news.html">News</a></li>
+    <li><a href="/calendar.html">Events</a></li>
+    <li><a href="/history.html">History</a></li>
+    <li><a href="/scholarships.html">Scholarships</a></li>
+    <li><a href="/awards.html">Awards</a></li>
+    <li><a href="/chapter.html">Chapter</a></li>
+    <li><a href="/donate.html">Donate</a></li>
+    <li><a href="/advisory.html">Advisory</a></li>
     <li><a href="https://mypike.pikes.org/" class="nav-login" target="_blank" rel="noopener noreferrer">myPIKE</a></li>
   </ul>
 </nav>
 
-<!-- HERO (static, settings loaded via JS) -->
+<!-- HERO -->
 <section id="home">
   <div class="hero-badge" id="hero-badge">Est. 1930 · Refounded 2019 · Ohio University</div>
   <h1 class="hero-title">Gamma <em>Omicron</em><br>Alumni</h1>
@@ -285,7 +79,7 @@
     </div>
     <div class="hero-divider"></div>
     <div class="hero-stat">
-      <div class="hero-stat-num" id="stat-years">94</div>
+      <div class="hero-stat-num" id="stat-years">96</div>
       <div class="hero-stat-label">Years of Brotherhood</div>
     </div>
     <div class="hero-divider"></div>
@@ -295,206 +89,87 @@
     </div>
   </div>
   <div class="hero-cta">
-    <a href="#donate" class="btn-primary">Donate</a>
-    <a href="#about" class="btn-outline-light">Learn More</a>
+    <a href="/donate.html" class="btn-primary">Donate</a>
+    <a href="/about.html" class="btn-outline-light">Learn More</a>
   </div>
-  <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
+  <div class="scroll-hint"><span>Explore</span><div class="scroll-line"></div></div>
 </section>
 
-<!-- ABOUT -->
-<section id="about">
+<!-- EXPLORE CARDS -->
+<section id="explore">
   <div class="section-inner">
     <div class="section-header">
-      <span class="section-eyebrow" id="about-eyebrow">Alumni Association</span>
-      <h2 class="section-title" id="about-title">Gamma Omicron<br><em>Alumni Association</em></h2>
-      <div class="section-rule"></div>
+      <span class="section-eyebrow">Discover</span>
+      <h2 class="section-title">Everything <em>Gamma Omicron</em></h2>
+      <div class="section-rule" style="background:linear-gradient(to right,var(--gold),rgba(201,168,76,.3));"></div>
     </div>
-    <div class="about-grid">
-      <div class="about-text" id="about-text"></div>
-      <div>
-        <div class="about-card">
-          <div class="about-card-title" id="dues-card-title">What Your Dues Support</div>
-          <ul class="about-card-items" id="dues-card-items"></ul>
-          <div style="margin-top:2rem;"><a id="about-dues-btn" href="https://pikes.org/foundation/guide-to-giving/" data-paypal target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size:11px;">Pay $35 Annual Dues</a></div>
-        </div>
-      </div>
+    <div class="home-cards">
+      <a href="/about.html" class="home-card reveal">
+        <div class="home-card-icon">◈</div>
+        <div class="home-card-title">Alumni Association</div>
+        <div class="home-card-body">Who we are, what your dues support, and how the GOAA keeps the brotherhood alive decades after graduation.</div>
+        <div class="home-card-cta">Learn More →</div>
+      </a>
+      <a href="/chapter.html" class="home-card reveal">
+        <div class="home-card-icon">ΠΚΑ</div>
+        <div class="home-card-title">Active Chapter</div>
+        <div class="home-card-body">Meet the 2025–2026 executive board, view the chapter composite, and follow the brotherhood at Ohio University.</div>
+        <div class="home-card-cta">View Chapter →</div>
+      </a>
+      <a href="/history.html" class="home-card reveal">
+        <div class="home-card-icon">◆</div>
+        <div class="home-card-title">Chapter History</div>
+        <div class="home-card-body">From our founding in 1930 to today — a rich timeline of milestones, chapter houses, and notable brothers.</div>
+        <div class="home-card-cta">Explore History →</div>
+      </a>
+      <a href="/scholarships.html" class="home-card reveal">
+        <div class="home-card-icon">✦</div>
+        <div class="home-card-title">Scholarships</div>
+        <div class="home-card-body">The Sutherin and Banfield Memorial Scholarships honor brothers who led the way in academic excellence.</div>
+        <div class="home-card-cta">View Scholarships →</div>
+      </a>
+      <a href="/awards.html" class="home-card reveal">
+        <div class="home-card-icon">◇</div>
+        <div class="home-card-title">Alumni Awards</div>
+        <div class="home-card-body">Recognizing brothers who exemplify Pike values in their professional lives and service to the chapter.</div>
+        <div class="home-card-cta">View Awards →</div>
+      </a>
+      <a href="/donate.html" class="home-card reveal">
+        <div class="home-card-icon">❖</div>
+        <div class="home-card-title">Give Back</div>
+        <div class="home-card-body">Annual dues, scholarship gifts, and housing fund contributions keep Gamma Omicron strong for the next generation.</div>
+        <div class="home-card-cta">Donate Now →</div>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- NEWS -->
-<section id="news">
+<!-- RECENT NEWS PREVIEW -->
+<section id="news-preview">
   <div class="section-inner">
     <div class="section-header">
       <span class="section-eyebrow">Latest Updates</span>
       <h2 class="section-title">Chapter <em>News</em></h2>
       <div class="section-rule"></div>
     </div>
-    <div class="news-grid" id="news-grid"><div class="loading">Loading news…</div></div>
+    <div class="news-grid" id="news-grid"><div class="loading">Loading…</div></div>
+    <div class="preview-footer">
+      <a href="/news.html" class="btn-outline">View All News →</a>
+    </div>
   </div>
 </section>
 
-<!-- EVENTS -->
-<section id="events">
+<!-- UPCOMING EVENTS PREVIEW -->
+<section id="events-preview">
   <div class="section-inner">
     <div class="section-header">
       <span class="section-eyebrow">Mark Your Calendar</span>
       <h2 class="section-title">Upcoming <em>Events</em></h2>
       <div class="section-rule"></div>
     </div>
-    <div class="events-list" id="events-list"><div class="loading">Loading events…</div></div>
-    <div style="text-align:center;margin-top:2.5rem;">
-      <a href="/calendar.html" class="btn-outline" style="display:inline-flex;align-items:center;gap:8px;">
-        <span>View Full Calendar</span>
-        <span style="font-size:14px;line-height:1;">→</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- HISTORY -->
-<section id="history">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-eyebrow" id="history-eyebrow">Since 1921</span>
-      <h2 class="section-title" style="color:#fff;">Our <em style="color:var(--gold);">History</em></h2>
-      <div class="section-rule"></div>
-    </div>
-    <div class="history-grid">
-      <div class="timeline" id="history-timeline"><div class="loading" style="color:rgba(255,255,255,0.4);">Loading…</div></div>
-      <div>
-        <div class="history-table">
-          <div class="history-table-title">Chapter Houses</div>
-          <div id="history-houses"></div>
-        </div>
-        <div style="margin-top:2rem;" class="history-table">
-          <div class="history-table-title">Chapter Presidents (Selected)</div>
-          <div id="presidents-list"><div class="loading" style="color:rgba(255,255,255,0.4);">Loading…</div></div>
-          <div style="text-align:center;margin-top:1.25rem;"><a href="/presidents.html" class="btn-outline-light" style="font-size:10px;padding:10px 20px;">Full Presidents List (1930–Present)</a></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SCHOLARSHIPS -->
-<section id="scholarships">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-eyebrow">Academic Excellence</span>
-      <h2 class="section-title">Our <em>Scholarships</em></h2>
-      <div class="section-rule"></div>
-    </div>
-    <div class="scholarship-grid" id="scholarships-grid"><div class="loading">Loading scholarships…</div></div>
-  </div>
-</section>
-
-<!-- AWARDS -->
-<section id="awards">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-eyebrow">Recognizing Excellence</span>
-      <h2 class="section-title">Alumni <em>Awards</em></h2>
-      <div class="section-rule"></div>
-    </div>
-    <div class="awards-grid" id="awards-grid"><div class="loading">Loading awards…</div></div>
-  </div>
-</section>
-
-<!-- ACTIVE CHAPTER -->
-<section id="chapter">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-eyebrow">Gamma Omicron · Ohio University</span>
-      <h2 class="section-title">The Active <em>Chapter</em></h2>
-      <div class="section-rule"></div>
-      <div style="margin-top:2rem;">
-        <a href="/active-chapter.html" class="btn-primary" style="display:inline-flex;align-items:center;gap:8px;">
-          <span>View Active Chapter Composite</span>
-          <span style="font-size:14px;line-height:1;">→</span>
-        </a>
-      </div>
-    </div>
-    <div class="chapter-grid">
-      <div>
-        <div class="chapter-mission" id="chapter-mission"></div>
-        <div class="chapter-text" id="chapter-text"></div>
-        <div class="smythe-banner" style="margin-top:2rem;">
-          <div class="smythe-count" id="smythe-display">7×</div>
-          <div class="smythe-label">Smythe Trophy Recipients — Chapter Excellence Award</div>
-        </div>
-      </div>
-      <div>
-        <div class="exec-board">
-          <div class="exec-board-title" id="exec-year-title">2024–2025 Executive Board</div>
-          <div id="exec-officers"><div class="loading" style="color:rgba(255,255,255,0.4);">Loading…</div></div>
-          <div style="margin-top:1.5rem;text-align:center;"><a id="rush-btn" href="#" class="btn-primary" style="font-size:11px;padding:10px 20px;">Rush PIKE</a></div>
-        </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DONATE -->
-<section id="donate">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-eyebrow">Support the Brotherhood</span>
-      <h2 class="section-title" style="color:#fff;">Dues &amp; <em style="color:var(--gold-light);">Donations</em></h2>
-      <div class="section-rule" style="background:linear-gradient(to right,var(--gold),transparent);"></div>
-    </div>
-    <p id="donate-intro" style="font-size:1rem;line-height:1.9;color:rgba(255,255,255,0.7);max-width:800px;margin:0 auto 2.5rem;text-align:center;">Your support keeps Gamma Omicron strong. Whether you pay annual dues, contribute to scholarships, or support the housing corporation, every dollar makes a direct difference to the brotherhood you love.</p>
-
-    <div class="donate-sections">
-
-      <!-- Section 1: Historical Society -->
-      <div class="donate-section-card">
-        <div class="donate-section-eyebrow">Pi Kappa Alpha Historical Society</div>
-        <div class="donate-section-title" id="hist-title">Preserving Our History</div>
-        <div class="donate-section-text" id="hist-intro">The Pi Kappa Alpha Historical Society has identified three initiatives that will not only help preserve our history, but also make it ready and available for brothers to enjoy. The mission is to compile and create, as best as possible, a holistic history of each and every chapter, make it accessible to every member no matter where they are, and inspire passion for our history along the way!</div>
-        <div class="donate-section-text" id="hist-note"><strong>Gamma Omicron (Ohio) Chapter's individual project total:</strong></div>
-        <ul class="donate-project-list" id="hist-projects">
-          <li><span>Alpha Chapter Minute Book Replication</span><span class="donate-project-funded">$150 FUNDED</span></li>
-          <li><span>Digitizing Your Chapter's Historical Notebook</span><span class="donate-project-cost">$5,500</span></li>
-          <li><span>Digitizing Your Chapter's Membership Record Cards</span><span class="donate-project-cost">$5,625</span></li>
-        </ul>
-        <div class="donate-project-total"><span>Total Needed</span><span id="hist-total-amount">$11,275</span></div>
-        <a id="hist-donate-btn" href="https://fdog23.funraise.org/team/gamma-omicron-ohio" target="_blank" rel="noopener noreferrer" class="btn-primary">Donate to Historical Society</a>
-      </div>
-
-      <!-- Section 2: Alumni Association Support -->
-      <div class="donate-section-card">
-        <div class="donate-section-eyebrow">Alumni Association</div>
-        <div class="donate-section-title">Support Gamma Omicron</div>
-        <div class="donate-section-text" id="donate-card-desc">Keep the alumni association running strong through annual dues and direct contributions that fund newsletters, events, chapter support, and capital improvements to our chapter house.</div>
-        <div class="donate-options" id="donate-options"></div>
-        <a id="donate-btn" href="https://pikes.org/foundation/guide-to-giving/" data-paypal target="_blank" rel="noopener noreferrer" class="btn-primary">Donate Now</a>
-      </div>
-
-
-    </div>
-  </div>
-</section>
-
-<!-- ADVISORY BOARD -->
-<section id="advisory">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-eyebrow">Mentorship &amp; Guidance</span>
-      <h2 class="section-title">Alumni <em>Advisory Board</em></h2>
-      <div class="section-rule"></div>
-    </div>
-    <p id="advisory-desc" style="text-align:center;max-width:640px;margin:-2rem auto 3rem;font-size:0.95rem;line-height:1.8;color:var(--text-light);">The Alumni Advisory Board bridges the active chapter and alumni network, providing mentorship, guidance, and accountability to help Gamma Omicron brothers succeed.</p>
-    <div class="board-grid" id="board-grid"><div class="loading">Loading board members…</div></div>
-
-    <div style="background:var(--garnet-dark);padding:3rem;margin-top:4rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;">
-      <div>
-        <div id="missing-eyebrow" style="font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;">We're Looking For You</div>
-        <div id="missing-title" style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800;color:#fff;margin-bottom:0.5rem;">Missing Alumni</div>
-        <div id="missing-desc" style="font-size:0.875rem;color:rgba(255,255,255,0.55);line-height:1.7;">We've lost contact with many brothers over the decades. If you know the whereabouts of a fellow Pike, please let us know.</div>
-      </div>
-      <div><a href="/missing-alumni.html" class="btn-primary">View Missing Alumni List</a></div>
+    <div class="events-list" id="events-list"><div class="loading">Loading…</div></div>
+    <div class="preview-footer">
+      <a href="/calendar.html" class="btn-outline">View Full Calendar →</a>
     </div>
   </div>
 </section>
@@ -503,7 +178,7 @@
 <footer>
   <div class="footer-inner">
     <div>
-      <div style="font-size:2.5rem;color:rgba(255,255,255,0.15);">ΠΚΑ</div>
+      <div style="font-size:2.5rem;color:rgba(255,255,255,.15);">ΠΚΑ</div>
       <div class="footer-brand-name">Gamma Omicron</div>
       <div class="footer-brand-sub">Pi Kappa Alpha · Ohio University</div>
       <p class="footer-brand-p" id="footer-blurb">Chartered 1930. Refounded 2019. Over 1,200 brothers strong. The Gamma Omicron Alumni Association keeps the brotherhood alive and the chapter thriving.</p>
@@ -511,136 +186,92 @@
     <div>
       <div class="footer-col-title">Navigate</div>
       <ul class="footer-links">
-        <li><a href="#about">Alumni Association</a></li>
-        <li><a href="#news">News</a></li>
-        <li><a href="#events">Events</a></li>
-        <li><a href="/calendar.html">Full Calendar</a></li>
-        <li><a href="#history">History</a></li>
-        <li><a href="#scholarships">Scholarships</a></li>
-        <li><a href="#awards">Awards</a></li>
+        <li><a href="/about.html">Alumni Association</a></li>
+        <li><a href="/news.html">News</a></li>
+        <li><a href="/calendar.html">Events</a></li>
+        <li><a href="/history.html">History</a></li>
+        <li><a href="/scholarships.html">Scholarships</a></li>
+        <li><a href="/awards.html">Awards</a></li>
       </ul>
     </div>
     <div>
       <div class="footer-col-title">Chapter</div>
       <ul class="footer-links">
-        <li><a href="#chapter">Active Chapter</a></li>
-        <li><a href="#chapter">Rush PIKE</a></li>
-        <li><a href="#chapter">Executive Board</a></li>
-        <li><a href="#advisory">Advisory Board</a></li>
+        <li><a href="/chapter.html">Active Chapter</a></li>
+        <li><a href="/active-chapter.html">Chapter Composite</a></li>
+        <li><a href="/advisory.html">Advisory Board</a></li>
         <li><a href="/missing-alumni.html">Missing Alumni</a></li>
+        <li><a href="/presidents.html">Chapter Presidents</a></li>
       </ul>
     </div>
     <div>
       <div class="footer-col-title">Give</div>
       <ul class="footer-links">
+        <li><a href="/donate.html">Donate</a></li>
         <li><a href="https://fdog23.funraise.org/team/gamma-omicron-ohio" target="_blank" rel="noopener noreferrer">Historical Society</a></li>
-        <li><a href="https://pikes.org/foundation/guide-to-giving/" target="_blank" rel="noopener noreferrer">Pay Annual Dues</a></li>
-        <li><a href="https://pikes.org/foundation/guide-to-giving/" target="_blank" rel="noopener noreferrer">Sutherin Scholarship</a></li>
-        <li><a href="https://pikes.org/foundation/guide-to-giving/" target="_blank" rel="noopener noreferrer">Banfield Scholarship</a></li>
-        <li><a href="https://pikes.org/foundation/guide-to-giving/" target="_blank" rel="noopener noreferrer">National PIKE Fund</a></li>
+        <li><a href="/scholarships.html">Scholarships</a></li>
+        <li><a href="https://mypike.pikes.org/" target="_blank" rel="noopener noreferrer">myPIKE</a></li>
       </ul>
-      <div style="margin-top:1.5rem;"><a href="https://mypike.pikes.org/" class="btn-primary" style="font-size:11px;padding:10px 18px;display:inline-block;" target="_blank" rel="noopener noreferrer">myPIKE</a></div>
+      <div style="margin-top:1.5rem;"><a href="https://mypike.pikes.org/" class="btn-primary" style="font-size:11px;padding:10px 18px;" target="_blank" rel="noopener noreferrer">myPIKE</a></div>
     </div>
   </div>
   <div class="footer-bottom">
     <span>&copy; 2026 Pi Kappa Alpha &ndash; Gamma Omicron Alumni Association. All rights reserved.</span>
-    <button class="admin-btn" id="admin-login-btn" onclick="handleAdminLogin()">Admin</button>
+    <button class="admin-btn" onclick="handleAdminLogin()">Admin</button>
   </div>
 </footer>
 
+<script src="/site.js"></script>
 <script>
-// ── DATA LOADER ─────────────────────────────────────────────────
-// Fetches JSON/_data files and renders each section dynamically.
-// All editable content lives in _data/ and is managed via Decap CMS.
-
-async function fetchJSON(path) {
-  try {
-    const r = await fetch(path);
-    if (!r.ok) return null;
-    return await r.json();
-  } catch { return null; }
-}
-
-async function fetchMarkdownList(folder) {
-  // On a real Netlify deploy these are built into a JSON index.
-  // For local/static preview we fall back to embedded demo data.
-  return null;
-}
-
-// ── SETTINGS ────────────────────────────────────────────────────
-let siteSettings = {};
-
-async function loadSettings() {
-  const s = await fetchJSON('/_data/settings.json');
-  if (!s) return;
-  siteSettings = s;
-  if (s.alumni_count) document.getElementById('stat-alumni').textContent = s.alumni_count;
-  if (s.smythe_count) {
-    document.getElementById('stat-smythe').textContent = s.smythe_count;
-    document.getElementById('smythe-display').textContent = s.smythe_count;
-  }
-  if (s.tagline) document.getElementById('hero-sub').textContent = s.tagline;
-  if (s.dues_amount) {
-    const duesBtn = document.getElementById('about-dues-btn');
-    if (duesBtn) duesBtn.textContent = 'Pay ' + s.dues_amount + ' Annual Dues';
-  }
-  if (s.founded && s.refounded)
-    document.getElementById('hero-badge').textContent =
-      'Est. ' + s.founded + ' · Refounded ' + s.refounded + ' · Ohio University';
-  if (s.paypal_link && s.paypal_link !== 'TBD') {
-    document.querySelectorAll('[data-paypal]').forEach(el => { el.href = s.paypal_link; });
-  }
-  if (s.rush_link) {
-    const rushBtn = document.getElementById('rush-btn');
-    if (rushBtn) rushBtn.href = s.rush_link;
-  }
-  if (s.footer_blurb) {
-    const fb = document.getElementById('footer-blurb');
-    if (fb) fb.textContent = s.footer_blurb;
-  }
-}
-
-// ── NEWS ─────────────────────────────────────────────────────────
 const DEMO_NEWS = [
   { date:'March 2025', title:'Active Chapter Wins OU Entrepreneurship Challenge', excerpt:'Brothers from the active chapter took first place in the annual OU entrepreneurship competition, showcasing a sustainability-focused startup concept.', category:'Active Chapter' },
   { date:'January 2025', title:'2025 Scholarship Recipients Announced', excerpt:'The GOAA is proud to announce this year\'s recipients of the William Sutherin and Martha Banfield Memorial Scholarships.', category:'Scholarships' },
   { date:'November 2024', title:'Brother Michael Hess \'92 Named to OU Board of Trustees', excerpt:'Alumni are proud to share that Brother Michael Hess has been appointed to the Ohio University Board of Trustees.', category:'Alumni Spotlight' },
-  { date:'October 2024', title:'Annual Golf Outing Raises Record $8,400 for Scholarship Fund', excerpt:'The 2024 GOAA Golf Outing at Athens Country Club brought together 72 alumni and raised a record amount for the scholarship endowment.', category:'Events' },
-  { date:'August 2024', title:'Active Chapter Earns GPA Award from National Headquarters', excerpt:'Gamma Omicron was recognized by Pi Kappa Alpha International for its chapter GPA, ranking in the top 10% of all chapters nationally.', category:'Active Chapter' },
-  { date:'May 2024', title:'In Memoriam: Brother Dave Ritchey \'68', excerpt:'It is with heavy hearts that we share the passing of Brother Dave Ritchey, Class of 1968, for whom our alumni service award is named.', category:'In Memoriam' },
 ];
 
-function renderNews(items) {
-  const g = document.getElementById('news-grid');
-  g.innerHTML = items.slice(0,6).map(n => `
-    <div class="news-card reveal">
-      <div class="news-card-date">${n.date}</div>
-      <h3 class="news-card-title">${n.title}</h3>
-      <p class="news-card-excerpt">${n.excerpt}</p>
-      <span class="news-card-tag">${n.category}</span>
-    </div>`).join('');
-  attachReveal();
+const DEMO_EVENTS = [
+  { month_short:'May', day:'17', year:'2025', title:'Annual GOAA Golf Outing', location:'Athens Country Club, Athens OH', time:'Shotgun Start 9:00 AM', notes:'$85/player', rsvp_link:'#' },
+  { month_short:'Sep', day:'27', year:'2025', title:'Homecoming Reunion Weekend', location:'12 N College St., Athens OH', time:'Friday–Saturday', notes:'All Classes Welcome', rsvp_link:'#' },
+];
+
+async function loadSettings() {
+  const s = await fetchJSON('/_data/settings.json');
+  if (!s) return;
+  if (s.alumni_count) document.getElementById('stat-alumni').textContent = s.alumni_count;
+  if (s.smythe_count) document.getElementById('stat-smythe').textContent = s.smythe_count;
+  if (s.tagline) document.getElementById('hero-sub').textContent = s.tagline;
+  if (s.founded && s.refounded) document.getElementById('hero-badge').textContent = 'Est. ' + s.founded + ' · Refounded ' + s.refounded + ' · Ohio University';
+  if (s.footer_blurb) { const fb = document.getElementById('footer-blurb'); if (fb) fb.textContent = s.footer_blurb; }
+  if (s.years_of_brotherhood) document.getElementById('stat-years').textContent = s.years_of_brotherhood;
 }
 
 async function loadNews() {
   const data = await fetchJSON('/_data/news.json');
-  const posts = data && data.posts && data.posts.length
-    ? data.posts.filter(p => p.published !== false)
-    : DEMO_NEWS;
-  renderNews(posts);
+  const posts = (data && data.posts && data.posts.length) ? data.posts.filter(p => p.published !== false) : DEMO_NEWS;
+  const g = document.getElementById('news-grid');
+  g.innerHTML = posts.slice(0,3).map(n => `
+    <a href="/news.html" class="news-card reveal" style="text-decoration:none;">
+      <div class="news-card-date">${n.date}</div>
+      <h3 class="news-card-title">${n.title}</h3>
+      <p class="news-card-excerpt">${n.excerpt}</p>
+      <span class="news-card-tag">${n.category}</span>
+    </a>`).join('');
+  document.querySelectorAll('.news-card.reveal').forEach(el => {
+    new IntersectionObserver(([e]) => { if (e.isIntersecting) { el.classList.add('visible'); } }, {threshold:.08}).observe(el);
+  });
 }
 
-// ── EVENTS ───────────────────────────────────────────────────────
-const DEMO_EVENTS = [
-  { month_short:'May', day:'17', year:'2025', title:'Annual GOAA Golf Outing', location:'Athens Country Club, Athens OH', time:'Shotgun Start 9:00 AM', notes:'$85/player', rsvp_link:'#' },
-  { month_short:'Sep', day:'27', year:'2025', title:'Homecoming Reunion Weekend', location:'12 N College St., Athens OH', time:'Friday–Saturday', notes:'All Classes Welcome', rsvp_link:'#' },
-  { month_short:'Oct', day:'11', year:'2025', title:'Annual GOAA Meeting & Awards Dinner', location:'Athens OH', time:'7:00 PM', notes:'Business Casual', rsvp_link:'#' },
-  { month_short:'Feb', day:'21', year:'2026', title:'Feed-a-Pike Night', location:'12 N College St., Athens OH', time:'6:00 PM', notes:'Alumni & Actives', rsvp_link:'#' },
-];
-
-function renderEvents(items) {
+async function loadEvents() {
+  const data = await fetchJSON('/_data/events.json');
+  const events = (data && data.events && data.events.length) ? data.events.filter(e => e.published !== false) : DEMO_EVENTS;
   const list = document.getElementById('events-list');
-  list.innerHTML = items.map(e => `
+  const now = new Date();
+  const MONTHS = {Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11};
+  const upcoming = events
+    .filter(e => { const d = new Date(parseInt(e.year),MONTHS[e.month_short],parseInt(e.day)); return d >= now; })
+    .sort((a,b) => new Date(parseInt(a.year),MONTHS[a.month_short],parseInt(a.day)) - new Date(parseInt(b.year),MONTHS[b.month_short],parseInt(b.day)));
+  const show = upcoming.length ? upcoming.slice(0,3) : events.slice(0,3);
+  list.innerHTML = show.map(e => `
     <div class="event-row reveal">
       <div class="event-date-block">
         <div class="event-month">${e.month_short}</div>
@@ -650,299 +281,19 @@ function renderEvents(items) {
       <div class="event-info">
         <div class="event-info-title">${e.title}</div>
         <div class="event-info-meta">
-          <span>${e.location}</span>
+          <span>${e.location || ''}</span>
           ${e.time ? `<span>${e.time}</span>` : ''}
           ${e.notes ? `<span>${e.notes}</span>` : ''}
         </div>
       </div>
-      ${e.rsvp_link ? `<a href="${e.rsvp_link}" class="event-rsvp">RSVP Now</a>` : ''}
+      ${e.rsvp_link ? `<a href="${e.rsvp_link}" class="event-rsvp">RSVP</a>` : ''}
     </div>`).join('');
-  attachReveal();
-}
-
-async function loadEvents() {
-  const data = await fetchJSON('/_data/events.json');
-  const events = data && data.events && data.events.length
-    ? data.events.filter(e => e.published !== false)
-    : DEMO_EVENTS;
-  renderEvents(events);
-}
-
-// ── PRESIDENTS ───────────────────────────────────────────────────
-async function loadPresidents() {
-  const data = await fetchJSON('/_data/presidents.json');
-  const el = document.getElementById('presidents-list');
-  if (!data || !data.presidents || !data.presidents.length) return;
-  // Show the 8 most recent presidents (those with a year value, most recent first)
-  const withDates = data.presidents.filter(p => p.year);
-  el.innerHTML = withDates.slice(0, 8).map(p => `
-    <div class="house-row">
-      <span>${p.name}</span>
-      <span class="house-years">${p.year}</span>
-    </div>`).join('');
-}
-
-// ── SCHOLARSHIPS ─────────────────────────────────────────────────
-function renderScholarship(s, pageUrl) {
-  if (!s) return '';
-  return `
-    <div class="scholarship-card reveal">
-      <div class="scholarship-name">${s.name}</div>
-      <div class="scholarship-honor">${s.honor || ''}</div>
-      <p class="scholarship-body">${s.description || ''}</p>
-      <ul class="scholarship-criteria">
-        ${(s.criteria || []).map(c=>`<li>${c}</li>`).join('')}
-      </ul>
-      ${s.recipients && s.recipients.length ? `
-      <div class="scholarship-recipients">
-        <div class="scholarship-recipients-title">Recent Recipients</div>
-        <div class="scholarship-recipients-list">
-          ${s.recipients.slice(0,3).map(r=>`<span class="recipient-chip">${r.year} · ${r.name}</span>`).join('')}
-        </div>
-      </div>` : ''}
-      <div style="margin-top:1.5rem;"><a href="${pageUrl}" class="btn-primary">View Recipients</a></div>
-    </div>`;
-}
-
-async function loadScholarships() {
-  const grid = document.getElementById('scholarships-grid');
-  const [s1, s2] = await Promise.all([
-    fetchJSON('/_data/scholarship_sutherin.json'),
-    fetchJSON('/_data/scholarship_banfield.json')
-  ]);
-  grid.innerHTML = renderScholarship(s1, '/scholarship-sutherin.html') + renderScholarship(s2, '/scholarship-banfield.html');
-  attachReveal();
-}
-
-// ── AWARDS ───────────────────────────────────────────────────────
-async function loadAwards() {
-  const grid = document.getElementById('awards-grid');
-  const data = await fetchJSON('/_data/awards.json');
-  if (!data || !data.awards || !data.awards.length) {
-    grid.innerHTML = '';
-    return;
-  }
-  const sorted = [...data.awards].sort((a, b) => (a.order || 99) - (b.order || 99));
-  grid.innerHTML = sorted.map(a => `
-    <div class="award-card reveal">
-      <div class="award-icon">${a.icon || '✦'}</div>
-      <div class="award-name">${a.name}</div>
-      <p class="award-desc">${a.description}</p>
-      ${a.recent_recipient ? `<div class="award-recent">Most Recent: ${a.recent_recipient}</div>` : ''}
-      ${a.apply_link ? `<div style="margin-top:1.5rem;"><a href="${a.apply_link}" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size:11px;padding:10px 22px;">Apply Now</a></div>` : ''}
-    </div>`).join('');
-  attachReveal();
-}
-
-// ── EXEC BOARD ───────────────────────────────────────────────────
-async function loadExecBoard() {
-  const data = await fetchJSON('/_data/exec_board.json');
-  const d = data || { year:'2024–2025', officers:[
-    {position:'President (SMC)',name:'TBD'},{position:'VP Membership',name:'TBD'},
-    {position:'VP Operations',name:'TBD'},{position:'Secretary',name:'TBD'},
-    {position:'Treasurer',name:'TBD'},{position:'Risk Manager',name:'TBD'},
-    {position:'Scholarship Chair',name:'TBD'}
-  ]};
-  document.getElementById('exec-year-title').textContent = d.year + ' Executive Board';
-  document.getElementById('exec-officers').innerHTML = d.officers.map(o => {
-    let nameHtml;
-    if (o.email) {
-      nameHtml = `<a href="mailto:${o.email}">${o.name}</a>`;
-    } else if (o.link) {
-      nameHtml = `<a href="${o.link}" target="_blank" rel="noopener noreferrer">${o.name}</a>`;
-    } else {
-      nameHtml = o.name;
-    }
-    return `<div class="exec-row">
-      <span class="exec-position">${o.position}</span>
-      <span class="exec-name">${nameHtml}</span>
-    </div>`;
-  }).join('');
-}
-
-// ── ADVISORY BOARD ───────────────────────────────────────────────
-function getInitials(name) {
-  return name.split(' ').map(w=>w[0]).slice(0,2).join('');
-}
-
-async function loadAdvisoryBoard() {
-  const data = await fetchJSON('/_data/advisory_board.json');
-  const grid = document.getElementById('board-grid');
-  if (!data || !data.members || !data.members.length) {
-    grid.innerHTML = '';
-    return;
-  }
-  grid.innerHTML = data.members.map(m => `
-    <div class="board-member reveal">
-      <div class="board-initials">${getInitials(m.name)}</div>
-      <div class="board-name">${m.name}</div>
-      <div class="board-class">Class of ${m.class_year}${m.role ? ' · ' + m.role : ''}</div>
-    </div>`).join('');
-  attachReveal();
-}
-
-// ── SCROLL REVEAL ────────────────────────────────────────────────
-function attachReveal() {
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.opacity = '1';
-        e.target.style.transform = 'none';
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(18px)';
-    el.style.transition = 'opacity 0.5s, transform 0.5s';
-    observer.observe(el);
+  document.querySelectorAll('.event-row.reveal').forEach(el => {
+    new IntersectionObserver(([e]) => { if (e.isIntersecting) { el.classList.add('visible'); } }, {threshold:.08}).observe(el);
   });
 }
 
-// ── ACTIVE NAV ───────────────────────────────────────────────────
-const sections = document.querySelectorAll('section[id]');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
-  document.querySelectorAll('.nav-links a').forEach(a => {
-    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
-  });
-}, { passive: true });
-
-// ── ABOUT SECTION ────────────────────────────────────────────────
-async function loadAbout() {
-  const d = await fetchJSON('/_data/about.json');
-  if (!d) return;
-  if (d.eyebrow) document.getElementById('about-eyebrow').textContent = d.eyebrow;
-  if (d.title_line1 || d.title_line2) {
-    const t1 = d.title_line1 || 'Gamma Omicron';
-    const t2 = d.title_line2 || 'Alumni Association';
-    document.getElementById('about-title').innerHTML = `${t1}<br><em>${t2}</em>`;
-  }
-  if (d.paragraph1 || d.pull_quote || d.paragraph2 || d.paragraph3) {
-    const donateUrl = (siteSettings.paypal_link && siteSettings.paypal_link !== 'TBD')
-      ? siteSettings.paypal_link : 'https://pikes.org/foundation/guide-to-giving/';
-    document.getElementById('about-text').innerHTML = `
-      ${d.paragraph1 ? `<p>${d.paragraph1}</p>` : ''}
-      ${d.pull_quote ? `<div class="about-pull">"${d.pull_quote}"</div>` : ''}
-      ${d.paragraph2 ? `<p>${d.paragraph2}</p>` : ''}
-      ${d.paragraph3 ? `<p>${d.paragraph3}</p>` : ''}
-      <div style="margin-top:2rem;"><a href="${donateUrl}" target="_blank" rel="noopener noreferrer" class="btn-primary">Donate to GOAA</a></div>`;
-  }
-  if (d.dues_card_title) document.getElementById('dues-card-title').textContent = d.dues_card_title;
-  if (d.dues_card_items && d.dues_card_items.length) {
-    document.getElementById('dues-card-items').innerHTML =
-      d.dues_card_items.map(item => `<li>${item}</li>`).join('');
-  }
-}
-
-// ── HISTORY SECTION ───────────────────────────────────────────────
-async function loadHistoryContent() {
-  const d = await fetchJSON('/_data/history.json');
-  if (!d) return;
-  if (d.eyebrow) document.getElementById('history-eyebrow').textContent = d.eyebrow;
-  if (d.timeline && d.timeline.length) {
-    document.getElementById('history-timeline').innerHTML = d.timeline.map(item => `
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-year">${item.year}</div>
-        <h3 class="timeline-title">${item.title}</h3>
-        <p class="timeline-body">${item.body}</p>
-      </div>`).join('');
-  }
-  if (d.houses && d.houses.length) {
-    document.getElementById('history-houses').innerHTML = d.houses.map(h => `
-      <div class="house-row">
-        <span class="house-addr">${h.address}</span>
-        <span class="house-years">${h.years}</span>
-      </div>`).join('');
-  }
-}
-
-// ── CHAPTER SECTION ───────────────────────────────────────────────
-async function loadChapterContent() {
-  const d = await fetchJSON('/_data/chapter.json');
-  if (!d) return;
-  if (d.mission_quote) document.getElementById('chapter-mission').textContent = `"${d.mission_quote}"`;
-  if (d.paragraph1 || d.paragraph2 || d.paragraph3) {
-    document.getElementById('chapter-text').innerHTML = [d.paragraph1, d.paragraph2, d.paragraph3]
-      .filter(Boolean).map(p => `<p>${p}</p>`).join('');
-  }
-  if (d.smythe_label) document.querySelector('.smythe-label').textContent = d.smythe_label;
-  if (d.years_of_brotherhood) document.getElementById('stat-years').textContent = d.years_of_brotherhood;
-}
-
-// ── DONATE SECTION ────────────────────────────────────────────────
-async function loadDonateContent() {
-  const d = await fetchJSON('/_data/donate.json');
-  if (!d) return;
-
-  if (d.intro_text) document.getElementById('donate-intro').textContent = d.intro_text;
-
-  // Historical Society card
-  if (d.hist_title) document.getElementById('hist-title').textContent = d.hist_title;
-  if (d.hist_intro) document.getElementById('hist-intro').textContent = d.hist_intro;
-  if (d.hist_note) document.getElementById('hist-note').innerHTML = `<strong>${d.hist_note}</strong>`;
-  if (d.hist_projects && d.hist_projects.length) {
-    document.getElementById('hist-projects').innerHTML = d.hist_projects.map(p =>
-      `<li><span>${p.name}</span><span class="${p.funded ? 'donate-project-funded' : 'donate-project-cost'}">${p.funded ? p.amount + ' FUNDED' : p.amount}</span></li>`
-    ).join('');
-  }
-  if (d.hist_total) document.getElementById('hist-total-amount').textContent = d.hist_total;
-  if (d.hist_link) {
-    const hBtn = document.getElementById('hist-donate-btn');
-    if (hBtn) hBtn.href = d.hist_link;
-  }
-
-  // Alumni Association card
-  if (d.card_desc) document.getElementById('donate-card-desc').textContent = d.card_desc;
-  if (d.options && d.options.length) {
-    document.getElementById('donate-options').innerHTML = d.options.map(opt =>
-      `<div class="donate-option"><div><div class="donate-option-name">${opt.name}</div><div class="donate-option-desc">${opt.desc}</div></div><div class="donate-option-badge">${opt.badge}</div></div>`
-    ).join('');
-  }
-
-  // Donate Now button — use paypal_link from settings if available
-  const donateUrl = (siteSettings.paypal_link && siteSettings.paypal_link !== 'TBD')
-    ? siteSettings.paypal_link : 'https://pikes.org/foundation/guide-to-giving/';
-  const donateBtn = document.getElementById('donate-btn');
-  if (donateBtn) donateBtn.href = donateUrl;
-}
-
-// ── ADVISORY SECTION ─────────────────────────────────────────────
-async function loadAdvisoryContent() {
-  const d = await fetchJSON('/_data/advisory_content.json');
-  if (!d) return;
-  if (d.description) document.getElementById('advisory-desc').textContent = d.description;
-  if (d.missing_eyebrow) document.getElementById('missing-eyebrow').textContent = d.missing_eyebrow;
-  if (d.missing_title) document.getElementById('missing-title').textContent = d.missing_title;
-  if (d.missing_desc) document.getElementById('missing-desc').innerHTML = d.missing_desc;
-}
-
-// ── NETLIFY IDENTITY REDIRECT ────────────────────────────────────
-function handleAdminLogin() {
-  if (!window.netlifyIdentity) return;
-  const user = window.netlifyIdentity.currentUser();
-  if (user) {
-    document.location.href = '/admin/';
-  } else {
-    window.netlifyIdentity.open('login');
-    window.netlifyIdentity.once('login', () => { document.location.href = '/admin/'; });
-  }
-}
-
-// ── INIT ─────────────────────────────────────────────────────────
-(async () => {
-  await loadSettings();
-  await Promise.all([
-    loadNews(), loadEvents(), loadPresidents(),
-    loadScholarships(), loadAwards(),
-    loadExecBoard(), loadAdvisoryBoard(),
-    loadAbout(), loadHistoryContent(), loadChapterContent(),
-    loadDonateContent(), loadAdvisoryContent()
-  ]);
-})();
+(async () => { await Promise.all([loadSettings(), loadNews(), loadEvents()]); })();
 </script>
 </body>
 </html>

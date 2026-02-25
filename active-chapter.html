@@ -5,37 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Active Chapter – Pi Kappa Alpha Gamma Omicron</title>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
 <style>
-  :root {
-    --garnet: #8B1A2E;
-    --garnet-dark: #5C0F1C;
-    --garnet-light: #B52340;
-    --gold: #C9A84C;
-    --gold-light: #E8C86A;
-    --gold-pale: #F5E9C8;
-    --cream: #FAF6EE;
-    --dark: #1A1009;
-    --mid: #3D2B1F;
-    --text: #2C1A10;
-    --text-light: #7A5C44;
-    --border: #D4B896;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Libre Baskerville', Georgia, serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
-
-  /* NAV */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--garnet-dark); border-bottom: 3px solid var(--gold); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 64px; }
-  .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-  .nav-crest { width: 40px; height: 40px; background: var(--gold); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 800; color: var(--garnet-dark); flex-shrink: 0; }
-  .nav-title { font-family: 'Josefin Sans', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.15em; color: var(--gold-light); text-transform: uppercase; line-height: 1.3; }
-  .nav-title span { display: block; font-weight: 300; font-size: 10px; letter-spacing: 0.25em; color: var(--gold); opacity: 0.8; }
-  .nav-back { font-family: 'Josefin Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.7); text-decoration: none; display: flex; align-items: center; gap: 8px; padding: 8px 16px; border: 1px solid rgba(201,168,76,0.3); transition: color 0.2s, border-color 0.2s; }
-  .nav-back:hover { color: var(--gold-light); border-color: var(--gold); }
-  .nav-back::before { content: '←'; font-size: 14px; }
-
-  /* PAGE HEADER */
+  /* PAGE HEADER — extra height for composite page */
   .page-header {
     min-height: 38vh;
     background: linear-gradient(180deg, rgba(92,15,28,0.95) 0%, rgba(26,16,9,0.88) 100%),
@@ -199,11 +171,6 @@
     margin-top: 1.5rem;
     flex-wrap: wrap;
   }
-  .btn-primary { background: var(--gold); color: var(--garnet-dark); padding: 14px 32px; font-family: 'Josefin Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s, transform 0.2s; display: inline-block; }
-  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
-  .btn-outline { background: transparent; color: var(--garnet-dark); padding: 14px 32px; font-family: 'Josefin Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--border); cursor: pointer; transition: border-color 0.2s, color 0.2s, transform 0.2s; display: inline-block; }
-  .btn-outline:hover { border-color: var(--garnet); color: var(--garnet); transform: translateY(-2px); }
-
   /* INFO STRIP */
   .info-strip {
     display: grid;
@@ -255,18 +222,6 @@
     margin-bottom: 1.75rem;
   }
 
-  /* FOOTER */
-  footer { background: var(--dark); color: rgba(255,255,255,0.5); padding: 3rem 0 2rem; }
-  .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; }
-  .footer-brand-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 800; color: var(--gold); margin-bottom: 0.25rem; margin-top: 0.75rem; }
-  .footer-brand-sub { font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
-  .footer-bottom { max-width: 1200px; margin: 0 auto; padding: 1.5rem 2rem 0; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.25); flex-wrap: wrap; gap: 0.5rem; }
-  .admin-btn { background: transparent; color: rgba(255,255,255,0.25); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; font-family: 'Josefin Sans', sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: color 0.2s, border-color 0.2s; text-decoration: none; display: inline-block; }
-  .admin-btn:hover { color: var(--gold); border-color: var(--gold); }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-
   /* MOBILE */
   @media (max-width: 700px) {
     .composite-frame { padding: 8px; }
@@ -279,12 +234,24 @@
 </head>
 <body>
 
-<nav>
+<nav id="main-nav">
   <a href="/" class="nav-brand">
     <div class="nav-crest">ΠΚΑ</div>
     <div class="nav-title">Gamma Omicron <span>Pi Kappa Alpha · Ohio University</span></div>
   </a>
-  <a href="/#chapter" class="nav-back">Back to Home</a>
+  <div class="hamburger" onclick="document.getElementById('nav-links').classList.toggle('open')"><span></span><span></span><span></span></div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/about.html">Association</a></li>
+    <li><a href="/news.html">News</a></li>
+    <li><a href="/calendar.html">Events</a></li>
+    <li><a href="/history.html">History</a></li>
+    <li><a href="/scholarships.html">Scholarships</a></li>
+    <li><a href="/awards.html">Awards</a></li>
+    <li><a href="/chapter.html">Chapter</a></li>
+    <li><a href="/donate.html">Donate</a></li>
+    <li><a href="/advisory.html">Advisory</a></li>
+    <li><a href="https://mypike.pikes.org/" class="nav-login" target="_blank" rel="noopener noreferrer">myPIKE</a></li>
+  </ul>
 </nav>
 
 <!-- PAGE HEADER -->
@@ -349,39 +316,17 @@
 <div class="back-banner">
   <div class="back-banner-title">Support the Brotherhood</div>
   <div class="back-banner-sub">Alumni Association · Gamma Omicron Chapter</div>
-  <a href="/#donate" class="btn-primary" style="margin-right:1rem;">Donate</a>
-  <a href="/#about" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.3);">Learn More</a>
+  <a href="/donate.html" class="btn-primary" style="margin-right:1rem;">Donate</a>
+  <a href="/about.html" class="btn-outline-light">Learn More</a>
 </div>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <div>
-      <div style="font-size:2rem;color:rgba(255,255,255,0.12);">ΠΚΑ</div>
-      <div class="footer-brand-name">Gamma Omicron</div>
-      <div class="footer-brand-sub">Pi Kappa Alpha · Ohio University</div>
-    </div>
-    <div style="display:flex;gap:3rem;flex-wrap:wrap;">
-      <div>
-        <div style="font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;">Navigate</div>
-        <ul style="list-style:none;">
-          <li style="margin-bottom:0.5rem;"><a href="/" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;">Home</a></li>
-          <li style="margin-bottom:0.5rem;"><a href="/#about" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;">Alumni Association</a></li>
-          <li style="margin-bottom:0.5rem;"><a href="/#events" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;">Events</a></li>
-          <li style="margin-bottom:0.5rem;"><a href="/#scholarships" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;">Scholarships</a></li>
-          <li style="margin-bottom:0.5rem;"><a href="/#donate" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;">Donate</a></li>
-        </ul>
-      </div>
-      <div>
-        <div style="font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;">Chapter</div>
-        <ul style="list-style:none;">
-          <li style="margin-bottom:0.5rem;"><a href="/#chapter" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;">Active Chapter</a></li>
-          <li style="margin-bottom:0.5rem;"><a href="/#advisory" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;">Advisory Board</a></li>
-          <li style="margin-bottom:0.5rem;"><a href="/missing-alumni.html" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;">Missing Alumni</a></li>
-          <li style="margin-bottom:0.5rem;"><a href="https://mypike.pikes.org/" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;">myPIKE</a></li>
-        </ul>
-      </div>
-    </div>
+    <div><div style="font-size:2.5rem;color:rgba(255,255,255,.15);">ΠΚΑ</div><div class="footer-brand-name">Gamma Omicron</div><div class="footer-brand-sub">Pi Kappa Alpha · Ohio University</div></div>
+    <div><div class="footer-col-title">Navigate</div><ul class="footer-links"><li><a href="/about.html">Association</a></li><li><a href="/news.html">News</a></li><li><a href="/calendar.html">Events</a></li><li><a href="/history.html">History</a></li><li><a href="/scholarships.html">Scholarships</a></li><li><a href="/awards.html">Awards</a></li></ul></div>
+    <div><div class="footer-col-title">Chapter</div><ul class="footer-links"><li><a href="/chapter.html">Active Chapter</a></li><li><a href="/active-chapter.html">Composite Photo</a></li><li><a href="/advisory.html">Advisory Board</a></li><li><a href="/missing-alumni.html">Missing Alumni</a></li></ul></div>
+    <div><div class="footer-col-title">Give</div><ul class="footer-links"><li><a href="/donate.html">Donate</a></li><li><a href="https://mypike.pikes.org/" target="_blank" rel="noopener noreferrer">myPIKE</a></li></ul></div>
   </div>
   <div class="footer-bottom">
     <span>&copy; 2026 Pi Kappa Alpha &ndash; Gamma Omicron Alumni Association. All rights reserved.</span>
@@ -389,15 +334,8 @@
   </div>
 </footer>
 
+<script src="/site.js"></script>
 <script>
-async function fetchJSON(path) {
-  try {
-    const r = await fetch(path);
-    if (!r.ok) return null;
-    return await r.json();
-  } catch { return null; }
-}
-
 async function loadPhoto() {
   const data = await fetchJSON('/_data/active_chapter_photo.json');
   if (!data || !data.photo_url) {
@@ -427,17 +365,6 @@ async function loadSettings() {
   if (!s) return;
   if (s.alumni_count) document.getElementById('strip-alumni').textContent = s.alumni_count;
   if (s.smythe_count) document.getElementById('strip-smythe').textContent = s.smythe_count;
-}
-
-function handleAdminLogin() {
-  if (!window.netlifyIdentity) return;
-  const user = window.netlifyIdentity.currentUser();
-  if (user) {
-    document.location.href = '/admin/';
-  } else {
-    window.netlifyIdentity.open('login');
-    window.netlifyIdentity.once('login', () => { document.location.href = '/admin/'; });
-  }
 }
 
 (async () => {

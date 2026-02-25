@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Active Chapter – Pi Kappa Alpha Gamma Omicron</title>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<link rel="stylesheet" href="/site.css">
+<style>
+  .chapter-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 4rem; align-items: start; }
+  .chapter-mission { font-family: 'Playfair Display',serif; font-size: 1.3rem; font-style: italic; color: var(--garnet); border-left: 3px solid var(--gold); padding: 1rem 0 1rem 1.5rem; margin-bottom: 2rem; line-height: 1.5; }
+  .chapter-text p { font-size: .95rem; line-height: 1.9; color: var(--mid); margin-bottom: 1rem; }
+  .exec-board { background: var(--garnet-dark); padding: 2.5rem; color: #fff; }
+  .exec-board-title { font-family: 'Josefin Sans',sans-serif; font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; }
+  .exec-row { display: flex; justify-content: space-between; padding: .9rem 0; border-bottom: 1px solid rgba(201,168,76,.1); font-size: .875rem; }
+  .exec-row:last-child { border-bottom: none; }
+  .exec-position { color: rgba(255,255,255,.5); font-style: italic; }
+  .exec-name { color: #fff; font-weight: 700; }
+  .exec-name a { color: var(--gold-light); text-decoration: none; border-bottom: 1px solid rgba(232,200,106,.3); transition: border-color .2s, color .2s; }
+  .exec-name a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+  .smythe-banner { background: linear-gradient(135deg,var(--gold),var(--gold-light)); padding: 2rem; text-align: center; margin-top: 2rem; }
+  .smythe-count { font-family: 'Playfair Display',serif; font-size: 3rem; font-weight: 800; color: var(--garnet-dark); line-height: 1; }
+  .smythe-label { font-family: 'Josefin Sans',sans-serif; font-size: 10px; letter-spacing: .25em; text-transform: uppercase; color: var(--mid); margin-top: 4px; }
+  .composite-cta { background: var(--garnet-dark); padding: 3rem; text-align: center; margin-top: 4rem; position: relative; overflow: hidden; }
+  .composite-cta::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(to right,var(--gold),var(--gold-light),var(--gold)); }
+  .composite-cta-title { font-family: 'Playfair Display',serif; font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: .5rem; }
+  .composite-cta-sub { font-family: 'Josefin Sans',sans-serif; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 1.75rem; }
+  @media (max-width: 900px) { .chapter-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav id="main-nav">
+  <a href="/" class="nav-brand">
+    <div class="nav-crest">ΠΚΑ</div>
+    <div class="nav-title">Gamma Omicron <span>Pi Kappa Alpha · Ohio University</span></div>
+  </a>
+  <div class="hamburger" onclick="document.getElementById('nav-links').classList.toggle('open')"><span></span><span></span><span></span></div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/about.html">Association</a></li>
+    <li><a href="/news.html">News</a></li>
+    <li><a href="/calendar.html">Events</a></li>
+    <li><a href="/history.html">History</a></li>
+    <li><a href="/scholarships.html">Scholarships</a></li>
+    <li><a href="/awards.html">Awards</a></li>
+    <li><a href="/chapter.html">Chapter</a></li>
+    <li><a href="/donate.html">Donate</a></li>
+    <li><a href="/advisory.html">Advisory</a></li>
+    <li><a href="https://mypike.pikes.org/" class="nav-login" target="_blank" rel="noopener noreferrer">myPIKE</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="header-eyebrow">Ohio University · Athens, Ohio</div>
+  <h1 class="header-title">Active <em>Chapter</em></h1>
+  <p class="header-sub">Gamma Omicron · 2025–2026</p>
+  <div class="header-rule"></div>
+</div>
+
+<section style="background:var(--cream);">
+  <div class="section-inner">
+    <div class="chapter-grid">
+      <div>
+        <div class="chapter-mission reveal" id="chapter-mission">"Gentlemen, Scholars, and Athletes — the Pike ideal, lived daily."</div>
+        <div class="chapter-text reveal" id="chapter-text">
+          <p>The Gamma Omicron chapter of Pi Kappa Alpha continues to set the standard at Ohio University, balancing brotherhood, scholarship, and service to the Athens community.</p>
+        </div>
+        <div class="smythe-banner reveal" style="margin-top:2rem;">
+          <div class="smythe-count" id="smythe-display">7×</div>
+          <div class="smythe-label" id="smythe-label">Smythe Trophy Recipients — Chapter Excellence Award</div>
+        </div>
+      </div>
+      <div>
+        <div class="exec-board reveal">
+          <div class="exec-board-title" id="exec-year-title">2025–2026 Executive Board</div>
+          <div id="exec-officers"><div class="loading" style="color:rgba(255,255,255,.4);">Loading…</div></div>
+          <div style="margin-top:1.5rem;text-align:center;">
+            <a id="rush-btn" href="#" class="btn-primary" style="font-size:11px;padding:10px 20px;">Rush PIKE</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="composite-cta reveal">
+      <div class="composite-cta-title">2025–2026 Chapter Composite</div>
+      <div class="composite-cta-sub">View the full chapter photo</div>
+      <a href="/active-chapter.html" class="btn-primary" style="margin-right:1rem;">View Composite Photo</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div><div style="font-size:2.5rem;color:rgba(255,255,255,.15);">ΠΚΑ</div><div class="footer-brand-name">Gamma Omicron</div><div class="footer-brand-sub">Pi Kappa Alpha · Ohio University</div></div>
+    <div><div class="footer-col-title">Navigate</div><ul class="footer-links"><li><a href="/about.html">Association</a></li><li><a href="/news.html">News</a></li><li><a href="/calendar.html">Events</a></li><li><a href="/history.html">History</a></li><li><a href="/scholarships.html">Scholarships</a></li><li><a href="/awards.html">Awards</a></li></ul></div>
+    <div><div class="footer-col-title">Chapter</div><ul class="footer-links"><li><a href="/chapter.html">Active Chapter</a></li><li><a href="/active-chapter.html">Composite Photo</a></li><li><a href="/advisory.html">Advisory Board</a></li><li><a href="/missing-alumni.html">Missing Alumni</a></li></ul></div>
+    <div><div class="footer-col-title">Give</div><ul class="footer-links"><li><a href="/donate.html">Donate</a></li><li><a href="https://fdog23.funraise.org/team/gamma-omicron-ohio" target="_blank" rel="noopener noreferrer">Historical Society</a></li><li><a href="https://mypike.pikes.org/" target="_blank" rel="noopener noreferrer">myPIKE</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Pi Kappa Alpha &ndash; Gamma Omicron Alumni Association. All rights reserved.</span>
+    <button class="admin-btn" onclick="handleAdminLogin()">Admin</button>
+  </div>
+</footer>
+
+<script src="/site.js"></script>
+<script>
+async function loadChapter() {
+  const [s, d, eb] = await Promise.all([
+    fetchJSON('/_data/settings.json'),
+    fetchJSON('/_data/chapter.json'),
+    fetchJSON('/_data/exec_board.json')
+  ]);
+  if (s) {
+    if (s.smythe_count) document.getElementById('smythe-display').textContent = s.smythe_count;
+    if (s.rush_link) { const b = document.getElementById('rush-btn'); if(b) b.href = s.rush_link; }
+  }
+  if (d) {
+    if (d.mission_quote) document.getElementById('chapter-mission').textContent = '"' + d.mission_quote + '"';
+    if (d.paragraph1 || d.paragraph2 || d.paragraph3) {
+      document.getElementById('chapter-text').innerHTML = [d.paragraph1, d.paragraph2, d.paragraph3]
+        .filter(Boolean).map(p=>`<p>${p}</p>`).join('');
+    }
+    if (d.smythe_label) document.getElementById('smythe-label').textContent = d.smythe_label;
+  }
+  const board = eb || { year:'2025–2026', officers:[
+    {position:'President (SMC)',name:'TBD'},{position:'VP Membership',name:'TBD'},
+    {position:'VP Operations',name:'TBD'},{position:'Secretary',name:'TBD'},
+    {position:'Treasurer',name:'TBD'},{position:'Risk Manager',name:'TBD'}
+  ]};
+  document.getElementById('exec-year-title').textContent = board.year + ' Executive Board';
+  document.getElementById('exec-officers').innerHTML = board.officers.map(o => {
+    const nameHtml = o.email ? `<a href="mailto:${o.email}">${o.name}</a>` : o.link ? `<a href="${o.link}" target="_blank" rel="noopener noreferrer">${o.name}</a>` : o.name;
+    return `<div class="exec-row"><span class="exec-position">${o.position}</span><span class="exec-name">${nameHtml}</span></div>`;
+  }).join('');
+  document.querySelectorAll('.reveal').forEach(el => {
+    new IntersectionObserver(([e]) => { if (e.isIntersecting) el.classList.add('visible'); }, {threshold:.08}).observe(el);
+  });
+}
+loadChapter();
+</script>
+</body>
+</html>
