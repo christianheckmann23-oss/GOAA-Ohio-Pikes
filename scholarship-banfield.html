@@ -95,8 +95,14 @@
     .back-footer { padding: 2rem 1.25rem 3.5rem; }
     nav { padding: 0 1.25rem; }
   }
+  @media (max-width: 768px) {
+    .about-inner { grid-template-columns: 1fr 1fr; }
+    .honor-photo-wrap { grid-column: 1 / -1; flex-direction: row; align-items: flex-start; gap: 1.25rem; }
+    .honor-photo { width: 110px; }
+  }
   @media (max-width: 640px) {
     .about-inner { grid-template-columns: 1fr; }
+    .honor-photo-wrap { flex-direction: column; align-items: center; }
     .r-num { display: none; }
     .nav-title span { display: none; }
     .page-hero { padding: 76px 1rem 40px; }
@@ -124,6 +130,10 @@
 
 <div class="about-band">
   <div class="about-inner">
+    <div class="honor-photo-wrap">
+      <img src="/images/uploads/norm-martha-banfield.png" alt="Norm Banfield '50 and Martha Banfield" class="honor-photo">
+      <div class="honor-photo-caption">Norm Banfield '50<br>&amp; Martha Banfield</div>
+    </div>
     <div>
       <div class="criteria-title" style="color:var(--gold-light);margin-bottom:0.75rem;">About This Scholarship</div>
       <p class="about-desc" id="schol-desc">This scholarship honors the memory of Martha Banfield and is awarded to an active member who holds a chapter leadership position and maintains strong academic standing.</p>
