@@ -18,6 +18,76 @@
   .about-card-items li:last-child { border-bottom: none; }
   .about-card-items li::before { content: '◆'; color: var(--gold); font-size: 8px; margin-top: 6px; flex-shrink: 0; }
   @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; } }
+
+  /* ── INVOLVEMENT SECTION ──────────────────────────────────────── */
+  .involvement-intro { max-width: 760px; margin: 0 auto 3.5rem; text-align: center; }
+  .involvement-intro p { font-size: 1.05rem; line-height: 1.9; color: rgba(255,255,255,.75); }
+  .involvement-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+  .involvement-tier {
+    background: rgba(255,255,255,.05);
+    padding: 2.75rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    border-top: 4px solid rgba(201,168,76,.3);
+    transition: border-color .2s, background .2s;
+  }
+  .involvement-tier:hover { background: rgba(255,255,255,.08); border-top-color: var(--gold); }
+  .involvement-tier.featured {
+    background: rgba(201,168,76,.1);
+    border-top-color: var(--gold);
+  }
+  .tier-badge {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .tier-badge::after { content: ''; flex: 1; height: 1px; background: rgba(201,168,76,.25); }
+  .tier-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: .25rem;
+    opacity: .35;
+  }
+  .tier-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: .75rem;
+  }
+  .tier-desc {
+    font-size: .9rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,.6);
+    margin-bottom: 1.75rem;
+  }
+  .tier-list { list-style: none; margin-bottom: 2rem; flex: 1; }
+  .tier-list li {
+    font-size: .875rem;
+    color: rgba(255,255,255,.75);
+    padding: .65rem 0;
+    border-bottom: 1px solid rgba(201,168,76,.12);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.55;
+  }
+  .tier-list li:last-child { border-bottom: none; }
+  .tier-list li::before { content: '◆'; color: var(--gold); font-size: 7px; margin-top: 5px; flex-shrink: 0; }
+  .involvement-cta { text-align: center; margin-top: 3rem; }
+  .involvement-cta p { font-family: 'Josefin Sans', sans-serif; font-size: 11px; letter-spacing: .15em; color: rgba(255,255,255,.4); margin-top: 1rem; text-transform: uppercase; }
+  @media (max-width: 700px) { .involvement-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 600px) { .involvement-tier { padding: 2rem 1.5rem; } }
 </style>
 </head>
 <body>
@@ -54,7 +124,7 @@
         <p>The Gamma Omicron Alumni Association connects the brotherhood across all generations — from our founding class of 1930 through today's active chapter at Ohio University.</p>
         <div class="about-pull">"Once a Pike, Always a Pike."</div>
         <p>Your membership in GOAA keeps the chapter resourced, recognized, and rooted in the traditions that make Gamma Omicron one of the most storied chapters in Pi Kappa Alpha.</p>
-        <div style="margin-top:2rem;"><a href="/donate.html" class="btn-primary">Donate to GOAA</a></div>
+        <div style="margin-top:2rem;"><a href="https://forms.gle/GL6HEn8EgphYBw93A" target="_blank" rel="noopener noreferrer" class="btn-primary">Learn More</a></div>
       </div>
       <div class="reveal">
         <div class="about-card">
@@ -69,6 +139,53 @@
           <div style="margin-top:2rem;"><a id="about-dues-btn" href="https://pikes.org/foundation/guide-to-giving/" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size:11px;">Pay $35 Annual Dues</a></div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVOLVEMENT SECTION -->
+<section style="background:var(--garnet-dark);">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-eyebrow" style="color:var(--gold);">Get Involved</span>
+      <h2 class="section-title" style="color:#fff;">Your Level of <em style="color:var(--gold);">Involvement</em></h2>
+      <div class="section-rule" style="background:linear-gradient(to right,var(--gold),rgba(201,168,76,.2));"></div>
+    </div>
+    <div class="involvement-intro reveal">
+      <p>We are asking every alumnus to complete the involvement form and select one of two paths. Whether you want to stay connected from a distance or roll up your sleeves and help rebuild — there is a place for you.</p>
+    </div>
+    <div class="involvement-grid">
+
+      <div class="involvement-tier reveal">
+        <div class="tier-badge">Tier One</div>
+        <div class="tier-num">01</div>
+        <div class="tier-title">Annual Member</div>
+        <p class="tier-desc">Support the association by paying a modest annual due expected to be around $50. This is for alumni who want to stay connected and contribute financially without taking on leadership responsibilities.</p>
+        <ul class="tier-list">
+          <li>Alumni events and networking opportunities</li>
+          <li>Communication platforms and record keeping</li>
+          <li>Long term chapter support initiatives</li>
+          <li>Feed-A-Brother Night supported by alumni</li>
+        </ul>
+      </div>
+
+      <div class="involvement-tier featured reveal">
+        <div class="tier-badge">Tier Two</div>
+        <div class="tier-num">02</div>
+        <div class="tier-title">Leadership &amp; Foundation Restart Team</div>
+        <p class="tier-desc">Step forward to actively rebuild and lead the Alumni Association and Foundation. This is for alumni who want to take ownership and build something sustainable that will outlast all of us.</p>
+        <ul class="tier-list">
+          <li>Establish structure, bylaws, and governance</li>
+          <li>Oversee finances and compliance</li>
+          <li>Drive fundraising and long term strategic planning</li>
+          <li>Coordinate directly with the active chapter leadership</li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="involvement-cta reveal">
+      <a href="https://forms.gle/GL6HEn8EgphYBw93A" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size:12px;padding:16px 40px;">Complete the Involvement Form</a>
+      <p>Takes less than 2 minutes &nbsp;·&nbsp; All alumni welcome</p>
     </div>
   </div>
 </section>
@@ -107,7 +224,7 @@ async function loadAbout() {
       ${d.pull_quote ? `<div class="about-pull">"${d.pull_quote}"</div>` : ''}
       ${d.paragraph2 ? `<p>${d.paragraph2}</p>` : ''}
       ${d.paragraph3 ? `<p>${d.paragraph3}</p>` : ''}
-      <div style="margin-top:2rem;"><a href="${donateUrl}" target="_blank" rel="noopener noreferrer" class="btn-primary">Donate to GOAA</a></div>`;
+      <div style="margin-top:2rem;"><a href="https://forms.gle/GL6HEn8EgphYBw93A" target="_blank" rel="noopener noreferrer" class="btn-primary">Learn More</a></div>`;
   }
   if (d.dues_card_title) document.getElementById('dues-card-title').textContent = d.dues_card_title;
   if (d.dues_card_items && d.dues_card_items.length) document.getElementById('dues-card-items').innerHTML = d.dues_card_items.map(i=>`<li>${i}</li>`).join('');
