@@ -8,5 +8,17 @@
     "Demonstrated campus involvement",
     "Letter of recommendation from chapter advisor"
   ],
-  "recipients": []
+  "recipients": [
+    {"year": "2000", "name": "Todd Miller (1st Year Awarded)"},
+    {"year": "2001", "name": "Not Awarded"},
+    {"year": "2002", "name": "Chaz Hatfield"},
+    {"year": "2003", "name": "Andrew Hardy"},
+    {"year": "2004", "name": "Josh Nesser"},
+    {"year": "2005", "name": "Patrick Jamieson"},
+    {"year": "2006", "name": "Chris Logan"},
+    {"year": "2007", "name": "Patrick Nieser"},
+    {"year": "2008", "name": "Gordon Jones"},
+    {"year": "2009", "name": "No Award Given"},
+    {"year": "2010", "name": "William Banley"}
+  ]
 }

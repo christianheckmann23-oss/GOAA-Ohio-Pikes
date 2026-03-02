@@ -415,7 +415,7 @@ collections:
           - { label: "Founded Year (hero badge)", name: "founded", widget: "string", default: "1930", hint: "Shows as 'Est. [year]' in the hero badge." }
           - { label: "Refounded Year (hero badge)", name: "refounded", widget: "string", default: "2019" }
           - { label: "Total Alumni Count (hero stat)", name: "alumni_count", widget: "string", default: "1,200+", hint: "Large gold number on the homepage hero — e.g. '1,200+'" }
-          - { label: "Smythe Trophy Count (hero stat)", name: "smythe_count", widget: "string", default: "7×", hint: "e.g. '7×' — shown on homepage hero and Chapter page." }
+          - { label: "Smythe Trophy Count (hero stat)", name: "smythe_count", widget: "string", default: "11×", hint: "e.g. '11×' — shown on homepage hero and Chapter page." }
           - { label: "Annual Dues Amount", name: "dues_amount", widget: "string", default: "$35", hint: "Shown on the 'Pay Annual Dues' button on the About page." }
           - { label: "Contact Email", name: "contact_email", widget: "string", required: false }
           - { label: "PayPal / Donate Button Link", name: "paypal_link", widget: "string", required: false, hint: "URL for all 'Donate' and 'Pay Dues' buttons site-wide. Leave blank to use the default PIKE Foundation link." }

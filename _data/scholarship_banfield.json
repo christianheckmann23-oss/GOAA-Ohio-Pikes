@@ -8,5 +8,24 @@
     "Demonstrated service to the chapter",
     "Personal essay on leadership philosophy"
   ],
-  "recipients": []
+  "recipients": [
+    {"year": "1998", "name": "Bob Richards (1st Year Awarded)"},
+    {"year": "1999", "name": "Kevin Bilderback"},
+    {"year": "2000", "name": "Todd S. Miller"},
+    {"year": "2001", "name": "No Award"},
+    {"year": "2002", "name": "Eric McGrath"},
+    {"year": "2002", "name": "Jorden Paszcykowski"},
+    {"year": "2003", "name": "Chaz Hatfield"},
+    {"year": "2004", "name": "Pat Mancinetti"},
+    {"year": "2005", "name": "Patrick Jamieson"},
+    {"year": "2005", "name": "Chris Gaitten"},
+    {"year": "2005", "name": "Joshua Moss"},
+    {"year": "2005", "name": "Chris Starr"},
+    {"year": "2006", "name": "Alex Vitanye"},
+    {"year": "2007", "name": "Patrick Nieser"},
+    {"year": "2008", "name": "Gordy Jones"},
+    {"year": "2009", "name": "Andrew Wenum"},
+    {"year": "2010", "name": "Tom Fetsick"},
+    {"year": "2010", "name": "Tom Roabe"}
+  ]
 }
