@@ -136,7 +136,7 @@
             <li>Active chapter programming support</li>
             <li>Chapter house maintenance fund</li>
           </ul>
-          <div style="margin-top:2rem;"><a id="about-dues-btn" href="https://pikes.org/foundation/guide-to-giving/" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size:11px;">Pay $35 Annual Dues</a></div>
+          <div style="margin-top:2rem;"><a id="about-dues-btn" href="https://forms.gle/GL6HEn8EgphYBw93A" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size:11px;">Click Here</a></div>
         </div>
       </div>
     </div>
@@ -198,7 +198,7 @@
       <div class="footer-brand-sub">Pi Kappa Alpha · Ohio University</div>
     </div>
     <div><div class="footer-col-title">Navigate</div><ul class="footer-links"><li><a href="/about.html">Association</a></li><li><a href="/news.html">News</a></li><li><a href="/calendar.html">Events</a></li><li><a href="/history.html">History</a></li><li><a href="/scholarships.html">Scholarships</a></li><li><a href="/awards.html">Awards</a></li></ul></div>
-    <div><div class="footer-col-title">Chapter</div><ul class="footer-links"><li><a href="/chapter.html">Active Chapter</a></li><li><a href="/active-chapter.html">Composite Photo</a></li><li><a href="/advisory.html">Advisory Board</a></li><li><a href="/missing-alumni.html">Missing Alumni</a></li></ul></div>
+    <div><div class="footer-col-title">Chapter</div><ul class="footer-links"><li><a href="/chapter.html">Active Chapter</a></li><li><a href="/advisory.html">Advisory Board</a></li><li><a href="/missing-alumni.html">Missing Alumni</a></li></ul></div>
     <div><div class="footer-col-title">Give</div><ul class="footer-links"><li><a href="/donate.html">Donate</a></li><li><a href="https://fdog23.funraise.org/team/gamma-omicron-ohio" target="_blank" rel="noopener noreferrer">Historical Society</a></li><li><a href="https://mypike.pikes.org/" target="_blank" rel="noopener noreferrer">myPIKE</a></li></ul></div>
   </div>
   <div class="footer-bottom">
@@ -212,8 +212,8 @@
 async function loadAbout() {
   const s = await fetchJSON('/_data/settings.json');
   if (s) {
-    if (s.dues_amount) { const b = document.getElementById('about-dues-btn'); if(b) b.textContent = 'Pay ' + s.dues_amount + ' Annual Dues'; }
-    if (s.paypal_link && s.paypal_link !== 'TBD') { const b = document.getElementById('about-dues-btn'); if(b) b.href = s.paypal_link; }
+    const b = document.getElementById('about-dues-btn');
+    if (b) { b.textContent = 'Click Here'; b.href = 'https://forms.gle/GL6HEn8EgphYBw93A'; }
   }
   const d = await fetchJSON('/_data/about.json');
   if (!d) return;
